@@ -13,5 +13,20 @@
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 	
+	<context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+           /WEB-INF/springmvc-servlet.xml,
+           /WEB-INF/hibernate-cfg-spring.xml,
+           /WEB-INF/dao-cfg.xml
+         </param-value>        
+    </context-param>
+    
+    <!-- Spring ContextLoaderListener -->
+    <!-- SpringContextListener sẽ làm nhiệm vụ đọc các file cấu hình bởi tham số contextConfigLocation: -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+	
 	
 </web-app>
