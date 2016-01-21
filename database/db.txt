@@ -1,0 +1,34 @@
+1. CUSTOMER
+	CId
+	Name
+	Address
+	Phone
+	Note
+	
+2. INVOICE
+	InId
+	DateCreate
+	DateDelivery
+	TotalPrice
+	Note
+	
+3. INVOICEDETAILS
+	PId -- productId
+	InId -- invoiceId
+	Quantity
+
+4. PRODUCT
+	PId
+	EnName
+	VnName
+	Note
+	
+5. WASHTYPEPRICE
+	PId -- productId
+	Laundry -- Giặt nước
+	DryClean -- Giặt hấp
+	PressOnly -- Chỉ ủi
+	
+	
+	
+	

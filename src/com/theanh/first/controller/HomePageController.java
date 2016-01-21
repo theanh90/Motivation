@@ -1,23 +1,20 @@
 package com.theanh.first.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.theanh.first.model.User;
-
 @Controller
-public class TestController {
-
-	@RequestMapping(value = "/hello")
-	public ModelAndView sayHello() {
+@RequestMapping(value="/")
+public class HomePageController {
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView getHomePage() {
+		System.out.println("index ne - home page");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("message", "Hello Reader!");
-		mv.setViewName("resources/index");
+		mv.setViewName("homepage/index");
 		return mv;
 	}
 
