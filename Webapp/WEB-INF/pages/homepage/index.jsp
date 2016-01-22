@@ -4,6 +4,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		
+  		<!-- Font awesome -->
+  		<link rel="stylesheet" href="resources/font-awesome-4.5.0/css/font-awesome.min.css">
 		
   		<!-- Jquery -->
 		<script src="resources/jquery/1.12.0/jquery.min.js"></script>
@@ -12,9 +15,43 @@
 		<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   		<script src="resources/bootstrap/js/bootstrap.min.js"></script>
 		
-		<title>Giặt Ủi Laundry</title>
+		<title>GIẶT ỦI LAUNDROMAX</title>
 	</head>
-	<body>
+	<body ng-app = "mainApp">
+	
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>                        
+		      </button>
+		      <a class="navbar-brand" href="#">Laundromax</a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="#"><i style="color: white" class="fa fa-2x fa-home"></i></a></li>
+		        <li class="dropdown">
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Khách hàng<span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">Page 1-1</a></li>
+		            <li><a href="#">Page 1-2</a></li>
+		            <li><a href="#">Page 1-3</a></li>
+		          </ul>
+		        </li>
+		        <li><a href="#">Mặt hàng</a></li>
+		        <li><a href="#">Hóa đơn</a></li>
+		      </ul>
+		      <ul class="nav navbar-nav navbar-right">
+		        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp Login</a></li>
+		      </ul>
+		    </div>
+		  </div>
+		</nav>
+		
+		<div ng-view></div>
+	
 		<div class="container-fluid">
 			<div class="row">
 			  <div class="col-sm-12 content">
@@ -25,7 +62,7 @@
 				  <table class="table table-hover">
 				    <thead>
 				      <tr>
-				        <th>Firstname</th>
+				        <th><i style="color: blue" class="fa fa-2x fa-home"></th>
 				        <th>Lastname</th>
 				        <th>Email</th>
 				      </tr>

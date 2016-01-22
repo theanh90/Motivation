@@ -11,7 +11,6 @@ public class HomePageController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getHomePage() {
-		System.out.println("index ne - home page");
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("message", "Hello Reader!");
 		mv.setViewName("homepage/index");
