@@ -6,18 +6,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
   		
   		<!-- Font awesome -->
-  		<link rel="stylesheet" href="resources/font-awesome-4.5.0/css/font-awesome.min.css">
+  		<link rel="stylesheet" href="static/font-awesome-4.5.0/css/font-awesome.min.css">
 		
   		<!-- Jquery -->
-		<script src="resources/jquery/1.12.0/jquery.min.js"></script>
+		<script src="static/jquery/1.12.0/jquery.min.js"></script>
 		
 		<!-- Bootstrap -->
-		<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  		<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+		<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  		<script src="static/bootstrap/js/bootstrap.min.js"></script>
+  		
+  		<!-- AngularJs -->
+  		<script src="static/angularjs/1.5.0-rc.1/angular.min.js"></script>
+  		<script src="static/angularjs/1.5.0-rc.1/angular-route.min.js"></script>
 		
 		<title>GIẶT ỦI LAUNDROMAX</title>
 	</head>
-	<body ng-app = "mainApp">
+	<body ng-app="mainApp">
 	
 		<nav class="navbar navbar-inverse">
 		  <div class="container-fluid">
@@ -51,7 +55,18 @@
 		</nav>
 		
 		<div ng-view></div>
-	
+		<p><a href = "#addStudent">Add Student</a></p>
+        <p><a href = "#viewStudents">View Students</a></p>
+        
+        <script type = "text/ng-template" id = "addStudent">		
+			<div ng-include src="'static/laundromax/templates/Add.html'"></div>	
+   		</script>
+   		
+   		<script type = "text/ng-template" id = "viewStudents">		
+			<div ng-include src="'static/laundromax/templates/View.html'"></div>	
+   		</script>
+		
+		
 		<div class="container-fluid">
 			<div class="row">
 			  <div class="col-sm-12 content">
@@ -91,5 +106,9 @@
 			  </div> <!-- end content div -->
 			</div> <!-- end row div -->
 		</div> <!-- end container-fluid div -->
+		
+		<!-- load js file -->
+		<script src="static/laundromax/app.js"></script>
+		<script src="static/laundromax/controller.js"></script>
 	</body>
 </html>
