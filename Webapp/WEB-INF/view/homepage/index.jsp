@@ -15,6 +15,10 @@
 		<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   		<script src="static/bootstrap/js/bootstrap.min.js"></script>
   		
+  		<!-- Bootflat -->
+  		<!-- <link href="static/bootflat/css/bootflat.min.css" rel="stylesheet">
+  		<script src="static/bootstrap/js/icheck.min.js"></script> -->
+  		
   		<!-- AngularJs -->
   		<script src="static/angularjs/1.5.0-rc.1/angular.min.js"></script>
   		<script src="static/angularjs/1.5.0-rc.1/angular-route.min.js"></script>
@@ -31,39 +35,49 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>                        
 		      </button>
-		      <a class="navbar-brand" href="#">Laundromax</a>
+		      <a class="navbar-brand" href="#home">Laundromax</a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#"><i style="color: white" class="fa fa-2x fa-home"></i></a></li>
+		        <li class="active"><a href="#home"><i style="color: white" class="fa fa-2x fa-home"></i></a></li>
 		        <li class="dropdown">
-		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Khách hàng<span class="caret"></span></a>
+		          <a class="dropdown-toggle" data-toggle="dropdown" href="#customer">Khách hàng<span class="caret"></span></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="#">Page 1-1</a></li>
 		            <li><a href="#">Page 1-2</a></li>
 		            <li><a href="#">Page 1-3</a></li>
 		          </ul>
 		        </li>
-		        <li><a href="#">Mặt hàng</a></li>
-		        <li><a href="#">Hóa đơn</a></li>
+		        <li><a href="#product">Mặt hàng</a></li>
+		        <li><a href="#invoice">Hóa đơn</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp Login</a></li>
+		        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span>&nbsp Login</a></li>
 		      </ul>
 		    </div>
 		  </div>
 		</nav>
 		
 		<div ng-view></div>
-		<p><a href = "#addStudent">Add Student</a></p>
-        <p><a href = "#viewStudents">View Students</a></p>
-        
-        <script type = "text/ng-template" id = "addStudent">		
-			<div ng-include src="'static/laundromax/templates/Add.html'"></div>	
+   		
+   		<!-- view for home -->
+   		<script type = "text/ng-template" id = "home">		
+			<div ng-include src="'static/laundromax/templates/Home.html'"></div>	
    		</script>
    		
-   		<script type = "text/ng-template" id = "viewStudents">		
-			<div ng-include src="'static/laundromax/templates/View.html'"></div>	
+   		<!-- view for customer -->
+   		<script type = "text/ng-template" id = "customer">		
+			<div ng-include src="'static/laundromax/templates/Customer.html'"></div>	
+   		</script>
+   		
+   		<!-- view for product -->
+   		<script type = "text/ng-template" id = "product">		
+			<div ng-include src="'static/laundromax/templates/Product.html'"></div>	
+   		</script>
+   		
+   		<!-- view for invoice -->
+   		<script type = "text/ng-template" id = "invoice">		
+			<div ng-include src="'static/laundromax/templates/Invoice.html'"></div>	
    		</script>
 		
 		
