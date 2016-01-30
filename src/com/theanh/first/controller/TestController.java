@@ -13,12 +13,12 @@ import com.theanh.first.model.User;
 @Controller
 public class TestController {
 
-	@RequestMapping(value = "/hello")
-	public ModelAndView sayHello() {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("message", "Hello Reader!");
-		mv.setViewName("resources/index");
-		return mv;
-	}
+//	@RequestMapping(value = "/hello")
+//	public ModelAndView sayHello() {
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("message", "Hello Reader!");
+//		mv.setViewName("resources/index");
+//		return mv;
+//	}
 
 }

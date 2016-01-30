@@ -9,11 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value="/")
 public class HomePageController {
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getHomePage() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/homepage/index");
-		return mv;
-	}
+//	@RequestMapping(method = RequestMethod.GET)
+//	public ModelAndView getHomePage() {
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("/homepage/index");
+//		return mv;
+//	}
 
 }

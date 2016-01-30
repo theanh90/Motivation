@@ -11,6 +11,8 @@
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean> 
 	-->
-
+	<!-- <bean id="userService" class="com.theanh.first.service.UserServiceImpl">
+		<property name="sessionFactory" ref="mySessionFactory" />
+	</bean>  -->
 
 </beans>

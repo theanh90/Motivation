@@ -22,7 +22,7 @@ public class TestRestController {
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public List<User> list() {
 		List<User> resList = new ArrayList<User>();
-		resList = userDao.listUser();
+//		resList = userDao.listUser();
 		return resList;
 	}
 
