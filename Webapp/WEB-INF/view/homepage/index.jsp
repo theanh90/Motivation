@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,22 +7,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
   		
   		<!-- Font awesome -->
-  		<link rel="stylesheet" href="static/font-awesome-4.5.0/css/font-awesome.min.css">
+  		<link rel="stylesheet" href="<c:url value='static/font-awesome-4.5.0/css/font-awesome.min.css' />">  		
 		
   		<!-- Jquery -->
-		<script src="static/jquery/1.12.0/jquery.min.js"></script>
+		<script src="<c:url value='static/jquery/1.12.0/jquery.min.js' />"></script>		
 		
 		<!-- Bootstrap -->
-		<link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  		<script src="static/bootstrap/js/bootstrap.min.js"></script>
+		<link href="<c:url value='static/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">		
+  		<script src="<c:url value='static/bootstrap/js/bootstrap.min.js'/>"> </script>
   		
   		<!-- Bootflat -->
   		<!-- <link href="static/bootflat/css/bootflat.min.css" rel="stylesheet">
   		<script src="static/bootstrap/js/icheck.min.js"></script> -->
   		
   		<!-- AngularJs -->
-  		<script src="static/angularjs/1.5.0-rc.1/angular.min.js"></script>
-  		<script src="static/angularjs/1.5.0-rc.1/angular-route.min.js"></script>
+  		<script src="<c:url value='static/angularjs/1.5.0-rc.1/angular.min.js' />"> </script>
+  		<script src="<c:url value='static/angularjs/1.5.0-rc.1/angular-route.min.js' />"> </script>
+  		
 		
 		<title>GIẶT ỦI LAUNDROMAX</title>
 	</head>
@@ -52,7 +54,7 @@
 		        <li><a href="#invoice">Hóa đơn</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="#login"><span class="glyphicon glyphicon-log-in"></span>&nbsp Login</a></li>
+		        <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp Logout</a></li>
 		      </ul>
 		    </div>
 		  </div>

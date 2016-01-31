@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class SpringSecurityController {
 
-	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
 		model.addAttribute("greeting", "Hi, Welcome to mysite");
-		return "welcome";
+		return "homepage/index";
 	}
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -30,7 +30,7 @@ public class SpringSecurityController {
 	@RequestMapping(value = "/access_denied", method = RequestMethod.GET)
 	public String accessDeniedPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());
-		return "accessDenied";
+		return "access_denied";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

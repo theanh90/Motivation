@@ -20,8 +20,8 @@ public class UserServiceImpl implements UserService{
         return dao.findById(id);
     }
  
-    public User findByUserName(String userName, String password) {
-        return dao.findByUserName(userName, password);
+    public User findByUserName(String userName) {
+        return dao.findByUserName(userName);
     }
 
 }
