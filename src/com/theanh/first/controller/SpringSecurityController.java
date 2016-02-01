@@ -21,12 +21,6 @@ public class SpringSecurityController {
 		return "homepage/index";
 	}
 
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String adminPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
-		return "admin";
-	}
-
 	@RequestMapping(value = "/access_denied", method = RequestMethod.GET)
 	public String accessDeniedPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());
@@ -44,7 +38,19 @@ public class SpringSecurityController {
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return "redirect:/login?logout";
+		return "redirect:login?logout";
+	}
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String adminPage(ModelMap model) {
+		model.addAttribute("user", getPrincipal());
+		return "admin";
+	}
+	
+	@RequestMapping(value = "/staff", method = RequestMethod.GET)
+	public String staffPage(ModelMap model) {
+		model.addAttribute("user", getPrincipal());
+		return "staff";
 	}
 
 	private String getPrincipal() {
