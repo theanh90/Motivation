@@ -1,0 +1,78 @@
+
+
+body { 
+	background:url(../images/body.jpg) repeat 50% 0%; 
+}
+
+.navbar-inverse {
+	background-color: #3d3d3d;
+    border-radius: 0px;
+    /* fe8f01 */
+}
+
+.container-fluid .navbar-brand {
+	margin-left: 20px !important;
+  	height: 65px !important;
+}
+
+.navbar-nav li a {
+	font-size: 130%;
+	height: 65px;    
+	padding-top: 22px;
+}
+
+.navbar-inverse .navbar-nav>.active>a:focus, 
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a{
+    background-color: #fe8f01 !important;
+}
+
+.laundromax-header {
+	background-color: white;
+	/* height: 80px; */
+}
+
+.laundromax-header img {
+	height: 80px;
+}
+
+.laundromax-header i {
+	color: #4fa954;
+}
+
+.laundromax-header .info-header {	
+    padding-top: 10px;
+    padding-right: 40px;
+    text-align: right;
+}
+
+/* ------ for customer page ------ */
+.laundromax-view .modal-header {
+	background-color: #23c6c8;
+}
+
+.laundromax-view .modal-content .table>tbody>tr>td {
+	border: none;
+}
+
+.laundromax-view .modal-footer {
+	background-color: #f3f3f3;
+}
+
+.laundromax-view .text-field {
+	text-align: right;
+	max-width: 40px;
+}
+
+.laundromax-view .modal-content input{
+	width: 100%;
+}
+
+.container-my-view {
+	padding-right: 0px;
+    padding-left: 0px;
+    background-color: white;
+    margin-top: 15px;
+    padding: 15px;
+}
+

@@ -11,16 +11,16 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "Id")
+	@Column(name = "ID")
 	private int id;
 
-	@Column(name = "UserName", nullable = false, unique = true)
+	@Column(name = "USERNAME", nullable = false, unique = true)
 	private String userName;
 
-	@Column(name = "Password", nullable = false)
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 	
-	@Column(name = "Role", nullable = false)
+	@Column(name = "ROLE", nullable = false)
 	private String role;
 
 	public User() {

@@ -24,6 +24,8 @@
   		<script src="<c:url value='static/angularjs/1.5.0-rc.1/angular.min.js' />"> </script>
   		<script src="<c:url value='static/angularjs/1.5.0-rc.1/angular-route.min.js' />"> </script>
   		
+  		<!-- My css -->
+  		<link href="<c:url value='static/laundromax/css/style.css'/>" rel="stylesheet">	
 		
 		<title>GIẶT ỦI LAUNDROMAX</title>
 	</head>
@@ -37,21 +39,15 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>                        
 		      </button>
-		      <a class="navbar-brand" href="#home">Laundromax</a>
+		      <!-- <a class="navbar-brand" href="#home">Laundromax</a> -->
+		      <a id="li-nav-home" class="navbar-brand" href="#home"><i style="color: white" class="fa fa-2x fa-home"></i></a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#home"><i style="color: white" class="fa fa-2x fa-home"></i></a></li>
-		        <li class="dropdown">
-		          <a class="dropdown-toggle" data-toggle="dropdown" href="#customer">Khách hàng<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#">Page 1-1</a></li>
-		            <li><a href="#">Page 1-2</a></li>
-		            <li><a href="#">Page 1-3</a></li>
-		          </ul>
-		        </li>
-		        <li><a href="#product">Mặt hàng</a></li>
-		        <li><a href="#invoice">Hóa đơn</a></li>
+		        <!-- <li class="active"><a href="#home"><i style="color: white" class="fa fa-2x fa-home"></i></a></li> -->
+		        <li onclick="setActive(this, 'x')" class="li-nav-menu"><a href="#customer">Khách hàng</span></a></li>
+		        <li onclick="setActive(this)" class="li-nav-menu"><a href="#product">Mặt hàng</a></li>
+		        <li onclick="setActive(this)" class="li-nav-menu"><a href="#invoice">Hóa đơn</a></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp Logout</a></li>
@@ -59,8 +55,6 @@
 		    </div>
 		  </div>
 		</nav>
-		
-		<div ng-view></div>
    		
    		<!-- view for home -->
    		<script type = "text/ng-template" id = "home">		
@@ -85,46 +79,74 @@
 		
 		<div class="container-fluid">
 			<div class="row">
-			  <div class="col-sm-12 content">
-				  <h1>My First Bootstrap Page</h1>
-				  <p>This part is inside a .container class.</p> 
-				  <p>The .container class provides a responsive fixed width container.</p>
-				  
-				  <table class="table table-hover">
-				    <thead>
-				      <tr>
-				        <th><i style="color: blue" class="fa fa-2x fa-home"></th>
-				        <th>Lastname</th>
-				        <th>Email</th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				      <tr>
-				        <td>John</td>
-				        <td>Doe</td>
-				        <td>john@example.com</td>
-				      </tr>
-				      <tr>
-				        <td>Mary</td>
-				        <td>Moe</td>
-				        <td>mary@example.com</td>
-				      </tr>
-				      <tr>
-				        <td>July</td>
-				        <td>Dooley</td>
-				        <td>july@example.com</td>
-				      </tr>
-				    </tbody>
-				  </table>
-				     
-				  <button class="btn btn-success">click</button>
+			  <div class="col-sm-12 content">	  	
+			  	<div class="laundromax-header">			  		
+			  		<div class="row">
+					    <div class="col-sm-6">
+					    	<a onclick="setHomeMenu()" href="#home">
+					    		<img class="img-responsive" src="static/laundromax/images/logo-laundromax.png" alt="Laundromax">
+				    		</a>
+					    </div>
+					    <div class="col-sm-6 info-header">
+					    	<div>
+					    		<p>
+					    			<i class="fa fa-2x fa-phone"></i>
+					    			<span style="color: #008fca">+841229576222 - Miss Thịnh</span>
+				    			</p>
+					    		<p>
+					    			<i class="fa fa-2x fa-map-marker"></i>
+					    			<span style="color: #008fca">8901 Marmora Road Glasgow, DO4 89GR.</span>
+				    			</p>					    	
+					    	</div>
+					    	
+					    </div>					
+					  </div>
+			  	</div>  
 				
 			  </div> <!-- end content div -->
 			</div> <!-- end row div -->
 		</div> <!-- end container-fluid div -->
 		
+		
+		<!-- For each view -->
+		<div class="container-fluid container-my-view">
+			<div class="row">
+			  <div class="col-sm-12 content">
+				
+				<div class="laundromax-view" ng-view>
+				
+				</div>			  	
+			  	
+			  </div><!-- end content div -->
+		  	</div><!-- end row div -->
+	  	</div><!-- end container-fluid div -->
+		 
+	  	
 		<!-- load js file -->
 		<script src="static/laundromax/app.js"></script>
 		<script src="static/laundromax/controller.js"></script>
 	</body>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			window.location.href='#/home';
+			$('#li-nav-home').css('background-color', '#fe8f01');
+			
+			$('#li-nav-home').click(function(){
+				$('#li-nav-home').css('background-color', '#fe8f01');
+				$('.li-nav-menu').removeClass('active');
+			});
+		});
+		
+		function setHomeMenu() {
+			$('#li-nav-home').css('background-color', '#fe8f01');
+			$('.li-nav-menu').removeClass('active');
+		}
+		
+		function setActive(node) {
+			$('.li-nav-menu').removeClass('active');
+			$('#li-nav-home').css('background-color', '#3d3d3d');
+			$(node).addClass('active');
+		}
+	</script>
 </html>
