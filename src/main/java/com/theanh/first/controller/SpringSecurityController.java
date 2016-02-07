@@ -3,6 +3,7 @@ package com.theanh.first.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SpringSecurityController {
+	final static Logger logger = Logger.getLogger(SpringSecurityController.class);
+	
+	public SpringSecurityController() {
+		logger.info("initialize Spring Security Controller");
+	}
 
 	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
