@@ -72,7 +72,8 @@ public class CustomerModel {
 	
 	@Override
 	public String toString() {
-		return "Customer: {id: " + cId + ", address: " + address + ", name: " + name + ", phone: " + name + ", note: " + note + "}";
+		return "Customer: {id: " + cId + ", address: " + address + ", name: " + name + ", phone: "
+				+ phone + ", note: " + note + "}";
 	}
 
 }

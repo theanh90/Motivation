@@ -11,7 +11,6 @@ import com.theanh.first.dao.UserDao;
 import com.theanh.first.model.CustomerModel;
 
 @Transactional
-//@Service("customerService")
 public class CustomerServiceImpl implements CustomerService{
 	
 	private CustomerDao customerDao;	
@@ -33,8 +32,6 @@ public class CustomerServiceImpl implements CustomerService{
 		customer.setNote(data.get("note"));
 		customerDao.save(customer);
 		
-//		User user = new User(3, "aaa", "aa", "ROLE_USER");
-//		userDao.save(user);
 	}
 
 }

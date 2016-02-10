@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.theanh.first.model.CustomerModel;
 
-//@Repository("customerDao")
+@Repository("customerDao")
 public class CustomerDaoImpl extends AbstractDao<Integer, CustomerModel> implements CustomerDao{
 
 	@Override
