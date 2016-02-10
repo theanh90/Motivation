@@ -8,17 +8,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer {
+public class CustomerModel {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
+	@Column(name = "CID")
 	private Integer cId;
 	
 	@Column(name = "NAME", nullable = false)
 	private String name;
 	
+	@Column(name = "ADDRESS")
+	private String address;
+
 	@Column(name = "PHONE")
 	private String phone;
 	
@@ -37,6 +40,13 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public String getPhone() {
 		return phone;
 	}
@@ -50,18 +60,19 @@ public class Customer {
 		this.note = note;
 	}
 	
-	public Customer() {}
+	public CustomerModel() {}
 	
-	public Customer(Integer id, String name, String phone, String note) {
+	public CustomerModel(Integer id, String name, String address, String phone, String note) {
 		this.cId = id;
 		this.name = name;
+		this.address = address;
 		this.phone = phone;
 		this.note = note;
 	}
 	
 	@Override
 	public String toString() {
-		return "Customer: {id: + " + cId + ", name: " + name + ", phone: " + name + ", note: " + note + "}";
+		return "Customer: {id: " + cId + ", address: " + address + ", name: " + name + ", phone: " + name + ", note: " + note + "}";
 	}
 
 }

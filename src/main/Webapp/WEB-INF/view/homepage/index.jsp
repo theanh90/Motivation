@@ -44,7 +44,6 @@
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
-		        <!-- <li class="active"><a href="#home"><i style="color: white" class="fa fa-2x fa-home"></i></a></li> -->
 		        <li onclick="setActive(this, 'x')" class="li-nav-menu"><a href="#customer">Khách hàng</span></a></li>
 		        <li onclick="setActive(this)" class="li-nav-menu"><a href="#product">Mặt hàng</a></li>
 		        <li onclick="setActive(this)" class="li-nav-menu"><a href="#invoice">Hóa đơn</a></li>
@@ -121,10 +120,16 @@
 		  	</div><!-- end row div -->
 	  	</div><!-- end container-fluid div -->
 		 
+	  	<!-- CSRF token -->
+	  	<input type="hidden" id="token" value="${_csrf.token}" />
 	  	
-		<!-- load js file -->
+		<!-- load AngularJs controller file -->
 		<script src="static/laundromax/app.js"></script>
-		<script src="static/laundromax/controller.js"></script>
+		<script src="static/laundromax/controllers/CustomerController.js"></script>
+		<script src="static/laundromax/controllers/HomeController.js"></script>
+		<script src="static/laundromax/controllers/InvoiceController.js"></script>
+		<script src="static/laundromax/controllers/ProductController.js"></script>
+		
 	</body>
 	
 	<script type="text/javascript">

@@ -2,7 +2,7 @@
 <p>{{message}}</p>
  -->
 <div class="customer-div">
-	<button data-backdrop="static" type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#add-cus-modal">
+	<button data-backdrop="static" type="button" class="btn btn-success" data-toggle="modal" data-target="#add-cus-modal">
 		<i class="fa fa-plus"></i>
 	</button>
 	
@@ -21,25 +21,26 @@
 	        	<tbody>
 		        	<tr>
 		        		<td class="text-field">Họ tên: </td>
-		        		<td><input id="name" type="text"></td>
+		        		<td><input ng-model = "cus.name" type="text"></td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field">Số điện thoại: </td>
-		        		<td><input id="phone" type="text"></td>
+		        		<td><input ng-model="cus.phone" type="text"></td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field">Địa chỉ: </td>
-		        		<td><input id="address" type="text"></td>
+		        		<td><input ng-model="cus.address" type="text"></td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field">Ghi chú: </td>
-		        		<td><input id="note" type="text"></td>
+		        		<td><input ng-model="cus.note" type="text"></td>
 		        	</tr>
 	        	</tbody>
 	        </table>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      	<button type="button" class="btn btn-success" ng-click="save()">Lưu</button>
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
 	      </div>
 	    </div>
 	

@@ -14,5 +14,13 @@
 	<!-- <bean id="userService" class="com.theanh.first.service.UserServiceImpl">
 		<property name="sessionFactory" ref="mySessionFactory" />
 	</bean>  -->
-
+	
+	<bean id="customerService" class="com.theanh.first.service.CustomerServiceImpl">
+		<property name="customerDao" ref="customerDao" />
+	</bean>
+	
+	<bean id="customerDao" class="com.theanh.first.dao.CustomerDaoImpl">
+		<!-- <property name="sessionFactory" ref="sessionFactory" /> -->
+	</bean>
+	
 </beans>

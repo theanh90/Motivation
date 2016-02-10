@@ -10,16 +10,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class AbstractDao<PK extends Serializable, T>  {
 	private final Class<T> persistentClass;
+	
+	@Autowired
+    private SessionFactory sessionFactory;
     
-    @SuppressWarnings("unchecked")
+//    public SessionFactory getSessionFactory() {
+//		return sessionFactory;
+//	}
+//
+//	public void setSessionFactory(SessionFactory sessionFactory) {
+//		this.sessionFactory = sessionFactory;
+//	}
+
+	public Class<T> getPersistentClass() {
+		return persistentClass;
+	}
+
+	@SuppressWarnings("unchecked")
     public AbstractDao(){
         this.persistentClass =(Class<T>) (
         		(ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
     }
      
-    @Autowired
-    private SessionFactory sessionFactory;
- 
     protected Session getSession(){
         return sessionFactory.getCurrentSession();
     }

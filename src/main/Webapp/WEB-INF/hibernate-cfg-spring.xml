@@ -18,16 +18,14 @@
 		<property name="password" value="" />
 	</bean>
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		
+		<property name="dataSource" ref="dataSource" />		
 
 		<property name="annotatedClasses">
 			<list>
 				<value>com.theanh.first.model.User</value>
+				<value>com.theanh.first.model.CustomerModel</value>
 			</list>
 		</property>
 
@@ -39,8 +37,9 @@
 				<!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
 			</props>
 		</property>
-	</bean>
+	</bean>	
 	
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
