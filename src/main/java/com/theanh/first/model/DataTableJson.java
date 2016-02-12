@@ -6,17 +6,17 @@ public class DataTableJson {
 	public final static String SUCCESS = "SUCCESS";
 	public final static String ERROR = "ERROR";
 	
-	private long totalRow = 0;
+	private long total = 0;
 	private Collection rows;
 	private String status;
 	private String message;
 	
-	public long getTotalRow() {
-		return totalRow;
+	public long getTotal() {
+		return total;
 	}
 
-	public void setTotalRow(long totalRow) {
-		this.totalRow = totalRow;
+	public void setTotal(long total) {
+		this.total = total;
 	}
 
 	public Collection getRows() {
@@ -52,7 +52,7 @@ public class DataTableJson {
 	}
 	
 	public DataTableJson(long total, Collection rows, String status, String mess) {
-		this.totalRow = total;
+		this.total = total;
 		this.rows = rows;
 		this.status = status;
 		this.message = mess;

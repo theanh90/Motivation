@@ -43,7 +43,7 @@ public class CustomerServiceImpl implements CustomerService{
 		List<Object> lsObj = new ArrayList<>(); 
 		lsObj = customerDao.getListCustomer(sort, order, limit, offset);
 		
-		dataTableJson.setTotalRow((long)lsObj.get(lsObj.size() - 1));
+		dataTableJson.setTotal((long)lsObj.get(lsObj.size() - 1));
 		lsObj.remove(lsObj.size() - 1);
 		dataTableJson.setStatus(DataTableJson.SUCCESS);
 		dataTableJson.setRows(lsObj);

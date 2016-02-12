@@ -1,13 +1,11 @@
 mainApp.controller('CustomerController', function($scope, $http, $document) {
-//	angular.element(document.getElementById('yourControllerElementID')).scope().get();
-   $scope.message = "New customer here";
    $scope.cus = {};
    var csrf = $('#token').val();
     
    $scope.save = function() {	   
 	   if (!$scope.validateAddCus())
 		   return null;
-//	   $scope.showConfirmModal();
+	   
 	   var data = $scope.cus;
 	   $scope.resetInput();
 	   $http({
@@ -101,6 +99,14 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 	   $scope.cus = '';
    }
    
+   editCustomer = function(cusId) {
+	   alert('Da edit' + cusId);
+   }
+   
+   removeCustomer = function(cusId) {
+	   alert('Da remove' + cusId);
+   }
+   
    $scope.getListCustomer = function() {	   
 		$('#list-customer').bootstrapTable({
 			method : 'get',
@@ -118,7 +124,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 //			queryParams : {sort: null},
 			columns : [ {
 				field: 'cId',
-				title : 'Mã KH',
+				title : 'Mã',
 				align : 'center',
 				valign : 'middle',
 				sortable : true,
@@ -132,7 +138,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			}, {
 				field : 'phone',
 				title : 'Điện thoại',
-				align : 'center',
+				align : 'left',
 				valign : 'middle',
 				sortable : true
 			}, {
@@ -144,21 +150,34 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			}, {
 				field : 'note',
 				title : 'Ghi chú',
-				align : 'center',
+				align : 'left',
 				valign : 'middle',
 				sortable : false
 			}, {
-				field : 'Chức năng',
-				title : 'Ghi chú',
+				field : 'cId',
+				title : 'Chức năng',
 				align : 'center',
 				valign : 'middle',
 				sortable : false,
-//				formatter : featureFormatter
+				formatter : featureFormatter
 			}]
 		
 			}).on('load-success.bs.table', function(e, data) {
-				console.log(data);
+				console.log(data.status);
 		});
 	}
+   
+   function featureFormatter(value, row, index) {
+	   return '<span>' +
+	   				'<button onclick="editCustomer(' + value + ')" style="margin: 1px 10px" class="btn btn-default">' + 
+	   					'<i class="fa fa-lg fa-pencil"></i>' + 
+	   				'</button>' +
+	   		  '</span>' +  
+	   		  '<span>' +
+	   		  		'<button onclick="removeCustomer(' + value + ')" class="btn btn-default">' + 
+	   		  			'<i class="fa fa-lg fa-trash"></i>' + 
+	   		  		'</button>' +
+   		  	 '</span>';	   
+   }
    
 });
