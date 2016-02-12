@@ -10,20 +10,24 @@
   		<link rel="stylesheet" href="<c:url value='static/font-awesome-4.5.0/css/font-awesome.min.css' />">  		
 		
   		<!-- Jquery -->
-		<script src="<c:url value='static/jquery/1.12.0/jquery.min.js' />"></script>		
+		<script src="<c:url value='static/jquery/1.12.0/jquery.min.js' />"></script>	
+		
+  		<!-- AngularJs -->
+  		<script src="<c:url value='static/angularjs/1.5.0-rc.1/angular.min.js' />"> </script>
+  		<script src="<c:url value='static/angularjs/1.5.0-rc.1/angular-route.min.js' />"> </script>	
 		
 		<!-- Bootstrap -->
 		<link href="<c:url value='static/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">		
   		<script src="<c:url value='static/bootstrap/js/bootstrap.min.js'/>"> </script>
   		
+  		<!-- Bootstrap table -->
+  		<link href="<c:url value='static/bootstrap-table/dist/bootstrap-table.min.css'/>" rel="stylesheet">		
+  		<script src="<c:url value='static/bootstrap-table/dist/bootstrap-table.min.js'/>"> </script>
+  		
   		<!-- Bootflat -->
   		<!-- <link href="static/bootflat/css/bootflat.min.css" rel="stylesheet">
   		<script src="static/bootstrap/js/icheck.min.js"></script> -->
-  		
-  		<!-- AngularJs -->
-  		<script src="<c:url value='static/angularjs/1.5.0-rc.1/angular.min.js' />"> </script>
-  		<script src="<c:url value='static/angularjs/1.5.0-rc.1/angular-route.min.js' />"> </script>
-  		
+  		  		
   		<!-- My css -->
   		<link href="<c:url value='static/laundromax/css/style.css'/>" rel="stylesheet">	
 		
@@ -114,7 +118,7 @@
 				
 				<div class="laundromax-view" ng-view>
 				
-				</div>			  	
+				</div>
 			  	
 			  </div><!-- end content div -->
 		  	</div><!-- end row div -->
@@ -133,7 +137,7 @@
 	</body>
 	
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(document).ready(function() { 
 			window.location.href='#/home';
 			$('#li-nav-home').css('background-color', '#fe8f01');
 			

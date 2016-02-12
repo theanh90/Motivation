@@ -76,3 +76,19 @@ body {
     padding: 15px;
 }
 
+#add-cus-modal .tooltip-inner {
+	background-color: red;
+}
+
+#add-cus-modal .tooltip-arrow {
+	border-top: 5px solid red;
+}
+
+/* --- for confirm model when add/delete/modify... ----- */
+#confirm-cus-modal .modal-header {
+	text-align: center;
+}
+
+#confirm-cus-modal .modal-footer {
+	text-align: center;
+}

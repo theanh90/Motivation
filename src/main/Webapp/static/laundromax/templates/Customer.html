@@ -1,10 +1,36 @@
-<!-- <p>this page to display customer</p>
-<p>{{message}}</p>
- -->
-<div class="customer-div">
+
+<div id="customer-div">
 	<button data-backdrop="static" type="button" class="btn btn-success" data-toggle="modal" data-target="#add-cus-modal">
 		<i class="fa fa-plus"></i>
 	</button>
+	
+	<div id="list-customer-div">
+		<table id="list-customer"></table>
+		
+	</div>
+	<!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirm-cus-modal">
+		fff
+	</button> -->
+	
+	<!-- Modal -->
+	<div id="confirm-cus-modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-sm">	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+	        <h4 class="modal-title">Thông báo</h4>
+	      </div>
+	      <div class="modal-body">
+	        <h4 id="confirm-content"></h4>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" data-dismiss="modal">Đóng</button>
+	      </div>
+	    </div>
+	
+	  </div>
+	</div>
 	
 	<!-- Modal -->
 	<div id="add-cus-modal" class="modal fade" role="dialog">
@@ -17,34 +43,45 @@
 	        <h4 class="modal-title">Thêm khách hàng mới</h4>
 	      </div>
 	      <div class="modal-body">
-	        <table class="table">
+	        <table class="table add-customer-table">
 	        	<tbody>
 		        	<tr>
-		        		<td class="text-field">Họ tên: </td>
-		        		<td><input ng-model = "cus.name" type="text"></td>
+		        		<td class="text-field">Họ tên: <span style="color: red">*</span></td>
+		        		<td><input id="cus-name" data-toggle="tooltip" title="Hãy nhập họ tên" ng-model="cus.name" type="text"></td>
 		        	</tr>
 		        	<tr>
-		        		<td class="text-field">Số điện thoại: </td>
-		        		<td><input ng-model="cus.phone" type="text"></td>
+		        		<td class="text-field">Điện thoại: <span style="color: red">*</span> </td>
+		        		<td><input id="cus-phone" data-toggle="tooltip" title="Số điện thoại không đúng" ng-model="cus.phone" type="text"></td>
 		        	</tr>
 		        	<tr>
-		        		<td class="text-field">Địa chỉ: </td>
-		        		<td><input ng-model="cus.address" type="text"></td>
+		        		<td class="text-field">Địa chỉ: <span style="color: red">*</span> </td>
+		        		<td><input id="cus-address" data-toggle="tooltip" title="Hãy nhập địa chỉ" ng-model="cus.address" type="text"></td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field">Ghi chú: </td>
-		        		<td><input ng-model="cus.note" type="text"></td>
+		        		<td><!-- <input id="cus-note" ng-model="cus.note" type="text"> -->
+		        			<textarea style="width: 100%" ng-model="cus.note" rows="5" id="cus-note"></textarea>
+		        		</td>
 		        	</tr>
 	        	</tbody>
 	        </table>
 	      </div>
 	      <div class="modal-footer">
-	      	<button type="button" class="btn btn-success" ng-click="save()">Lưu</button>
+	      	<button id="save-customer-btn" type="button" class="btn btn-success" ng-click="save()">Lưu</button>
 	        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
 	      </div>
 	    </div>
 	
 	  </div>
 	</div>
+	
+	<script type="text/javascript">
+		/* $(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip(); 
+		}); */
+
+		angular.element($('#customer-div')).scope().getListCustomer();
+	
+	</script>
 	
 </div>
