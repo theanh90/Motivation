@@ -51,4 +51,11 @@ public class CustomerServiceImpl implements CustomerService{
 		return dataTableJson;
 	}
 
+	@Override
+	public void delete(Integer cusId) {
+		CustomerModel customerModel = new CustomerModel();
+		customerModel = customerDao.getByKey(cusId);
+		customerDao.delete(customerModel);
+	}
+
 }

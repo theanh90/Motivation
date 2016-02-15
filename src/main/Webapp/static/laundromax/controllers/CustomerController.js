@@ -104,7 +104,32 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
    }
    
    removeCustomer = function(cusId) {
-	   alert('Da remove' + cusId);
+	   $http({
+		   method: 'DELETE',
+		   url: 'api/customer?cusId=' + cusId,
+		   params: {
+			   _csrf: csrf
+		   }
+	   
+	   })
+	   .then(function(response){
+		  if (response.data.returnStatus == 'SUCCESS') {			  
+			  var mess = 'Đã xóa khách hàng thành công';
+			  var type = 'SUCCESS';
+			  $scope.showConfirmModal(mess, type);
+		  }else {
+			  var mess = 'Có lỗi trong khi xóa khách hàng!';
+			  var type = 'ERROR';
+			  $scope.showConfirmModal(mess, type);
+		  }
+		  
+		  $('#list-customer').bootstrapTable('refresh', {
+			  silent: true
+		  });
+		  
+	   }, function(error){
+		   alert("The error occurs when delete Customer!!!" + error.statusText);
+	   });
    }
    
    $scope.getListCustomer = function() {	   

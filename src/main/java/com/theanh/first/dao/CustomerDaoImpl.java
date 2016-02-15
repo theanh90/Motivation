@@ -12,9 +12,8 @@ import com.theanh.first.model.CustomerModel;
 public class CustomerDaoImpl extends AbstractDao<Integer, CustomerModel> implements CustomerDao{
 
 	@Override
-	public CustomerModel findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public CustomerModel getByKey(int id) {
+		return super.getByKey(id);
 	}
 
 	@Override

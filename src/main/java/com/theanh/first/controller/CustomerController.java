@@ -62,4 +62,24 @@ public class CustomerController  extends BaseController{
 		return jsonResponse;
 	}
 	
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.DELETE, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public JsonResponse deleteCustomer(HttpServletRequest request, @RequestParam Integer cusId) {
+		JsonResponse jsonResponse;
+		
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			customerService.delete(cusId);
+			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Delete Customer successfully!", null);
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to delete Customer!", null);
+		}
+		
+		return jsonResponse;
+	}
+	
 }
