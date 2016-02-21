@@ -1,0 +1,2 @@
+- Lỗi khi localhost://Motivation
+- Confirm trước khi delete

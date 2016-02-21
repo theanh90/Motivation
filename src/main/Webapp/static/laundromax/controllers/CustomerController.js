@@ -1,15 +1,17 @@
 mainApp.controller('CustomerController', function($scope, $http, $document) {
    $scope.cus = {};
+   $scope.edit_cus = {};
+   $scope.data = null;
    var csrf = $('#token').val();
     
-   $scope.save = function() {	   
-	   if (!$scope.validateAddCus())
+   $scope.save = function(method) {	   
+	   if (!$scope.validateAddCus(method))
 		   return null;
 	   
-	   var data = $scope.cus;
+	   var data = method == 'POST' ? $scope.cus : $scope.edit_cus;
 	   $scope.resetInput();
 	   $http({
-		   method: 'POST',
+		   method: method,
 		   url: 'api/customer',
 		   data: data,
 		   params: {
@@ -18,21 +20,37 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 	   
 	   })
 	   .then(function(response){
+		  var mess = '';
+		  $('#add-cus-modal').modal("hide");
+		  $('#edit-cus-modal').modal("hide");
+		  
 		  if (response.data.returnStatus == 'SUCCESS') {
-			  $('#add-cus-modal').modal("hide");
 			  
-			  var mess = 'Thêm khách hàng thành công';
+			  if (method == 'POST') {
+				  mess = 'Thêm khách hàng thành công';
+			  } else {
+				  mess = 'Sửa thông tin khách hàng thành công';
+			  }
+			  
 			  var type = 'SUCCESS';
 			  $scope.showConfirmModal(mess, type);
 		  }else {
-			  $('#add-cus-modal').modal("hide");
 			  
-			  var mess = 'Thêm khách hàng thất bại';
+			  if (method == 'POST') {
+				  mess = 'Thêm khách hàng thất bại';
+			  } else {
+				  mess = 'Sửa thông tin khách hàng thành công';
+			  }
 			  var type = 'ERROR';
 			  $scope.showConfirmModal(mess, type);
 		  }
+		  
+		  $('#list-customer').bootstrapTable('refresh', {
+			  silent: true
+		  });
+		  
 	   }, function(error){
-		   alert("The error occurs when saving Customer!!!" + error.statusText);
+		   alert("The error occurs when Saving/Update Customer!!!" + error.statusText);
 	   });
    };
    
@@ -47,28 +65,21 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 	  $('#confirm-cus-modal').modal({backdrop: "static"});
    }
    
-   $scope.validateAddCus = function() {
-	   var valid = true;
-	   $scope.removeHightLight(); // remove validate css
-	   $scope.removeValidateTooltip();	// remove tooltip
-	   if ($scope.cus.name == null || $scope.cus.name == '') {
-		   valid = false;
-		   $('#cus-name').tooltip('enable');
-		   $('#cus-name').tooltip('show');
-		   $scope.fieldHightLight($('#cus-name'));
+   $scope.validateAddCus = function(method) {
+	   var valid;
+	   var element = {};
+	   if (method == 'POST') {
+		   element.name = $('#cus-name');
+		   element.phone = $('#cus-phone');
+		   element.address = $('#cus-address');
+	   } else if (method == 'PUT') {
+		   element.name = $('#cus-name-edit');
+		   element.phone = $('#cus-phone-edit');
+		   element.address = $('#cus-address-edit');	   
 	   }
-	   if ($scope.cus.phone == null || $scope.cus.phone == '' || (!$scope.cus.phone.match(/^\+{0,1}\d{10,12}$/g)) ){
-		   valid = false;
-		   $('#cus-phone').tooltip('enable');
-		   $('#cus-phone').tooltip('show');
-		   $scope.fieldHightLight($('#cus-phone'));
-	   }
-	   if ($scope.cus.address == null || $scope.cus.address == '') {
-		   valid = false;
-		   $('#cus-address').tooltip('enable');
-		   $('#cus-address').tooltip('show');
-		   $scope.fieldHightLight($('#cus-address'));
-	   }
+	   $scope.removeHightLight(element); // remove validate css
+	   $scope.removeValidateTooltip(element);	// remove tooltip
+	   valid = $scope.displayValidateError(element, method);	// remove tooltip
 	   
 	   return valid;
    }
@@ -78,34 +89,63 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 		field.css("box-shadow", "0px 0px 6px red");		
    }
    
-   $scope.removeHightLight = function() {
-		$('#cus-name').css('border', '');
-		$('#cus-name').css('box-shadow', '');	
+   $scope.removeHightLight = function(element) {
+		element.name.css('border', '');
+		element.name.css('box-shadow', '');	
 
-		$('#cus-phone').css('border', '');
-		$('#cus-phone').css('box-shadow', '');
+		element.phone.css('border', '');
+		element.phone.css('box-shadow', '');
 		
-		$('#cus-address').css('border', '');
-		$('#cus-address').css('box-shadow', '');
+		element.address.css('border', '');
+		element.address.css('box-shadow', '');
    }
    
-   $scope.removeValidateTooltip = function() {
-	   $('#cus-name').tooltip('disable');
-	   $('#cus-phone').tooltip('disable');
-	   $('#cus-address').tooltip('disable');
+   $scope.removeValidateTooltip = function(element) {
+	   element.name.tooltip('disable');
+	   element.phone.tooltip('disable');
+	   element.address.tooltip('disable');
+   }
+   
+   $scope.displayValidateError = function(element, method) {
+	   var valid = true;
+	   var check;
+	   
+	   if (method == 'POST') {
+		   check = $scope.cus;
+	   }else if (method == 'PUT') {
+		   check = $scope.edit_cus;
+	   }
+	   
+	   if (!check.name) {
+		   valid = false;
+		   element.name.tooltip('enable');
+		   element.name.tooltip('show');
+		   $scope.fieldHightLight(element.name);
+	   }
+	   if (!check.phone || (!check.phone.match(/^\+{0,1}\d{10,12}$/g)) ){
+		   valid = false;
+		   element.phone.tooltip('enable');
+		   element.phone.tooltip('show');
+		   $scope.fieldHightLight(element.phone);
+	   }
+	   if (!check.address) {
+		   valid = false;
+		   element.address.tooltip('enable');
+		   element.address.tooltip('show');
+		   $scope.fieldHightLight(element.address);
+	   }
+	   
+	   return valid;	   
    }
    
    $scope.resetInput = function() {
-	   $scope.cus = '';
+	   $scope.cus = {};
+	   $scope.edit_cus = {};
    }
    
    editCustomer = function(cusId) {
-	   alert('Da edit' + cusId);
-   }
-   
-   removeCustomer = function(cusId) {
 	   $http({
-		   method: 'DELETE',
+		   method: 'GET',
 		   url: 'api/customer?cusId=' + cusId,
 		   params: {
 			   _csrf: csrf
@@ -113,6 +153,64 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 	   
 	   })
 	   .then(function(response){
+		  if (response.data.returnStatus == 'SUCCESS') {
+			  var data = response.data.data;
+			  $scope.edit_cus.name = data.name;
+			  $scope.edit_cus.phone = data.phone;
+			  $scope.edit_cus.address = data.address;
+			  $scope.edit_cus.note = data.note;
+			  $scope.edit_cus.id = data.cId;
+			  $('#edit-cus-modal').modal({backdrop: "static"});
+//			  $scope.showConfirmModal(mess, type);
+		  }else {
+			  var mess = 'Có lỗi trong khi lấy thông tin khách hàng!';
+			  var type = 'ERROR';
+//			  $scope.showConfirmModal(mess, type);
+		  }
+		  
+		  $('#list-customer').bootstrapTable('refresh', {
+			  silent: true
+		  });
+		  
+	   }, function(error){
+		   alert("The error occurs when get Customer!!!" + error.statusText);
+	   });
+   }
+   
+   confirmRemove = function(cusId) {
+//	   $('#confirm-delete-cus-modal').modal({backdrop: "static"});
+	   
+	   BootstrapDialog.show({
+		   size: BootstrapDialog.SIZE_SMALL,
+           type: BootstrapDialog.TYPE_WARNING,
+           title: 'Xác nhận xóa',
+           message: 'Bạn có chắc muốn xóa',
+           buttons: [{
+               label: 'Tiếp tục',
+               cssClass: 'btn-success',
+               action: function(dialog) {
+            	   removeCustomer(cusId, dialog);
+               }
+           }, {
+               label: 'Hủy',
+               cssClass: 'btn-danger',
+               action: function(dialog) {
+                   dialog.close();
+               }
+           }]
+       }); 	   
+
+   }
+   
+   removeCustomer = function(cusId, dialog) {
+	   $http({
+		   method: 'DELETE',
+		   url: 'api/customer?cusId=' + cusId,
+		   params: {
+			   _csrf: csrf
+		   }   
+	   }).then(function(response){
+		  dialog.close();
 		  if (response.data.returnStatus == 'SUCCESS') {			  
 			  var mess = 'Đã xóa khách hàng thành công';
 			  var type = 'SUCCESS';
@@ -188,21 +286,24 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			}]
 		
 			}).on('load-success.bs.table', function(e, data) {
+				$scope.data = data.rows;
 				console.log(data.status);
 		});
 	}
    
    function featureFormatter(value, row, index) {
-	   return '<span>' +
+	   var temp = '<span>' +
 	   				'<button onclick="editCustomer(' + value + ')" style="margin: 1px 10px" class="btn btn-default">' + 
 	   					'<i class="fa fa-lg fa-pencil"></i>' + 
 	   				'</button>' +
 	   		  '</span>' +  
 	   		  '<span>' +
-	   		  		'<button onclick="removeCustomer(' + value + ')" class="btn btn-default">' + 
+	   		  		'<button onclick="confirmRemove(' + value + ')" class="btn btn-default">' + 
 	   		  			'<i class="fa fa-lg fa-trash"></i>' + 
 	   		  		'</button>' +
-   		  	 '</span>';	   
+   		  	 '</span>';
+	   
+	   return temp;
    }
    
 });

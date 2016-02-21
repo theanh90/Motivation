@@ -29,8 +29,7 @@ public class CustomerDaoImpl extends AbstractDao<Integer, CustomerModel> impleme
 
 	@Override
 	public void update(CustomerModel customer) {
-		// TODO Auto-generated method stub
-		
+		super.update(customer);
 	}
 
 	@Override

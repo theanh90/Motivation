@@ -24,9 +24,9 @@
   		<link href="<c:url value='static/bootstrap-table/dist/bootstrap-table.min.css'/>" rel="stylesheet">		
   		<script src="<c:url value='static/bootstrap-table/dist/bootstrap-table.min.js'/>"> </script>
   		
-  		<!-- Bootflat -->
-  		<!-- <link href="static/bootflat/css/bootflat.min.css" rel="stylesheet">
-  		<script src="static/bootstrap/js/icheck.min.js"></script> -->
+  		<!-- Bootstrap-dialog -->
+  		<link href="<c:url value='static/bootstrap-dialog/bootstrap-dialog.min.css'/>" rel="stylesheet">		
+  		<script src="<c:url value='static/bootstrap-dialog/bootstrap-dialog.min.js'/>"> </script>
   		  		
   		<!-- My css -->
   		<link href="<c:url value='static/laundromax/css/style.css'/>" rel="stylesheet">	

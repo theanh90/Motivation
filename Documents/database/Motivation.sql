@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 06, 2016 at 12:11 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- Generation Time: Feb 21, 2016 at 04:53 AM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 7.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `Motivation`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `CUSTOMER`
+--
+
+CREATE TABLE `CUSTOMER` (
+  `CID` int(11) NOT NULL,
+  `Name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Address` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Note` text COLLATE utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `CUSTOMER`
+--
+
+INSERT INTO `CUSTOMER` (`CID`, `Name`, `Phone`, `Address`, `Note`) VALUES
+(1, 'bùi thế anh', '999999999999', 'dd', 'dfff'),
+(2, 'Nguyễn Thị Quỳnh Như', '01693652381', 'Sa Thầy, Kon Tum', 'Đã chuyển ra Đà Nẵng'),
+(3, 'Đinh Thị H Phim', '01682804101', 'DakPo, Gia Lai', 'Zè quê rồi'),
+(4, 'Trần Thị Thu Thủy', '01646139496', 'Đà Lạt, Lâm Đồng', 'Đang học ở Thủ Đức');
 
 -- --------------------------------------------------------
 
@@ -46,6 +70,12 @@ INSERT INTO `USER` (`Id`, `UserName`, `Password`, `Role`) VALUES
 --
 
 --
+-- Indexes for table `CUSTOMER`
+--
+ALTER TABLE `CUSTOMER`
+  ADD PRIMARY KEY (`CID`);
+
+--
 -- Indexes for table `USER`
 --
 ALTER TABLE `USER`
@@ -56,6 +86,11 @@ ALTER TABLE `USER`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `CUSTOMER`
+--
+ALTER TABLE `CUSTOMER`
+  MODIFY `CID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `USER`
 --

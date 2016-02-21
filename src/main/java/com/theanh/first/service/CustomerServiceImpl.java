@@ -53,9 +53,31 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public void delete(Integer cusId) {
-		CustomerModel customerModel = new CustomerModel();
-		customerModel = customerDao.getByKey(cusId);
-		customerDao.delete(customerModel);
+		CustomerModel customer = new CustomerModel();
+		customer = customerDao.getByKey(cusId);
+		customerDao.delete(customer);
+	}
+
+	@Override
+	public CustomerModel getCustomerById(Integer cusId) {
+		CustomerModel customer = new CustomerModel();
+		customer = customerDao.getByKey(cusId);
+		
+		return customer;
+	}
+
+	@Override
+	public void edit(Map<String, String> data) {
+		CustomerModel customer = new CustomerModel();
+		customer = customerDao.getByKey(Integer.parseInt(data.get("id")));
+		
+		customer.setName(data.get("name"));
+		customer.setPhone(data.get("phone"));
+		customer.setAddress(data.get("address"));
+		customer.setNote(data.get("note"));
+		
+		customerDao.update(customer);
+		
 	}
 
 }

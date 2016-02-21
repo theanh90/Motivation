@@ -12,7 +12,7 @@
 		fff
 	</button> -->
 	
-	<!-- Modal -->
+	<!-- Modal notify -->
 	<div id="confirm-cus-modal" class="modal fade" role="dialog">
 	  <div class="modal-dialog modal-sm">	
 	    <!-- Modal content-->
@@ -36,7 +36,7 @@
 	<div id="add-cus-modal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 	
-	    <!-- Modal content-->
+	    <!-- Modal Add content-->
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -67,10 +67,54 @@
 	        </table>
 	      </div>
 	      <div class="modal-footer">
-	      	<button id="save-customer-btn" type="button" class="btn btn-success" ng-click="save()">Lưu</button>
+	      	<button id="save-customer-btn" type="button" class="btn btn-success" ng-click="save('POST')">Lưu</button>
 	        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
 	      </div>
-	    </div>
+	    </div> <!-- end modal add content -->
+	
+	  </div>
+	</div>
+	
+	<!-- Modal Edit -->
+	<div id="edit-cus-modal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Sửa thông tin khách hàng</h4>
+	      </div>
+	      <div class="modal-body">
+	        <table class="table edit-customer-table">
+	        	<tbody>
+		        	<tr>
+		        		<td class="text-field">Họ tên: <span style="color: red">*</span></td>
+		        		<td><input id="cus-name-edit" data-toggle="tooltip" title="Hãy nhập họ tên" ng-model="edit_cus.name" type="text"></td>
+		        	</tr>
+		        	<tr>
+		        		<td class="text-field">Điện thoại: <span style="color: red">*</span> </td>
+		        		<td><input id="cus-phone-edit" data-toggle="tooltip" title="Số điện thoại không đúng" ng-model="edit_cus.phone" type="text"></td>
+		        	</tr>
+		        	<tr>
+		        		<td class="text-field">Địa chỉ: <span style="color: red">*</span> </td>
+		        		<td><input id="cus-address-edit" data-toggle="tooltip" title="Hãy nhập địa chỉ" ng-model="edit_cus.address" type="text"></td>
+		        	</tr>
+		        	<tr>
+		        		<td class="text-field">Ghi chú: </td>
+		        		<td>
+		        			<input hidden id="cus-id-edit" ng-model="edit_cus.id" type="text">
+		        			<textarea style="width: 100%" ng-model="edit_cus.note" rows="5" id="cus-note-edit"></textarea>
+		        		</td>
+		        	</tr>
+	        	</tbody>
+	        </table>
+	      </div>
+	      <div class="modal-footer">
+	      	<button id="edit-customer-btn" type="button" class="btn btn-success" ng-click="save('PUT')">Lưu</button>
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+	      </div>
+	    </div> <!-- end modal Edit content -->
 	
 	  </div>
 	</div>
