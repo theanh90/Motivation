@@ -27,6 +27,11 @@
   		<!-- Bootstrap-dialog -->
   		<link href="<c:url value='static/bootstrap-dialog/bootstrap-dialog.min.css'/>" rel="stylesheet">		
   		<script src="<c:url value='static/bootstrap-dialog/bootstrap-dialog.min.js'/>"> </script>
+  		
+  		<!-- Select2 -->
+  		<link href="<c:url value='static/select2/select2.css'/>" rel="stylesheet">
+  		<link href="<c:url value='static/select2/select2-skins.min.css'/>" rel="stylesheet">	
+  		<script src="<c:url value='static/select2/select2.min.js'/>"> </script>
   		  		
   		<!-- My css -->
   		<link href="<c:url value='static/laundromax/css/style.css'/>" rel="stylesheet">	

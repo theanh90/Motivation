@@ -28,14 +28,15 @@ public class CustomerController  extends BaseController{
 	@RequestMapping(value = "/list", method = RequestMethod.GET, headers = {
 			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
 	public DataTableJson getListCustomer(HttpServletRequest request, @RequestParam(value = "sort", required = false) String sort,
-			@RequestParam String order, @RequestParam int limit, @RequestParam int offset) {		
+			@RequestParam String order, @RequestParam int limit, @RequestParam int offset, @RequestParam String typeSearch, 
+			@RequestParam String textSearch) {		
 		DataTableJson dataTableJson;
 		
 		if (!this.hasLogin())
 			return null;
 		
 		try {
-			dataTableJson = customerService.getListCustomer(sort, order, limit, offset);
+			dataTableJson = customerService.getListCustomer(sort, order, limit, offset, typeSearch, textSearch);
 		}catch (Exception ex) {
 			ex.printStackTrace();
 			dataTableJson = new DataTableJson(DataTableJson.ERROR, "Fail to load list customer");

@@ -1,14 +1,19 @@
 mainApp.controller('CustomerController', function($scope, $http, $document) {
    $scope.cus = {};
    $scope.edit_cus = {};
+   $scope.search = {
+		   type: 'all',
+		   input: ''
+   };
    $scope.data = null;
    var csrf = $('#token').val();
-    
+   
    $scope.save = function(method) {	   
 	   if (!$scope.validateAddCus(method))
 		   return null;
 	   
 	   var data = method == 'POST' ? $scope.cus : $scope.edit_cus;
+	   
 	   $scope.resetInput();
 	   $http({
 		   method: method,
@@ -230,7 +235,13 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 	   });
    }
    
-   $scope.getListCustomer = function() {	   
+   $scope.doSearch = function() {
+	   $('#list-customer').bootstrapTable('refresh', {
+		   silent: true
+	   });
+   }   
+   
+   $scope.getListCustomer = function() {
 		$('#list-customer').bootstrapTable({
 			method : 'get',
 			url : 'api/customer/list',
@@ -244,7 +255,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			minimumCountColumns : 2,
 			clickToSelect : false,
 			showRefresh: true,
-//			queryParams : {sort: null},
+			queryParams : queryParams,
 			columns : [ {
 				field: 'cId',
 				title : 'Mã',
@@ -290,6 +301,16 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 				console.log(data.status);
 		});
 	}
+   
+   function queryParams(params) {	   
+	   $scope.search.type = !$scope.search.type ? "" : $scope.search.type;
+	   $scope.search.input = !$scope.search.input ? "" : $scope.search.input;
+	   
+	   params.typeSearch = $scope.search.type;
+	   params.textSearch = $scope.search.input;
+	   
+	   return params;
+   }
    
    function featureFormatter(value, row, index) {
 	   var temp = '<span>' +

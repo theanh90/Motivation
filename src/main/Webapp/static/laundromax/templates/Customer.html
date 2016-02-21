@@ -4,13 +4,32 @@
 		<i class="fa fa-plus"></i>
 	</button>
 	
+	<div class="row">
+		<div class="col-sm-6 content">
+			<div>				
+				<div class="input-group">				
+		            <div class="input-group-btn">
+	            		<select id="search-customer-select" ng-model="search.type">
+						  <option value="all">Tất cả</option>
+						  <option value="name">Họ tên</option>
+						  <option value="phone">Điện thoại</option>
+						  <option value="address">Địa chỉ</option>
+						  <option value="note">Ghi chú</option>
+						</select>
+		            </div>
+					<input type="text" class="form-control" placeholder="tìm thông tin" ng-model="search.input">
+					<div class="input-group-btn">
+		            	<button type="button" ng-click="doSearch()" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+		            </div>
+				</div>				
+			</div>
+		</div> <!-- end class col-sm content -->
+	</div> <!-- end class row -->
+	
 	<div id="list-customer-div">
 		<table id="list-customer"></table>
 		
 	</div>
-	<!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirm-cus-modal">
-		fff
-	</button> -->
 	
 	<!-- Modal notify -->
 	<div id="confirm-cus-modal" class="modal fade" role="dialog">
@@ -120,11 +139,18 @@
 	</div>
 	
 	<script type="text/javascript">
-		/* $(document).ready(function(){
-		    $('[data-toggle="tooltip"]').tooltip(); 
-		}); */
+		$(document).ready(function(){
+			
+			$('#search-customer-select').select2({
+				  containerCssClass: 'tpx-select2-container',
+				  dropdownCssClass: 'tpx-select2-drop'
+			});
+			
+			$("#search-customer-select").select2('val', 'all'); 
 
-		angular.element($('#customer-div')).scope().getListCustomer();
+			angular.element($('#customer-div')).scope().getListCustomer();
+			
+		});
 	
 	</script>
 	

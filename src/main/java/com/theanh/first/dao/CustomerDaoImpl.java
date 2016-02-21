@@ -33,13 +33,32 @@ public class CustomerDaoImpl extends AbstractDao<Integer, CustomerModel> impleme
 	}
 
 	@Override
-	public List<Object> getListCustomer(String sort, String order, int limit, int offset) {
+	public List<Object> getListCustomer(String sort, String order, int limit, int offset, String typeSearch, String textSearch) {
 		List<Object> lsResult = new ArrayList<>();
 		String sql = "FROM CustomerModel WHERE 1=1 ";
+		String condition = "";
+		if (textSearch != null && textSearch != "") {
+			if (typeSearch.equals("all")) {
+				condition += " and ( ";
+				condition += "name like :textSearch ";
+				condition += "or phone like :textSearch ";
+				condition += "or address like :textSearch ";
+				condition += "or note like :textSearch ";
+				condition += ") ";
+			} else {
+				condition += "and " + typeSearch + " like :textSearch ";
+			}		
+		}
+		
+		sql += condition;
 		if (sort != null) {
 			sql += " ORDER BY " + sort + " " + order;
 		}
 		Query query = this.getSession().createQuery(sql); 
+		
+		if (textSearch != null && textSearch != "") {
+			query.setParameter("textSearch", "%" + textSearch + "%");
+		}
 		
 		Long totalRow = (long)query.list().size();
 		query.setMaxResults(limit);

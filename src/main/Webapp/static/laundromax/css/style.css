@@ -92,3 +92,9 @@ body {
 #confirm-cus-modal .modal-footer {
 	text-align: center;
 }
+
+/* for Customer search input */
+
+.input-group-btn #s2id_search-customer-select {
+	min-width: 130px;
+}

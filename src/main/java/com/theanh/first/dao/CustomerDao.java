@@ -10,5 +10,5 @@ public interface CustomerDao {
     void save(CustomerModel customer);
     void update(CustomerModel customer);
     void delete(CustomerModel customer);
-	List<Object> getListCustomer(String sort, String order, int limit, int offset);
+	List<Object> getListCustomer(String sort, String order, int limit, int offset, String typeSearch, String textSearch);
 }
