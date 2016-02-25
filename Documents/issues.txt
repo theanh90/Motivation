@@ -1,1 +1,5 @@
 - localhost:8080/Motivation: (#localhost:8080/Motivation/) chay zo thang ma ko require login.
+
+
+--- config khi deploy -------
+- Chỉnh utf8 cho tomcat server

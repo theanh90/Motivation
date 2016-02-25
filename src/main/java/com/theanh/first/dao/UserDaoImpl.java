@@ -22,8 +22,8 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
     }
     
     @Override
-    public void save(User entity) {
-    	this.getSession().save(entity);
+    public Integer save(User entity) {
+    	return super.save(entity);
     }
 
     

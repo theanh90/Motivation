@@ -9,4 +9,9 @@
 		<property name="customerDao" ref="customerDao" />
 	</bean>
 	
+	<bean id="productService" class="com.theanh.first.service.ProductServiceImpl">
+		<property name="productDao" ref="productDao" />
+		<property name="washTypePriceDao" ref="washTypePriceDao" />
+	</bean>
+	
 </beans>

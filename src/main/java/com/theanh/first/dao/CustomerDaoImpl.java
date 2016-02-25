@@ -23,8 +23,8 @@ public class CustomerDaoImpl extends AbstractDao<Integer, CustomerModel> impleme
 	}
 
 	@Override
-	public void save(CustomerModel customer) {
-		super.save(customer);
+	public Integer save(CustomerModel customer) {
+		return super.save(customer);
 	}
 
 	@Override

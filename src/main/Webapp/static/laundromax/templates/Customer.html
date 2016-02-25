@@ -1,5 +1,4 @@
-
-<div id="customer-div">
+<div id="template-div" class="customer-view">
 	<button data-backdrop="static" type="button" class="btn btn-success" data-toggle="modal" data-target="#add-cus-modal">
 		<i class="fa fa-plus"></i>
 	</button>
@@ -26,7 +25,7 @@
 		</div> <!-- end class col-sm content -->
 	</div> <!-- end class row -->
 	
-	<div id="list-customer-div">
+	<div id="list-template-div">
 		<table id="list-customer"></table>
 		
 	</div>
@@ -148,7 +147,7 @@
 			
 			$("#search-customer-select").select2('val', 'all'); 
 
-			angular.element($('#customer-div')).scope().getListCustomer();
+			angular.element($('#template-div')).scope().getListCustomer();
 			
 		});
 	

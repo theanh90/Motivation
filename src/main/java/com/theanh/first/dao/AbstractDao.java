@@ -41,8 +41,9 @@ public class AbstractDao<PK extends Serializable, T>  {
         getSession().delete(entity);
     }
     
-    public void save(T entity) {
-    	getSession().save(entity);
+    @SuppressWarnings("unchecked")
+	public PK save(T entity) {
+    	return (PK)getSession().save(entity);    	
     }
     
     public void update(T entity) {

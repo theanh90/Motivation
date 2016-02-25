@@ -46,6 +46,7 @@ body {
     text-align: right;
 }
 
+/* ------------------- for common page ------------------- */
 /* ------ for customer page ------ */
 .laundromax-view .modal-header {
 	background-color: #23c6c8;
@@ -84,7 +85,7 @@ body {
 	border-top: 5px solid red;
 }
 
-/* --- for confirm model when add/delete/modify... ----- */
+/* for confirm model when add/delete/modify... */
 #confirm-cus-modal .modal-header {
 	text-align: center;
 }
@@ -97,4 +98,11 @@ body {
 
 .input-group-btn #s2id_search-customer-select {
 	min-width: 130px;
+}
+
+/* ----------- END for common page ------------ */
+
+/* for product page */
+.laundromax-view .product-view .text-field {
+	max-width: 45px !important;
 }

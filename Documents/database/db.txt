@@ -21,13 +21,15 @@
 	PId
 	EnName
 	VnName
+	Unit -- đơn vị tính
 	Note
 	
 5. WASHTYPEPRICE
-	PId -- productId
+	PId -- Product Id
 	Laundry -- Giặt nước
 	DryClean -- Giặt hấp
 	PressOnly -- Chỉ ủi
+	
 	
 	
 	

@@ -166,11 +166,9 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			  $scope.edit_cus.note = data.note;
 			  $scope.edit_cus.id = data.cId;
 			  $('#edit-cus-modal').modal({backdrop: "static"});
-//			  $scope.showConfirmModal(mess, type);
 		  }else {
 			  var mess = 'Có lỗi trong khi lấy thông tin khách hàng!';
 			  var type = 'ERROR';
-//			  $scope.showConfirmModal(mess, type);
 		  }
 		  
 		  $('#list-customer').bootstrapTable('refresh', {
@@ -298,7 +296,6 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 		
 			}).on('load-success.bs.table', function(e, data) {
 				$scope.data = data.rows;
-				console.log(data.status);
 		});
 	}
    

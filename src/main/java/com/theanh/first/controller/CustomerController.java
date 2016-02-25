@@ -19,7 +19,7 @@ import com.theanh.first.service.CustomerService;
 
 @Controller
 @RequestMapping(value = "/api/customer")
-public class CustomerController  extends BaseController{
+public class CustomerController extends BaseController{
 	
 	@Autowired
 	CustomerService customerService;

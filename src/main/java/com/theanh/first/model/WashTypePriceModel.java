@@ -1,16 +1,31 @@
 package com.theanh.first.model;
 
-public class WashTypePrice {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "WASHTYPEPRICE")
+public class WashTypePriceModel {
 	
-	private Integer pId;
+	@Id
+	@Column(name = "PID")
+	private Integer pId; // the id of product
+	
+	@Column(name = "LAUNDRY")
 	private Integer laundry; // Giat nuoc
+	
+	@Column(name = "DRYCLEAN")
 	private Integer dryClean; // Giat hap
+	
+	@Column(name = "PRESSONLY")
 	private Integer pressOnly; // Chi ui
 	
-	public Integer getpId() {
+	public Integer getPId() {
 		return pId;
 	}
-	public void setpId(Integer pId) {
+	public void setPId(Integer pId) {
 		this.pId = pId;
 	}
 	public Integer getLaundry() {
