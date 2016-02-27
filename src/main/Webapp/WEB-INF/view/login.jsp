@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -174,6 +175,15 @@
         <div class="container-fluid">
 			<div class="row">
 			  <div class="col-sm-4">
+			  
+			  	<h1>Spring MVC internationalization example</h1>
+					Language : <a href="?language=en">English</a>|<a href="?language=zh_CN">Chinese</a>				
+				<h2>
+					welcome.springmvc : <spring:message code="welcome.springmvc" text="default text" />
+				</h2>
+				
+					Current Locale : 
+							  	
 			  	
 			  	<div class="container">
 					<div class="login-container">
