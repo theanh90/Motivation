@@ -10,13 +10,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CUSTOMER")
-public class CustomerModel implements Serializable{
+public class CustomerModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
 	@Column(name = "CID")
-	private Integer cId;
+	private Integer cid;
 	
 	@Column(name = "NAME", nullable = false)
 	private String name;
@@ -30,11 +30,11 @@ public class CustomerModel implements Serializable{
 	@Column(name = "NOTE")
 	private String note;
 	
-	public Integer getcId() {
-		return cId;
+	public Integer getCid() {
+		return cid;
 	}
-	public void setcId(Integer cId) {
-		this.cId = cId;
+	public void setCid(Integer cid) {
+		this.cid = cid;
 	}
 	public String getName() {
 		return name;
@@ -65,7 +65,7 @@ public class CustomerModel implements Serializable{
 	public CustomerModel() {}
 	
 	public CustomerModel(Integer id, String name, String address, String phone, String note) {
-		this.cId = id;
+		this.cid = id;
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
@@ -74,7 +74,7 @@ public class CustomerModel implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Customer: {id: " + cId + ", address: " + address + ", name: " + name + ", phone: "
+		return "Customer: {id: " + cid + ", address: " + address + ", name: " + name + ", phone: "
 				+ phone + ", note: " + note + "}";
 	}
 

@@ -199,11 +199,9 @@ mainApp.controller('ProductController', function($scope, $http) {
 				  $scope.edit_product.note = data.note;
 				  $scope.edit_product.id = data.cId;
 				  $('#edit-product-modal').modal({backdrop: "static"});
-//				  $scope.showConfirmModal(mess, type);
 			  }else {
 				  var mess = 'Có lỗi trong khi lấy thông tin khách hàng!';
 				  var type = 'ERROR';
-//				  $scope.showConfirmModal(mess, type);
 			  }
 			  
 			  $('#list-product').bootstrapTable('refresh', {
@@ -216,7 +214,6 @@ mainApp.controller('ProductController', function($scope, $http) {
 	   }
 	   
 	   confirmRemove = function(productId) {
-//		   $('#confirm-delete-product-modal').modal({backdrop: "static"});
 		   
 		   BootstrapDialog.show({
 			   size: BootstrapDialog.SIZE_SMALL,
@@ -277,7 +274,7 @@ mainApp.controller('ProductController', function($scope, $http) {
 	   $scope.getListProduct = function() {
 			$('#list-product').bootstrapTable({
 				method : 'get',
-				url : 'api/customer/list',
+				url : 'api/product/list',
 				cache : false,
 				class : 'table table-hover',
 				striped : true,
@@ -290,27 +287,21 @@ mainApp.controller('ProductController', function($scope, $http) {
 				showRefresh: true,
 				queryParams : queryParams,
 				columns : [ {
-					field: 'cId',
-					title : 'Mã',
+					field: 'vnName',
+					title : 'Tên',
 					align : 'center',
 					valign : 'middle',
 					sortable : true,
 					width : '50px'
 				}, {
-					field : 'name',
-					title : 'Tên',
+					field : 'enName',
+					title : 'Tên EN',
 					align : 'left',
 					valign : 'middle',
 					sortable : true
 				}, {
-					field : 'phone',
-					title : 'Điện thoại',
-					align : 'left',
-					valign : 'middle',
-					sortable : true
-				}, {
-					field : 'address',
-					title : 'Địa chỉ',
+					field : 'unit',
+					title : 'Đơn vị tính',
 					align : 'left',
 					valign : 'middle',
 					sortable : true
@@ -319,14 +310,25 @@ mainApp.controller('ProductController', function($scope, $http) {
 					title : 'Ghi chú',
 					align : 'left',
 					valign : 'middle',
+					sortable : false			
+				}, {
+					field : 'laundry',
+					title : 'Giặt nước',
+					align : 'left',
+					valign : 'right',
 					sortable : false
 				}, {
-					field : 'cId',
-					title : 'Chức năng',
+					field : 'dryclean',
+					title : 'Giặt nước',
 					align : 'center',
-					valign : 'middle',
-					sortable : false,
-					formatter : featureFormatter
+					valign : 'right',
+					sortable : false
+				}, {
+					field : 'pressonly',
+					title : 'Chỉ ủi',
+					align : 'center',
+					valign : 'right',
+					sortable : false
 				}]
 			
 				}).on('load-success.bs.table', function(e, data) {

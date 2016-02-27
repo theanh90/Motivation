@@ -1,5 +1,7 @@
 package com.theanh.first.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,11 +9,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "WASHTYPEPRICE")
-public class WashTypePriceModel {
-	
+public class WashTypePriceModel implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "PID")
-	private Integer pId; // the id of product
+	private Integer pid; // the id of product
 	
 	@Column(name = "LAUNDRY")
 	private Integer laundry; // Giat nuoc
@@ -22,11 +25,11 @@ public class WashTypePriceModel {
 	@Column(name = "PRESSONLY")
 	private Integer pressOnly; // Chi ui
 	
-	public Integer getPId() {
-		return pId;
+	public Integer getPid() {
+		return pid;
 	}
-	public void setPId(Integer pId) {
-		this.pId = pId;
+	public void setPid(Integer pid) {
+		this.pid = pid;
 	}
 	public Integer getLaundry() {
 		return laundry;

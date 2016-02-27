@@ -250,17 +250,18 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			pageSize : 20,
 			pageList : [ 10, 20, 50, 100 ],
 			sidePagination : 'server',
+			sortName: 'cId',
+			sortOrder: 'desc',
 			minimumCountColumns : 2,
 			clickToSelect : false,
 			showRefresh: true,
 			queryParams : queryParams,
-			columns : [ {
-				field: 'cId',
-				title : 'Mã',
+			columns : [{
+				field: 'cid',
+				title : 'Mã KH',
 				align : 'center',
 				valign : 'middle',
-				sortable : true,
-				width : '50px'
+				sortable : true
 			}, {
 				field : 'name',
 				title : 'Tên',
