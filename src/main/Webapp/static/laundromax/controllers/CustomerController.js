@@ -32,9 +32,9 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 		  if (response.data.returnStatus == 'SUCCESS') {
 			  
 			  if (method == 'POST') {
-				  mess = 'Thêm khách hàng thành công';
+				  mess = customer_add_success;				  
 			  } else {
-				  mess = 'Sửa thông tin khách hàng thành công';
+				  mess = customer_edit_success;
 			  }
 			  
 			  var type = 'SUCCESS';
@@ -42,9 +42,9 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 		  }else {
 			  
 			  if (method == 'POST') {
-				  mess = 'Thêm khách hàng thất bại';
+				  mess = customer_add_fail;
 			  } else {
-				  mess = 'Sửa thông tin khách hàng thành công';
+				  mess = customer_edit_fail;
 			  }
 			  var type = 'ERROR';
 			  $scope.showConfirmModal(mess, type);
@@ -167,7 +167,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			  $scope.edit_cus.id = data.cId;
 			  $('#edit-cus-modal').modal({backdrop: "static"});
 		  }else {
-			  var mess = 'Có lỗi trong khi lấy thông tin khách hàng!';
+			  var mess = customer_get_fail;
 			  var type = 'ERROR';
 		  }
 		  
@@ -180,22 +180,20 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 	   });
    }
    
-   confirmRemove = function(cusId) {
-//	   $('#confirm-delete-cus-modal').modal({backdrop: "static"});
-	   
+   confirmRemove = function(cusId) { 
 	   BootstrapDialog.show({
 		   size: BootstrapDialog.SIZE_SMALL,
            type: BootstrapDialog.TYPE_WARNING,
-           title: 'Xác nhận xóa',
-           message: 'Bạn có chắc muốn xóa',
+           title: common_confirm_delete,
+           message: common_confirm_delete_text,
            buttons: [{
-               label: 'Tiếp tục',
+               label: common_continue,
                cssClass: 'btn-success',
                action: function(dialog) {
             	   removeCustomer(cusId, dialog);
                }
            }, {
-               label: 'Hủy',
+               label: common_cancel,
                cssClass: 'btn-danger',
                action: function(dialog) {
                    dialog.close();
@@ -215,11 +213,11 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 	   }).then(function(response){
 		  dialog.close();
 		  if (response.data.returnStatus == 'SUCCESS') {			  
-			  var mess = 'Đã xóa khách hàng thành công';
+			  var mess = customer_delete_success;
 			  var type = 'SUCCESS';
 			  $scope.showConfirmModal(mess, type);
 		  }else {
-			  var mess = 'Có lỗi trong khi xóa khách hàng!';
+			  var mess = customer_delete_fail;
 			  var type = 'ERROR';
 			  $scope.showConfirmModal(mess, type);
 		  }
@@ -250,45 +248,45 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			pageSize : 20,
 			pageList : [ 10, 20, 50, 100 ],
 			sidePagination : 'server',
-			sortName: 'cId',
+			sortName: 'cid',
 			sortOrder: 'desc',
 			minimumCountColumns : 2,
 			clickToSelect : false,
 			showRefresh: true,
 			queryParams : queryParams,
 			columns : [{
-				field: 'cid',
-				title : 'Mã KH',
+				field: "cid",
+				title : customer_id,
 				align : 'center',
 				valign : 'middle',
 				sortable : true
 			}, {
 				field : 'name',
-				title : 'Tên',
+				title : customer_name,
 				align : 'left',
 				valign : 'middle',
 				sortable : true
 			}, {
 				field : 'phone',
-				title : 'Điện thoại',
+				title : customer_phone,
 				align : 'left',
 				valign : 'middle',
 				sortable : true
 			}, {
 				field : 'address',
-				title : 'Địa chỉ',
+				title : customer_address,
 				align : 'left',
 				valign : 'middle',
 				sortable : true
 			}, {
 				field : 'note',
-				title : 'Ghi chú',
+				title : customer_note,
 				align : 'left',
 				valign : 'middle',
 				sortable : false
 			}, {
-				field : 'cId',
-				title : 'Chức năng',
+				field : "cid",
+				title : customer_action,
 				align : 'center',
 				valign : 'middle',
 				sortable : false,

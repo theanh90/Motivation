@@ -86,7 +86,7 @@
    		
    		<!-- view for customer -->
    		<script type = "text/ng-template" id = "customer">		
-			<div ng-include src="'static/laundromax/templates/Customer.html'"></div>	
+			<div ng-include src="'template/angular/customer'"></div>	
    		</script>
    		
    		<!-- view for product -->
