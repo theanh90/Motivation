@@ -91,7 +91,7 @@
    		
    		<!-- view for product -->
    		<script type = "text/ng-template" id = "product">		
-			<div ng-include src="'static/laundromax/templates/Product.html'"></div>	
+			<div ng-include src="'template/angular/product'"></div>	
    		</script>
    		
    		<!-- view for invoice -->

@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class TemplateController extends BaseController {
 	
 	@RequestMapping(value = "/customer", method = RequestMethod.GET)
-	public String loginPage() {
-		System.out.println("da vao template customer roi. ");
+	public String customerPage() {
 		return "template/Customer";
 	}
 	
+	@RequestMapping(value = "/product", method = RequestMethod.GET)
+	public String productPage() {
+		return "template/Product";
+	}
 
 }
