@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -16,6 +17,10 @@
 		<!-- Bootstrap -->
 		<link href="<c:url value='static/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">		
   		<script src="<c:url value='static/bootstrap/js/bootstrap.min.js'/>"> </script>
+  		
+  		<!-- Bootstrap-from-helper -->
+		<link href="<c:url value='static/bootstrap-form-helper/css/bootstrap-formhelpers.min.css'/>" rel="stylesheet">		
+  		<script src="<c:url value='static/bootstrap-form-helper/js/bootstrap-formhelpers.min.js'/>"> </script>
   		
   		<!-- Bootflat -->
   		<!-- <link href="static/bootflat/css/bootflat.min.css" rel="stylesheet">
@@ -174,7 +179,17 @@
         <div class="container-fluid">
 			<div class="row">
 			  <div class="col-sm-4">
-			  	
+				
+				<spring:message code='language.language' text='Language' />
+				:
+				<a href="?language=en">
+              		<i class="glyphicon bfh-flag-US"></i><spring:message code='language.english' text='English' />
+             	</a>
+             	|
+             	<a href="?language=vn">
+                	<i class="glyphicon bfh-flag-VN"></i><spring:message code='language.vietnam' text='Vietnamese' />
+                </a>
+								
 			  	<div class="container">
 					<div class="login-container">
 			            <div id="output"></div>
@@ -188,14 +203,16 @@
 	                            </c:if>
 	                            <c:if test="${param.logout != null}">
 	                                <div class="alert alert-success">
-	                                    <p>You have been logged out successfully.</p>
+	                                    <p><spring:message code='login.notifyLogout' text='Log out successfully' /></p>
 	                                </div>
 	                            </c:if>
 	                            
-			                    <input name="userName" type="text" placeholder="username">
-			                    <input name="password" type="password" placeholder="password">
+			                    <input name="username" type="text" placeholder="<spring:message code='login.username' text='Username' />" >
+			                    <input name="password" type="password" placeholder="<spring:message code='login.password' text='Password' />" >
 			                    <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
-			                    <button class="btn btn-info btn-block login" type="submit">Login</button>
+			                    <button class="btn btn-info btn-block login" type="submit">
+			                    	<spring:message code='login.login' text='Login' />
+		                    	</button>
 			                </form>
 			            </div>
 			        </div>

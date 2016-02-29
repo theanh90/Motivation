@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,6 +29,10 @@
   		<link href="<c:url value='static/bootstrap-dialog/bootstrap-dialog.min.css'/>" rel="stylesheet">		
   		<script src="<c:url value='static/bootstrap-dialog/bootstrap-dialog.min.js'/>"> </script>
   		
+  		<!-- Bootstrap-from-helper -->
+		<link href="<c:url value='static/bootstrap-form-helper/css/bootstrap-formhelpers.min.css'/>" rel="stylesheet">		
+  		<script src="<c:url value='static/bootstrap-form-helper/js/bootstrap-formhelpers.min.js'/>"> </script>
+  		
   		<!-- Select2 -->
   		<link href="<c:url value='static/select2/select2.css'/>" rel="stylesheet">
   		<link href="<c:url value='static/select2/select2-skins.min.css'/>" rel="stylesheet">	
@@ -53,12 +58,22 @@
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
-		        <li onclick="setActive(this, 'x')" class="li-nav-menu"><a href="#customer">Khách hàng</span></a></li>
-		        <li onclick="setActive(this)" class="li-nav-menu"><a href="#product">Mặt hàng</a></li>
-		        <li onclick="setActive(this)" class="li-nav-menu"><a href="#invoice">Hóa đơn</a></li>
+		        <li onclick="setActive(this, 'x')" class="li-nav-menu">
+		        	<a href="#customer"><spring:message code='menunav.customer' text='Customer' /></a>
+	        	</li>
+		        <li onclick="setActive(this)" class="li-nav-menu">
+		        	<a href="#product"><spring:message code='menunav.item' text='Item' /></a>
+	        	</li>
+		        <li onclick="setActive(this)" class="li-nav-menu">
+		        	<a href="#invoice"><spring:message code='menunav.invoice' text='Invoice' /></a>
+	        	</li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp Logout</a></li>
+		        <li>
+		        	<a href="logout"><span class="glyphicon glyphicon-log-in"></span>
+		        		&nbsp;<spring:message code='login.logout' text='Logout' />
+		        	</a>		        
+		        </li>
 		      </ul>
 		    </div>
 		  </div>
@@ -71,7 +86,7 @@
    		
    		<!-- view for customer -->
    		<script type = "text/ng-template" id = "customer">		
-			<div ng-include src="'static/laundromax/templates/Customer.html'"></div>	
+			<div ng-include src="'template/angular/customer'"></div>	
    		</script>
    		
    		<!-- view for product -->
@@ -128,6 +143,18 @@
 			  </div><!-- end content div -->
 		  	</div><!-- end row div -->
 	  	</div><!-- end container-fluid div -->
+	  	
+	  	<div class="language-div" style="float:right">
+			<a href="?language=en">
+	        	<i class="glyphicon bfh-flag-US"></i>
+	        	<%-- <spring:message code='language.english' text='English' /> --%>
+	        </a>
+	        |&nbsp;
+	        <a href="?language=vn">
+	             <i class="glyphicon bfh-flag-VN"></i>
+	            <%--  <spring:message code='language.vietnam' text='Vietnamese' /> --%>
+	        </a>	  	
+	  	</div>
 		 
 	  	<!-- CSRF token -->
 	  	<input type="hidden" id="token" value="${_csrf.token}" />

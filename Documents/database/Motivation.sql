@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2016 at 05:58 PM
+-- Generation Time: Feb 27, 2016 at 09:57 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.3
 
@@ -69,7 +69,7 @@ INSERT INTO `CUSTOMER` (`CID`, `Name`, `Phone`, `Address`, `Note`) VALUES
 --
 
 CREATE TABLE `PRODUCT` (
-  `PId` int(11) NOT NULL,
+  `PID` int(11) NOT NULL,
   `EnName` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `VnName` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `Unit` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
@@ -80,8 +80,9 @@ CREATE TABLE `PRODUCT` (
 -- Dumping data for table `PRODUCT`
 --
 
-INSERT INTO `PRODUCT` (`PId`, `EnName`, `VnName`, `Unit`, `Note`) VALUES
-(1, 'jean', 'quần jean', 'cái', 'jean');
+INSERT INTO `PRODUCT` (`PID`, `EnName`, `VnName`, `Unit`, `Note`) VALUES
+(1, 'jean', 'quần jean', 'cái', 'jean'),
+(2, 'sơ mi', 'áo sơ mi', 'cái', 'sơ mi');
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,7 @@ INSERT INTO `USER` (`Id`, `UserName`, `Password`, `Role`) VALUES
 --
 
 CREATE TABLE `WASHTYPEPRICE` (
-  `PId` int(11) NOT NULL,
+  `PID` int(11) NOT NULL,
   `Laundry` int(11) NOT NULL,
   `DryClean` int(11) NOT NULL,
   `PressOnly` int(11) NOT NULL
@@ -121,8 +122,9 @@ CREATE TABLE `WASHTYPEPRICE` (
 -- Dumping data for table `WASHTYPEPRICE`
 --
 
-INSERT INTO `WASHTYPEPRICE` (`PId`, `Laundry`, `DryClean`, `PressOnly`) VALUES
-(1, 1, 2, 3);
+INSERT INTO `WASHTYPEPRICE` (`PID`, `Laundry`, `DryClean`, `PressOnly`) VALUES
+(1, 1, 2, 3),
+(2, 2000, 3000, 4000);
 
 --
 -- Indexes for dumped tables
@@ -138,7 +140,7 @@ ALTER TABLE `CUSTOMER`
 -- Indexes for table `PRODUCT`
 --
 ALTER TABLE `PRODUCT`
-  ADD PRIMARY KEY (`PId`);
+  ADD PRIMARY KEY (`PID`);
 
 --
 -- Indexes for table `USER`
@@ -151,7 +153,7 @@ ALTER TABLE `USER`
 -- Indexes for table `WASHTYPEPRICE`
 --
 ALTER TABLE `WASHTYPEPRICE`
-  ADD PRIMARY KEY (`PId`);
+  ADD PRIMARY KEY (`PID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -161,12 +163,12 @@ ALTER TABLE `WASHTYPEPRICE`
 -- AUTO_INCREMENT for table `CUSTOMER`
 --
 ALTER TABLE `CUSTOMER`
-  MODIFY `CID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `CID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `PRODUCT`
 --
 ALTER TABLE `PRODUCT`
-  MODIFY `PId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `USER`
 --
