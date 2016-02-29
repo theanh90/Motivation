@@ -164,7 +164,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			  $scope.edit_cus.phone = data.phone;
 			  $scope.edit_cus.address = data.address;
 			  $scope.edit_cus.note = data.note;
-			  $scope.edit_cus.id = data.cId;
+			  $scope.edit_cus.id = data.cid;
 			  $('#edit-cus-modal').modal({backdrop: "static"});
 		  }else {
 			  var mess = customer_get_fail;
@@ -255,7 +255,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			showRefresh: true,
 			queryParams : queryParams,
 			columns : [{
-				field: "cid",
+				field: 'cid',
 				title : customer_id,
 				align : 'center',
 				valign : 'middle',
@@ -285,7 +285,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 				valign : 'middle',
 				sortable : false
 			}, {
-				field : "cid",
+				field : "",
 				title : customer_action,
 				align : 'center',
 				valign : 'middle',
@@ -310,12 +310,12 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
    
    function featureFormatter(value, row, index) {
 	   var temp = '<span>' +
-	   				'<button onclick="editCustomer(' + value + ')" style="margin: 1px 10px" class="btn btn-default">' + 
+	   				'<button onclick="editCustomer(' + row.cid + ')" style="margin: 1px 10px" class="btn btn-default">' + 
 	   					'<i class="fa fa-lg fa-pencil"></i>' + 
 	   				'</button>' +
 	   		  '</span>' +  
 	   		  '<span>' +
-	   		  		'<button onclick="confirmRemove(' + value + ')" class="btn btn-default">' + 
+	   		  		'<button onclick="confirmRemove(' + row.cid + ')" class="btn btn-default">' + 
 	   		  			'<i class="fa fa-lg fa-trash"></i>' + 
 	   		  		'</button>' +
    		  	 '</span>';
