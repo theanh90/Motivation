@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.theanh.first.model.DataTableJson;
 import com.theanh.first.model.JsonResponse;
+import com.theanh.first.model.ProductModel;
+import com.theanh.first.model.ProductOutModel;
 import com.theanh.first.service.ProductService;
 
 @Controller
@@ -38,10 +40,66 @@ public class ProductController extends BaseController{
 			dataTableJson = productService.getListProduct(sort, order, limit, offset, typeSearch, textSearch);
 		}catch (Exception ex) {
 			ex.printStackTrace();
-			dataTableJson = new DataTableJson(DataTableJson.ERROR, "Fail to load list customer");
+			dataTableJson = new DataTableJson(DataTableJson.ERROR, "Fail to load list Product");
 		}
 		
 		return dataTableJson;
+	}
+	
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.GET, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public JsonResponse getProductOutById(HttpServletRequest request, @RequestParam Integer pid) {
+		JsonResponse jsonResponse;
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			ProductOutModel customer = productService.getProductOutById(pid);
+			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get Product out model successfully!", customer);
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get Product out model!", null);
+		}
+		
+		return jsonResponse;
+	}
+	
+//	@ResponseBody
+//	@RequestMapping(method = RequestMethod.GET, headers = {
+//			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+//	public JsonResponse getProductById(HttpServletRequest request, @RequestParam Integer pid) {
+//		JsonResponse jsonResponse;
+//		if (!this.hasLogin())
+//			return null;
+//		
+//		try {
+//			ProductModel customer = productService.getProductById(pid);
+//			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get Product out model successfully!", customer);
+//		}catch (Exception ex) {
+//			ex.printStackTrace();
+//			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get Product out model!", null);
+//		}
+//		return jsonResponse;
+//	}
+	
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.PUT, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public JsonResponse editCustomer(HttpServletRequest request, @RequestBody Map<String, String> data) {
+		JsonResponse jsonResponse;
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			productService.editProductOut(data);
+			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Update Product Out successfully!", null);
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to update Product Out!", null);
+		}
+		
+		return jsonResponse;
 	}
 	
 	@ResponseBody
@@ -64,5 +122,24 @@ public class ProductController extends BaseController{
 		return jsonResponse;
 	}
 	
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.DELETE, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public JsonResponse deleteProduct(HttpServletRequest request, @RequestParam Integer pid) {
+		JsonResponse jsonResponse;
+		
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			productService.delete(pid);
+			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Delete Product successfully!", null);
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to Product Customer!", null);
+		}
+		
+		return jsonResponse;
+	}
 
 }

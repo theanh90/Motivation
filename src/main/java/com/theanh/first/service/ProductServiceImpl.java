@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.theanh.first.dao.ProductDao;
 import com.theanh.first.dao.WashTypePriceDao;
+import com.theanh.first.model.CustomerModel;
 import com.theanh.first.model.DataTableJson;
 import com.theanh.first.model.ProductModel;
+import com.theanh.first.model.ProductOutModel;
 import com.theanh.first.model.WashTypePriceModel;
 
 @Transactional
@@ -70,15 +72,17 @@ public class ProductServiceImpl  implements ProductService{
 	}
 
 	@Override
-	public void delete(Integer cusId) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Integer pid) {
+		ProductModel product = new ProductModel();
+		product = productDao.getByKey(pid);
+		productDao.delete(product);
 	}
 
 	@Override
-	public ProductModel getProductById(Integer cusId) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductModel getProductById(Integer pid) {
+		ProductModel product = new ProductModel();
+		product = productDao.getByKey(pid);
+		return product;
 	}
 
 	@Override
@@ -86,5 +90,21 @@ public class ProductServiceImpl  implements ProductService{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public ProductOutModel getProductOutById(Integer pid) {
+		ProductOutModel productOut = new ProductOutModel();
+		productOut = productDao.getProductOutById(pid);
+		
+		return productOut;
+		
+	}
+
+	@Override
+	public void editProductOut(Map<String, String> data) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

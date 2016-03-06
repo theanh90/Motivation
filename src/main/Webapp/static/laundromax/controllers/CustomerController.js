@@ -256,7 +256,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			queryParams : queryParams,
 			columns : [{
 				field: 'cid',
-				title : customer_id,
+				title : '#',
 				align : 'center',
 				valign : 'middle',
 				sortable : true

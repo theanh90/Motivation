@@ -55,10 +55,10 @@ public class CustomerController extends BaseController{
 		
 		try {
 			CustomerModel customer = customerService.getCustomerById(cusId);
-			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Save Customer successfully!", customer);
+			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get Customer successfully!", customer);
 		}catch (Exception ex) {
 			ex.printStackTrace();
-			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to save Customer!", null);
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get Customer!", null);
 		}
 		
 		return jsonResponse;

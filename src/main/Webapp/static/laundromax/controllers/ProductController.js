@@ -81,9 +81,12 @@ mainApp.controller('ProductController', function($scope, $http) {
 			   element.dryclean = $('#product-dryclean');
 			   element.pressonly = $('#product-pressonly');
 		   } else if (method == 'PUT') {
-//			   element.name = $('#product-name-edit');
-//			   element.phone = $('#product-phone-edit');
-//			   element.address = $('#product-address-edit');	   
+			   element.nameVn = $('#product-name-vn-edit');
+			   element.nameEn = $('#product-name-en-edit');
+			   element.unit = $('#product-unit-edit');
+			   element.laundry = $('#product-laundry-edit');
+			   element.dryclean = $('#product-dryclean-edit');
+			   element.pressonly = $('#product-pressonly-edit');   
 		   }
 		   $scope.removeHightLight(element); // remove validate css
 		   $scope.removeValidateTooltip(element);	// remove tooltip
@@ -184,7 +187,7 @@ mainApp.controller('ProductController', function($scope, $http) {
 	   editProduct = function(productId) {
 		   $http({
 			   method: 'GET',
-			   url: 'api/product?productId=' + productId,
+			   url: 'api/product?pid=' + productId,
 			   params: {
 				   _csrf: csrf
 			   }
@@ -193,14 +196,17 @@ mainApp.controller('ProductController', function($scope, $http) {
 		   .then(function(response){
 			  if (response.data.returnStatus == 'SUCCESS') {
 				  var data = response.data.data;
-				  $scope.edit_product.name = data.name;
-				  $scope.edit_product.phone = data.phone;
-				  $scope.edit_product.address = data.address;
+				  $scope.edit_product.nameVn = data.vnName;
+				  $scope.edit_product.nameEn = data.enName;				  
+				  $scope.edit_product.unit = data.unit;
+				  $scope.edit_product.laundry = data.laundry.toString();				  
+				  $scope.edit_product.dryclean = data.dryclean.toString();
+				  $scope.edit_product.pressonly = data.pressonly.toString();				  
 				  $scope.edit_product.note = data.note;
-				  $scope.edit_product.id = data.cId;
+				  $scope.edit_product.id = data.pid;
 				  $('#edit-product-modal').modal({backdrop: "static"});
 			  }else {
-				  var mess = 'Có lỗi trong khi lấy thông tin khách hàng!';
+				  var mess = lang_get_fail;
 				  var type = 'ERROR';
 			  }
 			  
@@ -218,16 +224,16 @@ mainApp.controller('ProductController', function($scope, $http) {
 		   BootstrapDialog.show({
 			   size: BootstrapDialog.SIZE_SMALL,
 	           type: BootstrapDialog.TYPE_WARNING,
-	           title: 'Xác nhận xóa',
-	           message: 'Bạn có chắc muốn xóa',
+	           title: lang_confirm_delete,
+	           message: lang_confirm_delete_text,
 	           buttons: [{
-	               label: 'Tiếp tục',
+	               label: lang_continue,
 	               cssClass: 'btn-success',
 	               action: function(dialog) {
 	            	   removeProduct(productId, dialog);
 	               }
 	           }, {
-	               label: 'Hủy',
+	               label: lang_cancel,
 	               cssClass: 'btn-danger',
 	               action: function(dialog) {
 	                   dialog.close();
@@ -240,18 +246,18 @@ mainApp.controller('ProductController', function($scope, $http) {
 	   removeProduct = function(productId, dialog) {
 		   $http({
 			   method: 'DELETE',
-			   url: 'api/product?productId=' + productId,
+			   url: 'api/product?pid=' + productId,
 			   params: {
 				   _csrf: csrf
 			   }   
 		   }).then(function(response){
 			  dialog.close();
 			  if (response.data.returnStatus == 'SUCCESS') {			  
-				  var mess = 'Đã xóa khách hàng thành công';
+				  var mess = lang_delete_success;
 				  var type = 'SUCCESS';
 				  $scope.showConfirmModal(mess, type);
 			  }else {
-				  var mess = 'Có lỗi trong khi xóa khách hàng!';
+				  var mess = lang_delete_fail;
 				  var type = 'ERROR';
 				  $scope.showConfirmModal(mess, type);
 			  }
@@ -287,48 +293,60 @@ mainApp.controller('ProductController', function($scope, $http) {
 				showRefresh: true,
 				queryParams : queryParams,
 				columns : [ {
-					field: 'vnName',
-					title : 'Tên',
+					field: 'pid',
+					title : '#',
 					align : 'center',
-					valign : 'middle',
+					valign : 'center',
 					sortable : true,
 					width : '50px'
+				},{
+					field: 'vnName',
+					title : lang_vnName,
+					align : 'left',
+					valign : 'middle',
+					sortable : true
 				}, {
 					field : 'enName',
-					title : 'Tên EN',
+					title : lang_enName,
 					align : 'left',
 					valign : 'middle',
 					sortable : true
 				}, {
 					field : 'unit',
-					title : 'Đơn vị tính',
+					title : lang_unit,
 					align : 'left',
 					valign : 'middle',
 					sortable : true
 				}, {
 					field : 'note',
-					title : 'Ghi chú',
+					title : lang_note,
 					align : 'left',
 					valign : 'middle',
 					sortable : false			
 				}, {
 					field : 'laundry',
-					title : 'Giặt nước',
-					align : 'left',
-					valign : 'right',
+					title : lang_laundry,
+					align : 'right',
+					valign : 'middle',
 					sortable : false
 				}, {
 					field : 'dryclean',
-					title : 'Giặt nước',
-					align : 'center',
-					valign : 'right',
+					title : lang_dryclean,
+					align : 'right',
+					valign : 'middle',
 					sortable : false
 				}, {
 					field : 'pressonly',
-					title : 'Chỉ ủi',
-					align : 'center',
-					valign : 'right',
+					title : lang_pressonly,
+					align : 'right',
+					valign : 'middle',
 					sortable : false
+				}, {
+					title : lang_action,
+					align : 'center',
+					valign : 'middle',
+					sortable : false,
+					formatter: featureFormatter
 				}]
 			
 				}).on('load-success.bs.table', function(e, data) {
@@ -348,12 +366,12 @@ mainApp.controller('ProductController', function($scope, $http) {
 	   
 	   function featureFormatter(value, row, index) {
 		   var temp = '<span>' +
-		   				'<button onclick="editProduct(' + value + ')" style="margin: 1px 10px" class="btn btn-default">' + 
+		   				'<button onclick="editProduct(' + row.pid + ')" style="margin: 1px 10px" class="btn btn-default">' + 
 		   					'<i class="fa fa-lg fa-pencil"></i>' + 
 		   				'</button>' +
 		   		  '</span>' +  
 		   		  '<span>' +
-		   		  		'<button onclick="confirmRemove(' + value + ')" class="btn btn-default">' + 
+		   		  		'<button onclick="confirmRemove(' + row.pid + ')" class="btn btn-default">' + 
 		   		  			'<i class="fa fa-lg fa-trash"></i>' + 
 		   		  		'</button>' +
 	   		  	 '</span>';

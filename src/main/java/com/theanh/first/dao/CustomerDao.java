@@ -5,7 +5,7 @@ import java.util.List;
 import com.theanh.first.model.CustomerModel;
 
 public interface CustomerDao {
-	CustomerModel getByKey(int id); 
+	CustomerModel getByKey(Integer id); 
 	CustomerModel findByName(String userName);
 	Integer save(CustomerModel customer);
     void update(CustomerModel customer);

@@ -66,27 +66,45 @@
 	        	<tbody>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='product.vnName' text='VN Name' />: <span style="color: red">*</span></td>
-		        		<td><input id="product-name-vn" data-toggle="tooltip" title="<spring:message code='product.valid.vnName' text='VN Name is required' />" ng-model="product.nameVn" type="text"></td>
+		        		<td><input id="product-name-vn" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.vnName' text='VN Name is required' />" 
+		        			ng-model="product.nameVn" type="text">
+	        			</td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='product.enName' text='EN Name' />: <span style="color: red">*</span></td>
-		        		<td><input id="product-name-en" data-toggle="tooltip" title="<spring:message code='product.valid.enName' text='EN Name is required' />" ng-model="product.nameEn" type="text"></td>
+		        		<td><input id="product-name-en" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.enName' text='EN Name is required' />" 
+	        				ng-model="product.nameEn" type="text">
+        				</td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='product.unit' text='Unit' />: <span style="color: red">*</span> </td>
-		        		<td><input id="product-unit" data-toggle="tooltip" title="<spring:message code='product.valid.unit' text='Unit is required' />" ng-model="product.unit" type="text"></td>
+		        		<td><input id="product-unit" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.unit' text='Unit is required' />" 
+		        			ng-model="product.unit" type="text">
+	        			</td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='product.laundryPrice' text='Laundry' />: <span style="color: red">*</span></td>
-		        		<td><input id="product-laundry" data-toggle="tooltip" title="<spring:message code='product.valid.laundry' text='Laundry price is required' />" ng-model="product.laundry" type="text"></td>
+		        		<td><input id="product-laundry" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.laundry' text='Laundry price is required' />" 
+		        			ng-model="product.laundry" type="text">
+	        			</td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='product.drycleanPrice' text='Dryclean' />: <span style="color: red">*</span></td>
-		        		<td><input id="product-dryclean" data-toggle="tooltip" title="<spring:message code='product.valid.dryclean' text='Dryclean price is required' />" ng-model="product.dryclean" type="text"></td>
+		        		<td><input id="product-dryclean" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.dryclean' text='Dryclean price is required' />" 
+		        			ng-model="product.dryclean" type="text">
+	        			</td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='product.pressOnlyPrice' text='PressOnly' />: <span style="color: red">*</span></td>
-		        		<td><input id="product-pressonly" data-toggle="tooltip" title="<spring:message code='product.valid.pressonly' text='Pressonly price is required' />" ng-model="product.pressonly" type="text"></td>
+		        		<td><input id="product-pressonly" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.pressonly' text='Pressonly price is required' />" 
+		        			ng-model="product.pressonly" type="text">
+	        			</td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='product.note' text='Note' />: </td>
@@ -114,36 +132,66 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Sửa thông tin khách hàng</h4>
+	        <h4 class="modal-title"><spring:message code='product.edit' text='Edit Product' /></h4>
 	      </div>
 	      <div class="modal-body">
 	        <table class="table edit-product-table">
 	        	<tbody>
-		        	<tr>
-		        		<td class="text-field">Họ tên: <span style="color: red">*</span></td>
-		        		<td><input id="product-name-edit" data-toggle="tooltip" title="Hãy nhập họ tên" ng-model="edit_product.name" type="text"></td>
+	        		<tr>
+		        		<td class="text-field"><spring:message code='product.vnName' text='VN Name' />: <span style="color: red">*</span></td>
+		        		<td><input id="product-name-vn-edit" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.vnName' text='VN Name is required' />" 
+		        			ng-model="edit_product.nameVn" type="text">
+	        			</td>
 		        	</tr>
 		        	<tr>
-		        		<td class="text-field">Điện thoại: <span style="color: red">*</span> </td>
-		        		<td><input id="product-phone-edit" data-toggle="tooltip" title="Số điện thoại không đúng" ng-model="edit_product.phone" type="text"></td>
+		        		<td class="text-field"><spring:message code='product.enName' text='EN Name' />: <span style="color: red">*</span></td>
+		        		<td><input id="product-name-en-edit" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.enName' text='EN Name is required' />" 
+		        			ng-model="edit_product.nameEn" type="text">
+	        			</td>
 		        	</tr>
 		        	<tr>
-		        		<td class="text-field">Địa chỉ: <span style="color: red">*</span> </td>
-		        		<td><input id="product-address-edit" data-toggle="tooltip" title="Hãy nhập địa chỉ" ng-model="edit_product.address" type="text"></td>
+		        		<td class="text-field"><spring:message code='product.unit' text='Unit' />: <span style="color: red">*</span> </td>
+		        		<td><input id="product-unit-edit" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.unit' text='Unit is required' />" 
+		        			ng-model="edit_product.unit" type="text">
+	        			</td>
 		        	</tr>
 		        	<tr>
-		        		<td class="text-field">Ghi chú: </td>
+		        		<td class="text-field"><spring:message code='product.laundryPrice' text='Laundry' />: <span style="color: red">*</span></td>
+		        		<td><input id="product-laundry-edit" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.laundry' text='Laundry price is required' />" 
+		        			ng-model="edit_product.laundry" type="text">
+	        			</td>
+		        	</tr>
+		        	<tr>
+		        		<td class="text-field"><spring:message code='product.drycleanPrice' text='Dryclean' />: <span style="color: red">*</span></td>
+		        		<td><input id="product-dryclean-edit" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.dryclean' text='Dryclean price is required' />" 
+		        			ng-model="edit_product.dryclean" type="text">
+	        			</td>
+		        	</tr>
+		        	<tr>
+		        		<td class="text-field"><spring:message code='product.pressOnlyPrice' text='PressOnly' />: <span style="color: red">*</span></td>
+		        		<td><input id="product-pressonly-edit" data-toggle="tooltip" 
+		        			title="<spring:message code='product.valid.pressonly' text='Pressonly price is required' />" 
+		        			ng-model="edit_product.pressonly" type="text">
+	        			</td>
+		        	</tr>
+		        	<tr>
+		        		<td class="text-field"><spring:message code='product.note' text='Note' />: </td>
 		        		<td>
-		        			<input hidden id="product-id-edit" ng-model="edit_product.id" type="text">
 		        			<textarea style="width: 100%" ng-model="edit_product.note" rows="5" id="product-note-edit"></textarea>
 		        		</td>
 		        	</tr>
+	        	
 	        	</tbody>
 	        </table>
 	      </div>
 	      <div class="modal-footer">
-	      	<button id="edit-product-btn" type="button" class="btn btn-success" ng-click="save('PUT')">Lưu</button>
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+	      	<button id="save-product-btn" type="button" class="btn btn-success" ng-click="save('PUT')"><spring:message code='common.save' text='Save' /></button>
+	        <button type="button" class="btn btn-danger" data-dismiss="modal"><spring:message code='common.close' text='Close' /></button>
 	      </div>
 	    </div> <!-- end modal Edit content -->
 	
@@ -151,6 +199,24 @@
 	</div>
 	
 	<script type="text/javascript">
+		var lang_vnName = '<spring:message code="product.vnName" text="VN Name" />';
+		var lang_enName = '<spring:message code="product.enName" text="EN Name" />';
+		var lang_unit = '<spring:message code="product.unit" text="Unit" />';
+		var lang_note = '<spring:message code="product.note" text="Note" />';
+		var lang_laundry = '<spring:message code="product.laundry" text="Laundry" />';
+		var lang_dryclean = '<spring:message code="product.dryclean" text="Dryclean" />';
+		var lang_pressonly = '<spring:message code="product.pressonly" text="PressOnly" />';
+		var lang_action = '<spring:message code="product.action" text="Action" />';
+		var lang_confirm_delete_text = '<spring:message code="common.confirm.delete.text" text="Confirm delete text" />';
+		var lang_confirm_delete = '<spring:message code="common.confirm.delete" text="Confirm delete" />';
+		var lang_continue = '<spring:message code="common.continue" text="Continue" />';
+		var lang_cancel = '<spring:message code="common.cancel" text="Cancel" />';
+		var lang_delete_success = '<spring:message code="product.delete.success" text="Delete successfully" />';
+		var lang_delete_fail = '<spring:message code="product.delete.fail" text="Fail to delete" />';
+		var lang_get_fail = '<spring:message code="product.get.fail" text="Fail to get Product" />';
+		
+		
+		
 		$(document).ready(function(){
 			
 			$('#search-product-select').select2({

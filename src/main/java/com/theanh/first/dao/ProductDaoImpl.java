@@ -14,12 +14,6 @@ import com.theanh.first.model.ProductOutModel;
 public class ProductDaoImpl extends AbstractDao<Integer, ProductModel> implements ProductDao {
 
 	@Override
-	public ProductModel getByKey(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public ProductModel findByName(String userName) {
 		// TODO Auto-generated method stub
 		return null;
@@ -69,8 +63,19 @@ public class ProductDaoImpl extends AbstractDao<Integer, ProductModel> implement
 	}
 
 	@Override
-	public Integer save(ProductModel product) {
-		return super.save(product);
+	public ProductOutModel getProductOutById(Integer pid) {
+		ProductOutModel productOut = new ProductOutModel();
+		String sql = "select A.pid, A.enName, A.vnName, A.unit, A.note, B.laundry, B.dryclean, B.pressonly " +
+				"FROM Product A, WashTypePrice B WHERE 1=1 and A.pid = B.pid and A.pid = :pid ";
+
+		SQLQuery query = this.getSession().createSQLQuery(sql);
+		query.setParameter("pid", pid);
+		query.setResultTransformer(Transformers.aliasToBean(ProductOutModel.class));
+		
+		productOut = (ProductOutModel)query.uniqueResult();
+		
+		return productOut;
 	}
+	
 
 }
