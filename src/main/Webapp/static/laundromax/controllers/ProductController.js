@@ -32,9 +32,9 @@ mainApp.controller('ProductController', function($scope, $http) {
 			  if (response.data.returnStatus == 'SUCCESS') {
 				  
 				  if (method == 'POST') {
-					  mess = 'Thêm khách hàng thành công';
+					  mess = lang_add_success;
 				  } else {
-					  mess = 'Sửa thông tin khách hàng thành công';
+					  mess = lang_edit_success;
 				  }
 				  
 				  var type = 'SUCCESS';
@@ -42,9 +42,9 @@ mainApp.controller('ProductController', function($scope, $http) {
 			  }else {
 				  
 				  if (method == 'POST') {
-					  mess = 'Thêm khách hàng thất bại';
+					  mess = lang_add_fail;
 				  } else {
-					  mess = 'Sửa thông tin khách hàng thành công';
+					  mess = lang_edit_fail;
 				  }
 				  var type = 'ERROR';
 				  $scope.showConfirmModal(mess, type);
@@ -285,6 +285,8 @@ mainApp.controller('ProductController', function($scope, $http) {
 				class : 'table table-hover',
 				striped : true,
 				pagination : true,
+				sortName: 'pid',
+				sortOrder: 'desc',
 				pageSize : 20,
 				pageList : [ 10, 20, 50, 100 ],
 				sidePagination : 'server',

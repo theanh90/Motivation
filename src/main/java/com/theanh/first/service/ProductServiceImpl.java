@@ -44,7 +44,7 @@ public class ProductServiceImpl  implements ProductService{
 		product.setEnName(data.get("nameEn"));
 		product.setVnName(data.get("nameVn"));
 		product.setUnit(data.get("unit"));
-		product.setNote(data.get("nameEn"));		
+		product.setNote(data.get("note"));		
 		Integer productId = productDao.save(product);
 		
 		typePrice.setDryClean(Integer.parseInt(data.get("dryclean")));
@@ -57,7 +57,7 @@ public class ProductServiceImpl  implements ProductService{
 	}
 
 	@Override
-	public DataTableJson getListProduct(String sort, String order, int limit, int offset, String typeSearch,
+	public DataTableJson getListProductOut(String sort, String order, int limit, int offset, String typeSearch,
 			String textSearch) {
 		DataTableJson dataTableJson = new DataTableJson();
 		List<Object> lsObj = new ArrayList<>(); 
@@ -76,6 +76,10 @@ public class ProductServiceImpl  implements ProductService{
 		ProductModel product = new ProductModel();
 		product = productDao.getByKey(pid);
 		productDao.delete(product);
+		
+		WashTypePriceModel typePrice = new WashTypePriceModel();
+		typePrice = washTypePriceDao.getByKey(pid);
+		washTypePriceDao.delete(typePrice);
 	}
 
 	@Override
@@ -102,8 +106,20 @@ public class ProductServiceImpl  implements ProductService{
 
 	@Override
 	public void editProductOut(Map<String, String> data) {
-		// TODO Auto-generated method stub
+		ProductModel product = new ProductModel(); 
+		product = productDao.getByKey(Integer.parseInt(data.get("id")));
+		product.setEnName(data.get("nameEn"));
+		product.setVnName(data.get("nameVn"));
+		product.setUnit(data.get("unit"));
+		product.setNote(data.get("note"));		
+		productDao.update(product);
 		
+		WashTypePriceModel typePrice = new WashTypePriceModel();
+		typePrice = washTypePriceDao.getByKey(Integer.parseInt(data.get("id")));
+		typePrice.setDryClean(Integer.parseInt(data.get("dryclean")));
+		typePrice.setLaundry(Integer.parseInt(data.get("laundry")));
+		typePrice.setPressOnly(Integer.parseInt(data.get("pressonly")));		
+		washTypePriceDao.update(typePrice);
 	}
 
 

@@ -12,9 +12,10 @@
 				<div class="input-group">				
 		            <div class="input-group-btn">
 	            		<select id="search-product-select" ng-model="search.type">
-						  <option value="all"><spring:message code='product.vnName' text='VN Name' /></option>
-						  <option value="name"><spring:message code='product.enName' text='EN Name' /></option>
-						  <option value="phone"><spring:message code='product.note' text='Note' /></option>
+	            		  <option value="all"><spring:message code='customer.search.all' text='All' /></option>
+						  <option value="vnName"><spring:message code='product.vnName' text='VN Name' /></option>
+						  <option value="enName"><spring:message code='product.enName' text='EN Name' /></option>
+						  <option value="Note"><spring:message code='product.note' text='Note' /></option>
 						</select>
 		            </div>
 					<input type="text" class="form-control" placeholder="<spring:message code='customer.search.inputSearch' text='Input search' />" ng-model="search.input">
@@ -214,6 +215,10 @@
 		var lang_delete_success = '<spring:message code="product.delete.success" text="Delete successfully" />';
 		var lang_delete_fail = '<spring:message code="product.delete.fail" text="Fail to delete" />';
 		var lang_get_fail = '<spring:message code="product.get.fail" text="Fail to get Product" />';
+		var lang_add_success = '<spring:message code="product.add.success" text="Add product successully" />';
+		var lang_add_fail = '<spring:message code="product.add.fail" text="Add product successully" />';
+		var lang_edit_success = '<spring:message code="product.edit.success" text="Edit product successully" />';
+		var lang_edit_fail = '<spring:message code="product.edit.fail" text="Fail to edit product" />';
 		
 		
 		

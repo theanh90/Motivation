@@ -49,5 +49,11 @@ public class WashTypePriceModel implements Serializable {
 	public void setPressOnly(Integer pressOnly) {
 		this.pressOnly = pressOnly;
 	}
+	
+	@Override
+	public String toString() {
+		return "[WashingPrice:: id: " + pid + ", laundry: " + laundry + ", dryclean: " + 
+				dryClean + ", pressonly: " + pressOnly;
+	}
 
 }

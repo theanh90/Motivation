@@ -8,7 +8,7 @@ import com.theanh.first.model.ProductOutModel;
 
 public interface ProductService {
 	void save(Map<String, String> customer);
-	DataTableJson getListProduct(String sort, String order, int limit, int offset, String typeSearch, String textSearch);
+	DataTableJson getListProductOut(String sort, String order, int limit, int offset, String typeSearch, String textSearch);
 	void delete(Integer cusId);
 	ProductModel getProductById(Integer cusId);
 	void edit(Map<String, String> data);

@@ -37,7 +37,7 @@ public class ProductController extends BaseController{
 			return null;
 		
 		try {
-			dataTableJson = productService.getListProduct(sort, order, limit, offset, typeSearch, textSearch);
+			dataTableJson = productService.getListProductOut(sort, order, limit, offset, typeSearch, textSearch);
 		}catch (Exception ex) {
 			ex.printStackTrace();
 			dataTableJson = new DataTableJson(DataTableJson.ERROR, "Fail to load list Product");
