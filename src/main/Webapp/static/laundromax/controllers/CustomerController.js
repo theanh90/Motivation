@@ -162,6 +162,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 			  var data = response.data.data;
 			  $scope.edit_cus.name = data.name;
 			  $scope.edit_cus.phone = data.phone;
+			  $scope.edit_cus.email = data.email;
 			  $scope.edit_cus.address = data.address;
 			  $scope.edit_cus.note = data.note;
 			  $scope.edit_cus.id = data.cid;
@@ -273,6 +274,12 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 				valign : 'middle',
 				sortable : true
 			}, {
+				field : 'email',
+				title : customer_email,
+				align : 'left',
+				valign : 'middle',
+				sortable : true
+			},{
 				field : 'address',
 				title : customer_address,
 				align : 'left',

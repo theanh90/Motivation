@@ -10,6 +10,7 @@ public class ProductOutModel implements Serializable {
 	private String vnName;
 	private String unit;
 	private String note;
+	private Integer active;
 	private Integer laundry;
 	private Integer dryclean;
 	private Integer pressonly;
@@ -78,6 +79,14 @@ public class ProductOutModel implements Serializable {
 		this.pressonly = pressonly;
 	}
 	
+	public Integer getActive() {
+		return active;
+	}
+
+	public void setActive(Integer active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductOut: {id: " + pid + ", enName: " + enName + ", vnName: " + vnName + ", unit: "

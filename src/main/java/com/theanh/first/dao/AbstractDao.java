@@ -3,12 +3,16 @@ package com.theanh.first.dao;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.theanh.first.controller.BaseController;
+
 public class AbstractDao<PK extends Serializable, T>  {
+	protected static final Logger logger = Logger.getLogger(AbstractDao.class);
 	private final Class<T> persistentClass;
 	
 	@Autowired

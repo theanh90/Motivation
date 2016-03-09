@@ -15,7 +15,8 @@
 	            		  <option value="all"><spring:message code='customer.search.all' text='All' /></option>
 						  <option value="vnName"><spring:message code='product.vnName' text='VN Name' /></option>
 						  <option value="enName"><spring:message code='product.enName' text='EN Name' /></option>
-						  <option value="Note"><spring:message code='product.note' text='Note' /></option>
+						  <option value="note"><spring:message code='product.note' text='Note' /></option>
+						  <option value="id"><spring:message code='common.id' text='ID' /></option>
 						</select>
 		            </div>
 					<input type="text" class="form-control" placeholder="<spring:message code='customer.search.inputSearch' text='Input search' />" ng-model="search.input">
@@ -73,9 +74,8 @@
 	        			</td>
 		        	</tr>
 		        	<tr>
-		        		<td class="text-field"><spring:message code='product.enName' text='EN Name' />: <span style="color: red">*</span></td>
-		        		<td><input id="product-name-en" data-toggle="tooltip" 
-		        			title="<spring:message code='product.valid.enName' text='EN Name is required' />" 
+		        		<td class="text-field"><spring:message code='product.enName' text='EN Name' />: <!-- <span style="color: red">*</span> --></td>
+		        		<td><input id="product-name-en" <%-- data-toggle="tooltip" title="<spring:message code='product.valid.enName' text='EN Name is required' />" --%> 
 	        				ng-model="product.nameEn" type="text">
         				</td>
 		        	</tr>
@@ -146,9 +146,8 @@
 	        			</td>
 		        	</tr>
 		        	<tr>
-		        		<td class="text-field"><spring:message code='product.enName' text='EN Name' />: <span style="color: red">*</span></td>
-		        		<td><input id="product-name-en-edit" data-toggle="tooltip" 
-		        			title="<spring:message code='product.valid.enName' text='EN Name is required' />" 
+		        		<td class="text-field"><spring:message code='product.enName' text='EN Name' />: <!-- <span style="color: red">*</span> --></td>
+		        		<td><input id="product-name-en-edit" <%-- data-toggle="tooltip" title="<spring:message code='product.valid.enName' text='EN Name is required' />" --%> 
 		        			ng-model="edit_product.nameEn" type="text">
 	        			</td>
 		        	</tr>

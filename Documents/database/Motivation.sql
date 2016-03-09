@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2016 at 09:57 AM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 7.0.3
+-- Generation Time: Mar 09, 2016 at 04:01 PM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,37 +30,40 @@ CREATE TABLE `CUSTOMER` (
   `CID` int(11) NOT NULL,
   `Name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Address` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Note` text COLLATE utf8_unicode_ci
+  `Note` text COLLATE utf8_unicode_ci,
+  `Active` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `CUSTOMER`
 --
 
-INSERT INTO `CUSTOMER` (`CID`, `Name`, `Phone`, `Address`, `Note`) VALUES
-(1, 'Nguyễn Hữu Phụ Khoa', '01652231234', 'ddd', 'dfff'),
-(2, 'Nguyễn Thị Quỳnh Như', '01693652381', 'Sa Thầy, Kon Tum', 'Đã chuyển ra Đà Nẵng'),
-(3, 'Đinh Thị H Phim', '01682804101', 'DakPo, Gia Lai', 'Zè quê rồi'),
-(4, 'Trần Thị Thu Thủy', '01646139496', 'Đà Lạt, Lâm Đồng', 'Đang học ở Thủ Đức'),
-(7, 'Mr.Siro', '09090909009', 'Làng bối', 'xxxxx'),
-(8, 'Trần Trụi', '898989898989', 'aa, bbb', 'xxxx'),
-(9, 'dantri.com', '8989898989', 'tvt3', 'xxx'),
-(10, 'hiv', '242342534534', 'giai đoạn cuối', NULL),
-(11, 'Huỳnh Thị Diễm Ny', '4352452345', 'pleiku', 'break-up'),
-(12, 'Đào Thị Kim Tuyến', '3333333333', 'ssssss', NULL),
-(13, 'Quang Vũ', '23452345354', 'sjflaskfasdfsad', NULL),
-(14, 'Đăng Khoa', '3243245345', 'ddd asd sdf', 'adf asdf sdf'),
-(15, 'Mỹ Tâm', '245234532453', 'HHaf asdf', 'sfsadf'),
-(16, 'Đờm', '2245908008', 'faspkf', 'qef sò'),
-(17, 'Noo', '5363645664', 'jlsdfj als jalj', 'lasdjfwofj of02f jelfm dsf'),
-(18, 'hellu', '233452345345', '52345345345', 'dd'),
-(19, 'Diễm Hương Trần', '0977373748', 'sldfja sfljsdf', NULL),
-(20, 'Luccica', '234254534543', 'jsladfj alsdfj lsdjf', NULL),
-(21, 'Trâm 77', '53245324554', 'jlsfj o2f lsk fà', 'sf'),
-(22, 'Ngộ zãy ta', '0425345345', 'ko phân trang', NULL),
-(23, 'bị nhầm', '3424234534', 'kkk', NULL),
-(24, 'a 1', '3333333333', 'ssssss', 'dddd');
+INSERT INTO `CUSTOMER` (`CID`, `Name`, `Phone`, `Email`, `Address`, `Note`, `Active`) VALUES
+(2, 'Nguyễn Thị Quỳnh Như', '01693652381', NULL, 'Sa Thầy, Kon Tum', 'Đã chuyển ra Đà Nẵng', 1),
+(7, 'Mr.Siro', '09090909009', NULL, 'Làng bối', 'xxxxx', 1),
+(9, 'dantri.com', '8989898989', NULL, 'tvt3', 'xxx rrrrr', 1),
+(10, 'hiv', '242342534534', NULL, 'giai đoạn cuối', NULL, 1),
+(11, 'Huỳnh Thị Diễm Ny', '4352452345', NULL, 'pleiku', 'break-up', 1),
+(12, 'Đào Thị Kim Tuyến', '3333333333', NULL, 'ssssss', NULL, 1),
+(13, 'Quang Vũ', '23452345354', NULL, 'sjflaskfasdfsad', NULL, 1),
+(14, 'Đăng Khoa', '3243245345', NULL, 'ddd asd sdf', 'adf asdf sdf', 1),
+(15, 'Mỹ Tâm', '245234532453', NULL, 'HHaf asdf', 'sfsadf', 1),
+(19, 'Diễm Hương Trần', '0977373748', NULL, 'sldfja sfljsdf', NULL, 1),
+(20, 'Luccica', '234254534543', NULL, 'jsladfj alsdfj lsdjf', NULL, 1),
+(21, 'Trâm 77', '53245324554', NULL, 'HCM', 'sf', 1),
+(22, 'Ngộ zãy ta', '0425345345', NULL, 'ko phân trang', NULL, 1),
+(23, 'bị nhầm', '3424234534', NULL, 'kkk', NULL, 1),
+(25, 'mới 1', '2453453453', NULL, 'hòa phú', 'bbbb', 1),
+(26, 'uuuu', '99889987678', NULL, 'lầu 4', 'kh khó tính', 1),
+(27, 'Nu', '01646139496', NULL, 'đà lạt', 'sad memory', 1),
+(28, 'xxx', '23945823405', NULL, 'yyy', 'f', 1),
+(29, 'ssss', '3333333333', NULL, 'fff', 'ssss', 1),
+(31, 'ssssss1', '44444444441', '1@1.1', '222221', 'dd1', 1),
+(32, 'mark', '0333333333', 'mark@facebook.com', 'Bình Thạnh', 'kh mới toanh', 1),
+(33, 'Steve job', '4444444444', 'xxsteve@apple.com', 'sunrise city', 'was died', 1),
+(34, 'abc', '9898888848', 'xyz@abc.com', 'ffff', 'eee', 1);
 
 -- --------------------------------------------------------
 
@@ -73,16 +76,27 @@ CREATE TABLE `PRODUCT` (
   `EnName` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `VnName` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `Unit` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `Note` text COLLATE utf8_unicode_ci
+  `Note` text COLLATE utf8_unicode_ci,
+  `Active` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `PRODUCT`
 --
 
-INSERT INTO `PRODUCT` (`PID`, `EnName`, `VnName`, `Unit`, `Note`) VALUES
-(1, 'jean', 'quần jean', 'cái', 'jean'),
-(2, 'sơ mi', 'áo sơ mi', 'cái', 'sơ mi');
+INSERT INTO `PRODUCT` (`PID`, `EnName`, `VnName`, `Unit`, `Note`, `Active`) VALUES
+(3, 'shirt', 'áo sơ mi', 'Cái', 'shirt', 1),
+(4, 'MEN_EN', 'mền', 'bao', 'MEN_EN', 1),
+(6, 'xxx', '4 lỗ', 'yyy', 'xxx', 1),
+(7, 'red shoes', 'hài đỏ', 'đôi', 'my memory', 1),
+(8, 'coat', 'áo khoác', 'cái', 'xxx', 1),
+(9, 'xxx Coat', 'Áo Khoác Nỉ', 'bộ', 'uuu', 1),
+(10, '2222', 'ee', '3333', NULL, 1),
+(11, 'rrrr', 'ttttt', 'eee', NULL, 1),
+(12, 'xxxx', 'cccc', 'ư', 'xxxxxxx', 1),
+(13, '66666', 'jjjjj', 'tt', NULL, 1),
+(14, '', 'vvvv', '22 x', 'dddd 6', 1),
+(16, '', 'giầy dr', 'đôi', 'cccc', 1);
 
 -- --------------------------------------------------------
 
@@ -123,8 +137,18 @@ CREATE TABLE `WASHTYPEPRICE` (
 --
 
 INSERT INTO `WASHTYPEPRICE` (`PID`, `Laundry`, `DryClean`, `PressOnly`) VALUES
-(1, 1, 2, 3),
-(2, 2000, 3000, 4000);
+(3, 88888, 2000, 3000),
+(4, 5000, 7000, 9000),
+(6, 1111, 2222, 3333),
+(7, 1701, 2013, 9),
+(8, 50000, 60000, 70000),
+(9, 1, 3, 1),
+(10, 333, 222, 333),
+(11, 3333, 3333, 22222),
+(12, 55, 66, 77),
+(13, 4, 5, 6),
+(14, 556, 666, 76),
+(16, 4000, 3999, 5000);
 
 --
 -- Indexes for dumped tables
@@ -163,12 +187,12 @@ ALTER TABLE `WASHTYPEPRICE`
 -- AUTO_INCREMENT for table `CUSTOMER`
 --
 ALTER TABLE `CUSTOMER`
-  MODIFY `CID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `CID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `PRODUCT`
 --
 ALTER TABLE `PRODUCT`
-  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `USER`
 --

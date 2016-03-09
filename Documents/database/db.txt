@@ -3,7 +3,9 @@
 	Name
 	Address
 	Phone
+	Email
 	Note
+	Active
 	
 2. INVOICE
 	InId
@@ -11,6 +13,7 @@
 	DateDelivery
 	TotalPrice
 	Note
+	Active
 	
 3. INVOICEDETAILS
 	PId -- productId
@@ -23,6 +26,7 @@
 	VnName
 	Unit -- đơn vị tính
 	Note
+	Active
 	
 5. WASHTYPEPRICE
 	PId -- Product Id

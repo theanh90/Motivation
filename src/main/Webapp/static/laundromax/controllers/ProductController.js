@@ -75,14 +75,14 @@ mainApp.controller('ProductController', function($scope, $http) {
 		   var element = {};
 		   if (method == 'POST') {
 			   element.nameVn = $('#product-name-vn');
-			   element.nameEn = $('#product-name-en');
+//			   element.nameEn = $('#product-name-en');
 			   element.unit = $('#product-unit');
 			   element.laundry = $('#product-laundry');
 			   element.dryclean = $('#product-dryclean');
 			   element.pressonly = $('#product-pressonly');
 		   } else if (method == 'PUT') {
 			   element.nameVn = $('#product-name-vn-edit');
-			   element.nameEn = $('#product-name-en-edit');
+//			   element.nameEn = $('#product-name-en-edit');
 			   element.unit = $('#product-unit-edit');
 			   element.laundry = $('#product-laundry-edit');
 			   element.dryclean = $('#product-dryclean-edit');
@@ -104,8 +104,8 @@ mainApp.controller('ProductController', function($scope, $http) {
 			element.nameVn.css('border', '');
 			element.nameVn.css('box-shadow', '');	
 
-			element.nameEn.css('border', '');
-			element.nameEn.css('box-shadow', '');
+//			element.nameEn.css('border', '');
+//			element.nameEn.css('box-shadow', '');
 			
 			element.unit.css('border', '');
 			element.unit.css('box-shadow', '');
@@ -122,7 +122,7 @@ mainApp.controller('ProductController', function($scope, $http) {
 	   
 	   $scope.removeValidateTooltip = function(element) {
 		   element.nameVn.tooltip('disable');
-		   element.nameEn.tooltip('disable');
+//		   element.nameEn.tooltip('disable');
 		   element.unit.tooltip('disable');
 		   element.laundry.tooltip('disable');
 		   element.dryclean.tooltip('disable');
@@ -145,12 +145,12 @@ mainApp.controller('ProductController', function($scope, $http) {
 			   element.nameVn.tooltip('show');
 			   $scope.fieldHightLight(element.nameVn);
 		   }
-		   if (!check.nameEn){
-			   valid = false;
-			   element.nameEn.tooltip('enable');
-			   element.nameEn.tooltip('show');
-			   $scope.fieldHightLight(element.nameEn);
-		   }
+//		   if (!check.nameEn){
+//			   valid = false;
+//			   element.nameEn.tooltip('enable');
+//			   element.nameEn.tooltip('show');
+//			   $scope.fieldHightLight(element.nameEn);
+//		   }
 		   if (!check.unit) {
 			   valid = false;
 			   element.unit.tooltip('enable');
@@ -219,8 +219,7 @@ mainApp.controller('ProductController', function($scope, $http) {
 		   });
 	   }
 	   
-	   confirmRemove = function(productId) {
-		   
+	   confirmRemove = function(productId) {		   
 		   BootstrapDialog.show({
 			   size: BootstrapDialog.SIZE_SMALL,
 	           type: BootstrapDialog.TYPE_WARNING,

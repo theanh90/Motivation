@@ -18,7 +18,7 @@ public class ProductModel  implements Serializable{
 	@Column(name = "PID")
 	private Integer pid;
 	
-	@Column(name = "ENNAME", nullable = false)
+	@Column(name = "ENNAME", nullable = true)
 	private String enName;
 	
 	@Column(name = "VNNAME", nullable = false)
@@ -29,6 +29,9 @@ public class ProductModel  implements Serializable{
 	
 	@Column(name = "NOTE", nullable = true)
 	private String note;
+	
+	@Column(name = "ACTIVE", nullable = true)
+	private Integer active;
 	
 	public Integer getPid() {
 		return pid;
@@ -61,9 +64,16 @@ public class ProductModel  implements Serializable{
 		this.note = note;
 	}
 	
+	public Integer getActive() {
+		return active;
+	}
+	public void setActive(Integer active) {
+		this.active = active;
+	}
+	
 	@Override
 	public String toString() {
 		return "Product: {id: " + pid + ", enName: " + enName + ", vnName: " + vnName + ", unit: "
-				+ unit + ", note: " + note + "}";
+				+ unit + ", note: " + note + ", isActive: " + active + "}";
 	}
 }

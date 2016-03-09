@@ -23,17 +23,21 @@ public class CustomerDaoImpl extends AbstractDao<Integer, CustomerModel> impleme
 		String sql = "FROM CustomerModel WHERE 1=1 ";
 		String condition = "";
 		if (textSearch != null && textSearch != "") {
-			if (typeSearch.equals("all")) {
+			if ("all".equals(typeSearch)) {
 				condition += " and ( ";
 				condition += "name like :textSearch ";
 				condition += "or phone like :textSearch ";
+				condition += "or email like :textSearch ";
 				condition += "or address like :textSearch ";
 				condition += "or note like :textSearch ";
 				condition += ") ";
+			} else if ("id".equals(typeSearch)) {
+				condition += " and cid = :textSearch ";
 			} else {
 				condition += "and " + typeSearch + " like :textSearch ";
 			}		
 		}
+		condition += "and active = 1 ";
 		
 		sql += condition;
 		if (sort != null) {
@@ -41,7 +45,16 @@ public class CustomerDaoImpl extends AbstractDao<Integer, CustomerModel> impleme
 		}
 		Query query = this.getSession().createQuery(sql); 
 		
-		if (textSearch != null && textSearch != "") {
+		if ("id".equals(typeSearch)){
+			Integer id = 0;
+			try {
+				id = Integer.parseInt(textSearch);
+			} catch (NumberFormatException ex) {
+				logger.info("Fail to parse textSearch to Integer: \"" + textSearch + "\"");
+				id = 0;
+			}
+			query.setParameter("textSearch", id);
+		} else if (textSearch != null && textSearch != "") {
 			query.setParameter("textSearch", "%" + textSearch + "%");
 		}
 		

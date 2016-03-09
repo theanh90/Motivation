@@ -7,7 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<link href="<c:url value='static/images/favicon.ico' />" rel="icon" type="image/x-icon" />
+		<link href="<c:url value='static/laundromax/images/favicon.png' />" rel="icon" type="image/x-icon" />
   		
   		<!-- Font awesome -->
   		<link rel="stylesheet" href="<c:url value='static/font-awesome-4.5.0/css/font-awesome.min.css' />">  		

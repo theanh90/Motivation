@@ -21,14 +21,20 @@ public class CustomerModel implements Serializable {
 	@Column(name = "NAME", nullable = false)
 	private String name;
 	
-	@Column(name = "ADDRESS")
+	@Column(name = "ADDRESS", nullable = false)
 	private String address;
 
-	@Column(name = "PHONE")
+	@Column(name = "PHONE", nullable = false)
 	private String phone;
+	
+	@Column(name = "EMAIL")
+	private String email;
 	
 	@Column(name = "NOTE")
 	private String note;
+	
+	@Column(name = "ACTIVE", nullable = false)
+	private Integer active;
 	
 	public Integer getCid() {
 		return cid;
@@ -55,6 +61,12 @@ public class CustomerModel implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getNote() {
 		return note;
 	}
@@ -62,20 +74,27 @@ public class CustomerModel implements Serializable {
 		this.note = note;
 	}
 	
+	public Integer getActive() {
+		return active;
+	}
+	public void setActive(Integer active) {
+		this.active = active;
+	}
 	public CustomerModel() {}
 	
-	public CustomerModel(Integer id, String name, String address, String phone, String note) {
+	public CustomerModel(Integer id, String name, String address, String phone, String email, String note) {
 		this.cid = id;
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
+		this.email = email;
 		this.note = note;
 	}
 	
 	@Override
 	public String toString() {
 		return "Customer: {id: " + cid + ", address: " + address + ", name: " + name + ", phone: "
-				+ phone + ", note: " + note + "}";
+				+ phone + ", email: " + email + ", note: " + note + ", isActive: " + active + "}";
 	}
 
 }

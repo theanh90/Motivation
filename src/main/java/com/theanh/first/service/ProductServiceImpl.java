@@ -44,7 +44,8 @@ public class ProductServiceImpl  implements ProductService{
 		product.setEnName(data.get("nameEn"));
 		product.setVnName(data.get("nameVn"));
 		product.setUnit(data.get("unit"));
-		product.setNote(data.get("note"));		
+		product.setNote(data.get("note"));
+		product.setActive(1);
 		Integer productId = productDao.save(product);
 		
 		typePrice.setDryClean(Integer.parseInt(data.get("dryclean")));
@@ -75,11 +76,13 @@ public class ProductServiceImpl  implements ProductService{
 	public void delete(Integer pid) {
 		ProductModel product = new ProductModel();
 		product = productDao.getByKey(pid);
-		productDao.delete(product);
+		product.setActive(0);
+		productDao.update(product);
+//		productDao.delete(product);
 		
-		WashTypePriceModel typePrice = new WashTypePriceModel();
-		typePrice = washTypePriceDao.getByKey(pid);
-		washTypePriceDao.delete(typePrice);
+//		WashTypePriceModel typePrice = new WashTypePriceModel();
+//		typePrice = washTypePriceDao.getByKey(pid);
+//		washTypePriceDao.delete(typePrice);
 	}
 
 	@Override

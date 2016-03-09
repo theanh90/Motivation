@@ -15,8 +15,10 @@
 						  <option value="all"><spring:message code='customer.search.all' text='All' /></option>
 						  <option value="name"><spring:message code='customer.fullname' text='Full name' /></option>
 						  <option value="phone"><spring:message code='customer.phone' text='Phone' /></option>
+						  <option value="email"><spring:message code='customer.email' text='Email' /></option>
 						  <option value="address"><spring:message code='customer.address' text='Address' /></option>
 						  <option value="note"><spring:message code='customer.note' text='Note' /></option>
+						  <option value="id"><spring:message code='common.id' text='ID' /></option>
 						</select>
 		            </div>
 					<input type="text" class="form-control" placeholder="<spring:message code='customer.search.inputSearch' text='Input search' />" ng-model="search.input">
@@ -69,15 +71,22 @@
 	        	<tbody>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='customer.fullname' text='Full name' />: <span style="color: red">*</span></td>
-		        		<td><input id="cus-name" data-toggle="tooltip" title="<spring:message code='customer.valid.name' text='Name is required' />" ng-model="cus.name" type="text"></td>
+		        		<td><input id="cus-name" data-toggle="tooltip" title="<spring:message code='customer.valid.name' 
+		        			text='Name is required' />" ng-model="cus.name" type="text"></td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='customer.phone' text='Phone number' />: <span style="color: red">*</span> </td>
-		        		<td><input id="cus-phone" data-toggle="tooltip" title="<spring:message code='customer.valid.phone' text='Phone is required' />" ng-model="cus.phone" type="text"></td>
+		        		<td><input id="cus-phone" data-toggle="tooltip" title="<spring:message code='customer.valid.phone' 
+		        			text='Phone is required' />" ng-model="cus.phone" type="text"></td>
+		        	</tr>
+		        	<tr>
+		        		<td class="text-field"><spring:message code='customer.email' text='Email' />:</td>
+		        		<td><input id="cus-email" ng-model="cus.email" type="text"></td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='customer.address' text='Address' />: <span style="color: red">*</span> </td>
-		        		<td><input id="cus-address" data-toggle="tooltip" title="<spring:message code='customer.valid.address' text='Address is required' />" ng-model="cus.address" type="text"></td>
+		        		<td><input id="cus-address" data-toggle="tooltip" title="<spring:message code='customer.valid.address' 
+		        			text='Address is required' />" ng-model="cus.address" type="text"></td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='customer.note' text='Note' />: </td>
@@ -112,15 +121,22 @@
 	        	<tbody>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='customer.fullname' text='Fullname' />: <span style="color: red">*</span></td>
-		        		<td><input id="cus-name-edit" data-toggle="tooltip" title="<spring:message code='customer.valid.name' text='Name is required' />" ng-model="edit_cus.name" type="text"></td>
+		        		<td><input id="cus-name-edit" data-toggle="tooltip" title="<spring:message code='customer.valid.name' 
+		        			text='Name is required' />" ng-model="edit_cus.name" type="text"></td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='customer.phone' text='Phone number' />: <span style="color: red">*</span> </td>
-		        		<td><input id="cus-phone-edit" data-toggle="tooltip" title="<spring:message code='customer.valid.phone' text='Phone is required' />" ng-model="edit_cus.phone" type="text"></td>
+		        		<td><input id="cus-phone-edit" data-toggle="tooltip" title="<spring:message code='customer.valid.phone' 
+		        			text='Phone is required' />" ng-model="edit_cus.phone" type="text"></td>
+		        	</tr>
+		        	<tr>
+		        		<td class="text-field"><spring:message code='customer.email' text='Email' />:</td>
+		        		<td><input id="cus-email-edit" ng-model="edit_cus.email" type="text"></td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='customer.address' text='Address' />: <span style="color: red">*</span> </td>
-		        		<td><input id="cus-address-edit" data-toggle="tooltip" title="<spring:message code='customer.valid.address' text='Address is required' />" ng-model="edit_cus.address" type="text"></td>
+		        		<td><input id="cus-address-edit" data-toggle="tooltip" title="<spring:message code='customer.valid.address' 
+		        			text='Address is required' />" ng-model="edit_cus.address" type="text"></td>
 		        	</tr>
 		        	<tr>
 		        		<td class="text-field"><spring:message code='customer.note' text='Address' />: </td>
@@ -158,6 +174,7 @@
 		var customer_action = '<spring:message code="customer.action" text="Action" />';
 		var customer_name = '<spring:message code="customer.fullname" text="Name" />';
 		var customer_phone = '<spring:message code="customer.phone" text="Phone" />';
+		var customer_email = '<spring:message code="customer.email" text="Email" />';
 		var customer_address = '<spring:message code="customer.address" text="Addess" />';
 		var customer_note = '<spring:message code="customer.note" text="Note" />';
 		/* End variable for multiple languages in AngularJs controller */

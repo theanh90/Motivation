@@ -29,7 +29,9 @@ public class CustomerServiceImpl implements CustomerService{
 		customer.setName(data.get("name"));
 		customer.setAddress(data.get("address"));
 		customer.setPhone(data.get("phone"));
+		customer.setEmail(data.get("email"));
 		customer.setNote(data.get("note"));
+		customer.setActive(1);
 		customerDao.save(customer);
 		
 	}
@@ -52,7 +54,9 @@ public class CustomerServiceImpl implements CustomerService{
 	public void delete(Integer cusId) {
 		CustomerModel customer = new CustomerModel();
 		customer = customerDao.getByKey(cusId);
-		customerDao.delete(customer);
+		customer.setActive(0);
+		customerDao.update(customer);
+//		customerDao.delete(customer);
 	}
 
 	@Override
@@ -70,6 +74,7 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		customer.setName(data.get("name"));
 		customer.setPhone(data.get("phone"));
+		customer.setEmail(data.get("email"));
 		customer.setAddress(data.get("address"));
 		customer.setNote(data.get("note"));
 		
