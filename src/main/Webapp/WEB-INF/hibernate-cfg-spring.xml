@@ -28,6 +28,11 @@
 				<value>com.theanh.first.model.CustomerModel</value>
 				<value>com.theanh.first.model.ProductModel</value>
 				<value>com.theanh.first.model.WashTypePriceModel</value>
+				<value>com.theanh.first.model.InvoiceStatusModel</value>
+				<value>com.theanh.first.model.StuffConfigModel</value>
+				<value>com.theanh.first.model.InvoiceModel</value>
+				<value>com.theanh.first.model.InvoiceDetailsModel</value>
+				<value>com.theanh.first.model.InvoiceHistoryModel</value>
 			</list>
 		</property>
 
