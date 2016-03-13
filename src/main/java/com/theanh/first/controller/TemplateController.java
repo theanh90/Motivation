@@ -17,5 +17,15 @@ public class TemplateController extends BaseController {
 	public String productPage() {
 		return "template/Product";
 	}
+	
+	@RequestMapping(value = "/invoice", method = RequestMethod.GET)
+	public String invoicePage() {
+		return "template/Invoice";
+	}
+	
+	@RequestMapping(value = "/addinvoice", method = RequestMethod.GET)
+	public String invoiceAddPage() {
+		return "template/InvoiceAdd";
+	}
 
 }

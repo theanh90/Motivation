@@ -29,8 +29,8 @@ public class ProductController extends BaseController{
 	@RequestMapping(value = "/list", method = RequestMethod.GET, headers = {
 			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
 	public DataTableJson getListProduct(HttpServletRequest request, @RequestParam(value = "sort", required = false) String sort,
-			@RequestParam String order, @RequestParam int limit, @RequestParam int offset, @RequestParam String typeSearch, 
-			@RequestParam String textSearch) {		
+			@RequestParam String order, @RequestParam(value = "limit", required = false) Integer limit, @RequestParam int offset, 
+			@RequestParam String typeSearch, @RequestParam String textSearch) {		
 		DataTableJson dataTableJson;
 		
 		if (!this.hasLogin())

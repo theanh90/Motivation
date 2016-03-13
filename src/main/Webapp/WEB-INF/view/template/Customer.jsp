@@ -34,28 +34,7 @@
 		<table id="list-customer"></table>
 		
 	</div>
-	
-	<!-- Modal notify -->
-	<div id="confirm-cus-modal" class="modal fade" role="dialog">
-	  <div class="modal-dialog modal-sm">	
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h4 class="modal-title"><spring:message code='common.confirm' text='Confirm' /></h4>
-	      </div>
-	      <div class="modal-body">
-	        <h4 id="confirm-content"></h4>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-success" data-dismiss="modal">
-	        	<spring:message code='common.close' text='Close' />
-        	</button>
-	      </div>
-	    </div>
-	
-	  </div>
-	</div>
-	
+		
 	<!-- Modal -->
 	<div id="add-cus-modal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
@@ -177,7 +156,7 @@
 		var customer_email = '<spring:message code="customer.email" text="Email" />';
 		var customer_address = '<spring:message code="customer.address" text="Addess" />';
 		var customer_note = '<spring:message code="customer.note" text="Note" />';
-		/* End variable for multiple languages in AngularJs controller */
+		var common_confirm = '<spring:message code="common.confirm" text="Confirm" />';
 	
 		$(document).ready(function(){
 			

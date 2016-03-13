@@ -7,41 +7,41 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<link href="<c:url value='static/laundromax/images/favicon.png' />" rel="icon" type="image/x-icon" />
+		<link href="<c:url value='/static/laundromax/images/favicon.png' />" rel="icon" type="image/x-icon" />
   		
   		<!-- Font awesome -->
-  		<link rel="stylesheet" href="<c:url value='static/font-awesome-4.5.0/css/font-awesome.min.css' />">  		
+  		<link rel="stylesheet" href="<c:url value='/static/font-awesome-4.5.0/css/font-awesome.min.css' />">  		
 		
   		<!-- Jquery -->
-		<script src="<c:url value='static/jquery/1.12.0/jquery.min.js' />"></script>	
+		<script src="<c:url value='/static/jquery/1.12.0/jquery.min.js' />"></script>	
 		
   		<!-- AngularJs -->
-  		<script src="<c:url value='static/angularjs/1.5.0-rc.1/angular.min.js' />"> </script>
-  		<script src="<c:url value='static/angularjs/1.5.0-rc.1/angular-route.min.js' />"> </script>	
+  		<script src="<c:url value='/static/angularjs/1.5.0-rc.1/angular.min.js' />"> </script>
+  		<script src="<c:url value='/static/angularjs/1.5.0-rc.1/angular-route.min.js' />"> </script>	
 		
 		<!-- Bootstrap -->
-		<link href="<c:url value='static/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">		
-  		<script src="<c:url value='static/bootstrap/js/bootstrap.min.js'/>"> </script>
+		<link href="<c:url value='/static/bootstrap/css/bootstrap.min.css'/>" rel="stylesheet">		
+  		<script src="<c:url value='/static/bootstrap/js/bootstrap.min.js'/>"> </script>
   		
   		<!-- Bootstrap table -->
-  		<link href="<c:url value='static/bootstrap-table/dist/bootstrap-table.min.css'/>" rel="stylesheet">		
-  		<script src="<c:url value='static/bootstrap-table/dist/bootstrap-table.min.js'/>"> </script>
+  		<link href="<c:url value='/static/bootstrap-table/dist/bootstrap-table.min.css'/>" rel="stylesheet">		
+  		<script src="<c:url value='/static/bootstrap-table/dist/bootstrap-table.min.js'/>"> </script>
   		
   		<!-- Bootstrap-dialog -->
-  		<link href="<c:url value='static/bootstrap-dialog/bootstrap-dialog.min.css'/>" rel="stylesheet">		
-  		<script src="<c:url value='static/bootstrap-dialog/bootstrap-dialog.min.js'/>"> </script>
+  		<link href="<c:url value='/static/bootstrap-dialog/bootstrap-dialog.min.css'/>" rel="stylesheet">		
+  		<script src="<c:url value='/static/bootstrap-dialog/bootstrap-dialog.min.js'/>"> </script>
   		
   		<!-- Bootstrap-from-helper -->
-		<link href="<c:url value='static/bootstrap-form-helper/css/bootstrap-formhelpers.min.css'/>" rel="stylesheet">		
-  		<script src="<c:url value='static/bootstrap-form-helper/js/bootstrap-formhelpers.min.js'/>"> </script>
+		<link href="<c:url value='/static/bootstrap-form-helper/css/bootstrap-formhelpers.min.css'/>" rel="stylesheet">		
+  		<script src="<c:url value='/static/bootstrap-form-helper/js/bootstrap-formhelpers.min.js'/>"> </script>
   		
   		<!-- Select2 -->
-  		<link href="<c:url value='static/select2/select2.css'/>" rel="stylesheet">
-  		<link href="<c:url value='static/select2/select2-skins.min.css'/>" rel="stylesheet">	
-  		<script src="<c:url value='static/select2/select2.min.js'/>"> </script>
+  		<link href="<c:url value='/static/select2/select2.css'/>" rel="stylesheet">
+  		<link href="<c:url value='/static/select2/select2-skins.min.css'/>" rel="stylesheet">	
+  		<script src="<c:url value='/static/select2/select2.min.js'/>"> </script>
   		  		
   		<!-- My css -->
-  		<link href="<c:url value='static/laundromax/css/style.css'/>" rel="stylesheet">	
+  		<link href="<c:url value='/static/laundromax/css/style.css'/>" rel="stylesheet">	
 		
 		<title>GIẶT ỦI LAUNDROMAX</title>
 	</head>
@@ -55,12 +55,11 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>                        
 		      </button>
-		      <!-- <a class="navbar-brand" href="#home">Laundromax</a> -->
 		      <a id="li-nav-home" class="navbar-brand" href="#home"><i style="color: white" class="fa fa-2x fa-home"></i></a>
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
-		        <li onclick="setActive(this, 'x')" class="li-nav-menu">
+		        <li onclick="setActive(this)" class="li-nav-menu">
 		        	<a href="#customer"><spring:message code='menunav.customer' text='Customer' /></a>
 	        	</li>
 		        <li onclick="setActive(this)" class="li-nav-menu">
@@ -80,7 +79,7 @@
 		    </div>
 		  </div>
 		</nav>
-   		
+   		   		
    		<!-- view for home -->
    		<script type = "text/ng-template" id = "home">		
 			<div ng-include src="'static/laundromax/templates/Home.html'"></div>	
@@ -88,17 +87,20 @@
    		
    		<!-- view for customer -->
    		<script type = "text/ng-template" id = "customer">		
-			<div ng-include src="'template/angular/customer'"></div>	
+			<div ng-include src="'<c:url value='/template/angular/customer' />'"></div>	
    		</script>
    		
    		<!-- view for product -->
    		<script type = "text/ng-template" id = "product">		
-			<div ng-include src="'template/angular/product'"></div>	
+			<div ng-include src="'<c:url value='/template/angular/product' />'"></div>	
    		</script>
    		
    		<!-- view for invoice -->
    		<script type = "text/ng-template" id = "invoice">		
-			<div ng-include src="'static/laundromax/templates/Invoice.html'"></div>	
+			<div ng-include src="'<c:url value='/template/angular/invoice' />'"></div>	
+   		</script>
+   		<script type = "text/ng-template" id = "addinvoice">		
+			<div ng-include src="'<c:url value='/template/angular/addinvoice' />'"></div>	
    		</script>
 		
 		
@@ -109,7 +111,7 @@
 			  		<div class="row">
 					    <div class="col-sm-6">
 					    	<a onclick="setHomeMenu()" href="#home">
-					    		<img class="img-responsive" src="static/laundromax/images/logo-laundromax.png" alt="Laundromax">
+					    		<img class="img-responsive" src="<c:url value='/static/laundromax/images/logo-laundromax.png' />" alt="Laundromax">
 				    		</a>
 					    </div>
 					    <div class="col-sm-6 info-header">
@@ -162,11 +164,13 @@
 	  	<input type="hidden" id="token" value="${_csrf.token}" />
 	  	
 		<!-- load AngularJs controller file -->
-		<script src="static/laundromax/app.js"></script>
-		<script src="static/laundromax/controllers/CustomerController.js"></script>
-		<script src="static/laundromax/controllers/HomeController.js"></script>
-		<script src="static/laundromax/controllers/InvoiceController.js"></script>
-		<script src="static/laundromax/controllers/ProductController.js"></script>
+		<script src="<c:url value='/static/laundromax/app.js' />"></script>
+		<script src="<c:url value='/static/laundromax/controllers/CustomerController.js' />"></script>
+		<script src="<c:url value='/static/laundromax/controllers/HomeController.js' />"></script>
+		<script src="<c:url value='/static/laundromax/controllers/InvoiceController.js' />"></script>
+		<script src="<c:url value='/static/laundromax/controllers/AddInvoiceController.js' />"></script>
+		<script src="<c:url value='/static/laundromax/controllers/ProductController.js' />"></script>
+		<script src="<c:url value='/static/laundromax/common.js' />"></script>
 		
 	</body>
 	

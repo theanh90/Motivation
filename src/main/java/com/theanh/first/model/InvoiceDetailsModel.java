@@ -20,6 +20,9 @@ public class InvoiceDetailsModel implements Serializable {
 	@Column(name = "INID")	
 	private Integer inId; // invoiceId
 	
+	@Column(name = "TYPEPRICE")
+	private String typePrice;
+	
 	@Column(name = "QUANTITY")	
 	private Integer quantity;
 
@@ -37,6 +40,14 @@ public class InvoiceDetailsModel implements Serializable {
 
 	public void setInId(Integer inId) {
 		this.inId = inId;
+	}
+
+	public String getTypePrice() {
+		return typePrice;
+	}
+
+	public void setTypePrice(String typePrice) {
+		this.typePrice = typePrice;
 	}
 
 	public Integer getQuantity() {

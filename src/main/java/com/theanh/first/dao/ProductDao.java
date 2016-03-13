@@ -11,7 +11,7 @@ public interface ProductDao {
 	Integer save(ProductModel product);
     void update(ProductModel product);
     void delete(ProductModel product);
-	List<Object> getListCustomer(String sort, String order, int limit, int offset, String typeSearch, String textSearch);
+	List<Object> getListCustomer(String sort, String order, Integer limit, int offset, String typeSearch, String textSearch);
 	ProductOutModel getProductOutById(Integer pid);
 
 }

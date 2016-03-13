@@ -3,3 +3,14 @@
 
 --- config khi deploy -------
 - Chỉnh utf8 cho tomcat server
+
+
+
+
+
+--------- stuff --------------
+- Set icon loading.... when call bootstrap table ajax
+- Set Mysql auto increment from #6789
+- Move js and css files on right way
+- Modify login page in login fail...
+- Validate email at Customer

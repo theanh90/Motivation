@@ -33,6 +33,7 @@
 5. INVOICEDETAILS
 	InId -- invoiceId
 	PId -- productId
+	TypePrice
 	Quantity
 	
 6. INVOICEHISTORY

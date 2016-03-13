@@ -60,14 +60,27 @@ mainApp.controller('ProductController', function($scope, $http) {
 	   };
 	   
 	   $scope.showConfirmModal = function(mess, type) {
-		  if (type == 'SUCCESS') {
-			  $('#confirm-product-modal #confirm-content').html(mess);
-			  $('#confirm-product-modal .modal-header').css('background-color', '#5cb85c');
-		  }if (type == 'ERROR') {
-			  $('#confirm-content').html(mess);
-			  $('#confirm-product-modal .modal-header').css('background-color', 'red');
-		  }
-		  $('#confirm-product-modal').modal({backdrop: "static"});
+		   dialog_type = null;
+			  
+		   if (type == 'SUCCESS') {
+			   dialog_type = BootstrapDialog.TYPE_SUCCESS;
+		   }if (type == 'ERROR') {
+			   dialog_type = BootstrapDialog.TYPE_ERROR;
+		   }
+		   
+		   BootstrapDialog.show({
+			   size: BootstrapDialog.SIZE_SMALL,
+	           type: dialog_type,
+	           title: common_confirm,
+	           message: mess,
+	           buttons: [{
+	               label: "OK",
+	               cssClass: 'btn-success',
+	               action: function(dialog) {
+	                   dialog.close();
+	               }
+	           }]
+	       }); 
 	   }
 	   
 	   $scope.validateAddProduct = function(method) {

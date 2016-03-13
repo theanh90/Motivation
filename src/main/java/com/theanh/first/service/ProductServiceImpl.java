@@ -58,7 +58,7 @@ public class ProductServiceImpl  implements ProductService{
 	}
 
 	@Override
-	public DataTableJson getListProductOut(String sort, String order, int limit, int offset, String typeSearch,
+	public DataTableJson getListProductOut(String sort, String order, Integer limit, int offset, String typeSearch,
 			String textSearch) {
 		DataTableJson dataTableJson = new DataTableJson();
 		List<Object> lsObj = new ArrayList<>(); 

@@ -60,14 +60,27 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
    };
    
    $scope.showConfirmModal = function(mess, type) {
+	  var dialog_type = null;
+	  
 	  if (type == 'SUCCESS') {
-		  $('#confirm-cus-modal #confirm-content').html(mess);
-		  $('#confirm-cus-modal .modal-header').css('background-color', '#5cb85c');
+		  dialog_type = BootstrapDialog.TYPE_SUCCESS;
 	  }if (type == 'ERROR') {
-		  $('#confirm-content').html(mess);
-		  $('#confirm-cus-modal .modal-header').css('background-color', 'red');
+		  dialog_type = BootstrapDialog.TYPE_ERROR;
 	  }
-	  $('#confirm-cus-modal').modal({backdrop: "static"});
+	  BootstrapDialog.show({
+		  size: BootstrapDialog.SIZE_SMALL,
+          type: dialog_type,
+          title: common_confirm,
+          message: mess,
+          buttons: [{
+              label: "OK",
+              cssClass: 'btn-success',
+              action: function(dialog) {
+                  dialog.close();
+              }
+          }]
+      }); 
+	  
    }
    
    $scope.validateAddCus = function(method) {

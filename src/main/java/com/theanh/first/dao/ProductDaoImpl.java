@@ -21,7 +21,7 @@ public class ProductDaoImpl extends AbstractDao<Integer, ProductModel> implement
 	}
 
 	@Override
-	public List<Object> getListCustomer(String sort, String order, int limit, int offset, String typeSearch,
+	public List<Object> getListCustomer(String sort, String order, Integer limit, int offset, String typeSearch,
 			String textSearch) {
 		List<Object> lsResult = new ArrayList<>();
 		String sql = "SELECT A.pid, A.enName, A.vnName, A.unit, A.note, A.active, B.laundry, B.dryclean, B.pressonly " +
@@ -66,7 +66,9 @@ public class ProductDaoImpl extends AbstractDao<Integer, ProductModel> implement
 		query.setResultTransformer(Transformers.aliasToBean(ProductOutModel.class));
 		
 		Long totalRow = (long)query.list().size();
-		query.setMaxResults(limit);
+		if (limit != null) {
+			query.setMaxResults(limit);
+		}
 		query.setFirstResult(offset);
 		
 		lsResult = query.list();

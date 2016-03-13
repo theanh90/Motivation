@@ -87,11 +87,11 @@ body {
 
 /* for confirm model when add/delete/modify... */
 #confirm-cus-modal .modal-header {
-	text-align: center;
+	text-align: left;
 }
 
 #confirm-cus-modal .modal-footer {
-	text-align: center;
+	text-align: right;
 }
 
 /* for Customer search input */
@@ -105,4 +105,33 @@ body {
 /* for product page */
 .laundromax-view .product-view .text-field {
 	max-width: 48px !important;
+}
+
+
+
+/* For Invoice */
+#list-product-tbl tbody td input {
+	width: 40px;
+	
+}
+
+#list-product-tbl thead {
+	text-align: center;
+	v-align: center;	
+}
+
+#list-product-tbl tbody .price {
+	text-align: right;
+}
+
+#list-product-tbl tbody .qtt {
+	text-align: center;
+}
+
+#list-product-tbl .selected-pro-row {
+	background-color: #e7f5fe;
+}
+#list-product-tbl .selected-pro {
+	color: blue;
+	font-weight: bold; 
 }

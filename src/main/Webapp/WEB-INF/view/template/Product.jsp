@@ -33,26 +33,6 @@
 		
 	</div>
 	
-	<!-- Modal notify -->
-	<div id="confirm-product-modal" class="modal fade" role="dialog">
-	  <div class="modal-dialog modal-sm">	
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-	        <h4 class="modal-title"><spring:message code='common.confirm' text='Confirm' /></h4>
-	      </div>
-	      <div class="modal-body">
-	        <h4 id="confirm-content"></h4>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-success" data-dismiss="modal"><spring:message code='common.close' text='Close' /></button>
-	      </div>
-	    </div>
-	
-	  </div>
-	</div>
-	
 	<!-- Modal -->
 	<div id="add-product-modal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
@@ -218,7 +198,7 @@
 		var lang_add_fail = '<spring:message code="product.add.fail" text="Add product successully" />';
 		var lang_edit_success = '<spring:message code="product.edit.success" text="Edit product successully" />';
 		var lang_edit_fail = '<spring:message code="product.edit.fail" text="Fail to edit product" />';
-		
+		var common_confirm = '<spring:message code="common.confirm" text="Confirm" />';
 		
 		
 		$(document).ready(function(){
