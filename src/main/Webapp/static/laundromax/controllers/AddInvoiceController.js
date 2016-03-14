@@ -49,6 +49,17 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 				   
 				   tbody.append(row);
 			   }
+
+			   var table_footer = '<tr class="amout-total"><td class="left" colspan="6">Ghi chú</td> <td class="right" colspan="5"><input type="textarea"></td></tr>';
+			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Giặt nhanh thêm 50% </td> <td class="right" colspan="5"><input type="checkbox"></td></tr>';
+			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Tổng cộng </td> <td id="total-amout" class="right" colspan="5"></td></tr>';
+			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Khách thanh toán</td> <td class="right" colspan="5"><input type="text"></td></tr>';
+			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Còn lại</td> <td class="right" colspan="5"><input type="text"></td></tr>';
+			   
+			   tbody.append(table_footer);
+			   
+			   // add NOTE
+			   // add CURRENT PAY
 			  
 		   }, function(error){
 			   alert("The error occurs when Saving/Update Product!!!" + error.statusText);
@@ -82,14 +93,14 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		
 		if (qtt == 0) {
 			$scope.displayAmout(pid, price_type, qtt);
+			$scope.calculateTotalPrice();
 			return;
 		}
-	
-		$scope.list_product.push({pid: pid, price_type: price_type, qtt: qtt});
 		
 		// display amout for each product
-		$scope.displayAmout(pid, price_type, qtt);
-		
+		price = $scope.displayAmout(pid, price_type, qtt);	
+		$scope.list_product.push({pid: pid, price_type: price_type, qtt: qtt, unit_price: price});
+		$scope.calculateTotalPrice();
 		
 		console.log($scope.list_product);
 	}
@@ -97,6 +108,7 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 	$scope.displayAmout = function(pid, price_type, qtt) {
 		var amount_element;
 		var price_element;
+		var price;
 		var amount;
 		switch(price_type) {
 			case 'laundry':
@@ -138,6 +150,20 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 				}
 				break;
 		}
+		
+		return price;
+	}
+	
+	$scope.calculateTotalPrice = function() {
+		var result = 0;
+		var index;
+		
+		for (x in $scope.list_product) {
+			index = $scope.list_product[x];
+			result += (index.unit_price * index.qtt);
+		}
+		
+		$('#total-amout').html(changeNumberFormat(result) + " VND");
 	}
 	
 	$scope.disableInputElement = function(pid, price_type) {		

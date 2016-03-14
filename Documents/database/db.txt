@@ -31,8 +31,10 @@
 	Active
 	
 5. INVOICEDETAILS
+	DId -- primary key
 	InId -- invoiceId
 	PId -- productId
+	UnitPrice
 	TypePrice
 	Quantity
 	
