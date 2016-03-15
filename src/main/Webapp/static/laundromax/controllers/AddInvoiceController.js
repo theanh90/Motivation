@@ -2,6 +2,16 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 	var csrf = $('#token').val();
 	
 	$scope.list_product = new Array();
+	$scope.invoice_info = {
+			express50 : 0,
+			totalPay : 0,
+			note : null
+	};
+	$scope.cbk = {
+			express50 : false
+	};
+	
+	$scope.isExpress = 1;
 	
 	$scope.addInvoice = function() {
 		var data = {
@@ -50,13 +60,13 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 				   tbody.append(row);
 			   }
 
-			   var table_footer = '<tr class="amout-total"><td class="left" colspan="6">Ghi chú</td> <td class="right" colspan="5"><input type="textarea"></td></tr>';
-			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Giặt nhanh thêm 50% </td> <td class="right" colspan="5"><input type="checkbox"></td></tr>';
-			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Tổng cộng </td> <td id="total-amout" class="right" colspan="5"></td></tr>';
-			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Khách thanh toán</td> <td class="right" colspan="5"><input type="text"></td></tr>';
-			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Còn lại</td> <td class="right" colspan="5"><input type="text"></td></tr>';
+//			   var table_footer = '<tr class="amout-total"><td class="left" colspan="6">Ghi chú</td> <td class="right" colspan="5"><input type="textarea"></td></tr>';
+//			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Giặt nhanh thêm 50% </td> <td class="right" colspan="5"><input type="checkbox"></td></tr>';
+//			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Tổng cộng </td> <td id="total-amout" class="right" colspan="5"></td></tr>';
+//			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Khách thanh toán</td> <td class="right" colspan="5"><input type="text"></td></tr>';
+//			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Còn lại</td> <td class="right" colspan="5"><input type="text"></td></tr>';
 			   
-			   tbody.append(table_footer);
+//			   tbody.append(table_footer);
 			   
 			   // add NOTE
 			   // add CURRENT PAY
@@ -101,8 +111,6 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		price = $scope.displayAmout(pid, price_type, qtt);	
 		$scope.list_product.push({pid: pid, price_type: price_type, qtt: qtt, unit_price: price});
 		$scope.calculateTotalPrice();
-		
-		console.log($scope.list_product);
 	}
 	
 	$scope.displayAmout = function(pid, price_type, qtt) {
@@ -163,7 +171,10 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 			result += (index.unit_price * index.qtt);
 		}
 		
-		$('#total-amout').html(changeNumberFormat(result) + " VND");
+		$('#amount-total').html(changeNumberFormat(result * $scope.isExpress) + " VND");
+		$scope.invoice_info.totalPrice = result;
+		// update remain price after user change select
+		$scope.handleTotalPay();
 	}
 	
 	$scope.disableInputElement = function(pid, price_type) {		
@@ -198,6 +209,31 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		$('#' + pid + '_dryclean').prop('disabled', '');
 		$('#' + pid + '_pressonly').prop('disabled', '');
 		
+	}
+	
+	$scope.saveInvoice = function() {
+		console.log($scope.list_product);
+		console.log($scope.invoice_info);
+	}
+	
+	$scope.express50 = function() {
+		if ($scope.cbk.express50) {
+			$scope.invoice_info.express50 = 1;
+			$scope.isExpress = 2;
+			$('#express-li').addClass('blue-background');
+		} else {
+			$scope.invoice_info.express50 = 0;
+			$scope.isExpress = 1;
+			$('#express-li').removeClass('blue-background');
+		}
+		
+		$scope.calculateTotalPrice();
+		$scope.handleTotalPay();
+	}
+	
+	$scope.handleTotalPay = function() {
+		var change = ($scope.invoice_info.totalPrice * $scope.isExpress) - $scope.invoice_info.totalPay;
+		$('#invoice_remain').html(changeNumberFormat(change) + " VND");
 	}
 	
 	// Call function when page loaded

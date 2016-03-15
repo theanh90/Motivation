@@ -131,20 +131,25 @@ body {
 #list-product-tbl .selected-pro-row {
 	background-color: #e7f5fe;
 }
+
 #list-product-tbl .selected-pro {
 	color: blue;
 	font-weight: bold; 
 }
-#list-product-tbl .amout-total {
-	color: blue;
+
+.amount-total-tbl-footer #amount-total {
 	font-weight: bold;
-	font-size: 150%;
+	font-size: 110%;
 }
 
-#list-product-tbl .amout-total .left {
-	text-align: right;
+.amount-total-tbl-footer #invoice_remain {
+	font-weight: bold;
+	font-size: 110%;
 }
 
-#list-product-tbl .amout-total .right {
-	text-align: left;
+.amount-total-tbl-footer span.right {
+	float: right;
+}
+.blue-background {
+	background-color: #e7f5fe;
 }
