@@ -46,6 +46,27 @@ public class CustomerController extends BaseController{
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/listselect2", method = RequestMethod.GET, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public DataTableJson getListCustomerSelect2(HttpServletRequest request, @RequestParam(value = "sort", required = false) String sort,
+			@RequestParam String order, @RequestParam int limit, @RequestParam int offset, @RequestParam String typeSearch, 
+			@RequestParam String textSearch) {		
+		DataTableJson dataTableJson;
+		
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			dataTableJson = customerService.getListCustomerSelect2(sort, order, limit, offset, typeSearch, textSearch);
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			dataTableJson = new DataTableJson(DataTableJson.ERROR, "Fail to load list customer");
+		}
+		
+		return dataTableJson;
+	}
+	
+	@ResponseBody
 	@RequestMapping(method = RequestMethod.GET, headers = {
 			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
 	public JsonResponse getCustomerById(HttpServletRequest request, @RequestParam Integer cusId) {

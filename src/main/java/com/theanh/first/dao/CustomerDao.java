@@ -10,5 +10,8 @@ public interface CustomerDao {
 	Integer save(CustomerModel customer);
     void update(CustomerModel customer);
     void delete(CustomerModel customer);
-	List<Object> getListCustomer(String sort, String order, int limit, int offset, String typeSearch, String textSearch);
+	List<Object> getListCustomer(String sort, String order, int limit, int offset, 
+				String typeSearch, String textSearch);
+	List<Object> getListCustomerSelect2(String sort, String order, int limit, int offset, 
+			String typeSearch, String textSearch);
 }
