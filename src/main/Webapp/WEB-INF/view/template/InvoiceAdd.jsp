@@ -4,6 +4,14 @@
 
 <div id="template-div" class="add-invoice-view">
 	<div class="row">
+		
+		<!-- load customer for invoice -->
+		<div class="col-sm-6 customer-invoice-div">
+			<select class="" id="customer-invoice">
+ 				<option value="3620194" selected="selected">select2/select2</option>
+			</select>
+		</div> <!-- end customer-invoice -->
+	
 		<div class="col-sm-12 content">
 			<div class="table-responsive">
 				<table id="list-product-tbl" class="table table-striped table-hover table-bordered 
@@ -37,11 +45,12 @@
 			</div> <!-- end table-responsive -->
 						
 			<div class="amount-total-tbl-footer">
-				<div class="col-sm-6 form-group">
+				<div class="col-sm-6 form-group col-note">
+					<span id="invoice_note_title">Nhập ghi chú</span>
 					<textarea class="form-control" rows="5" ng-model="invoice_info.note"></textarea>
 				</div>
 				
-				<div class="col-sm-6">
+				<div class="col-sm-6 col-total">
 					<ul class="list-group">
 					   <li class="list-group-item" id="express-li">Giặt nhanh thêm 50% <span class="right"><input ng-change="express50()" ng-model="cbk.express50" type="checkbox" /></span></li>
 					   <li class="list-group-item">Tổng cộng <span class="right label label-primary" id="amount-total"></span></li>
@@ -60,12 +69,32 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 
-			/* angular.element($('#template-div')).scope().addInvoice(); */
+			/* angular.element($('#template-div')).scope().initSearchCustomerSelect2(); */
+			xxx();
 		
 		});
 		
 		function xxx() {
-			alert('clicked');
+			alert("xxx");
+			$("#customer-invoice").select2({
+				containerCssClass: 'tpx-select2-container',
+				dropdownCssClass: 'tpx-select2-drop',
+				ajax : {
+					url : '<c:url value="/message/getcontacts"/>',
+					type : "GET",
+					contentType : "application/json",
+					delay : 250,
+					multiple : true,
+					allowClear : true,
+					//quietMillis: 100,
+					data : function(params) {
+						return {
+							search : params.term,
+							page : params.page
+						};
+					}
+				}
+			});
 		}
 	</script>
 </div>
