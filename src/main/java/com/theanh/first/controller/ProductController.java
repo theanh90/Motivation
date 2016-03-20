@@ -65,24 +65,6 @@ public class ProductController extends BaseController{
 		return jsonResponse;
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(method = RequestMethod.GET, headers = {
-//			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
-//	public JsonResponse getProductById(HttpServletRequest request, @RequestParam Integer pid) {
-//		JsonResponse jsonResponse;
-//		if (!this.hasLogin())
-//			return null;
-//		
-//		try {
-//			ProductModel customer = productService.getProductById(pid);
-//			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get Product out model successfully!", customer);
-//		}catch (Exception ex) {
-//			ex.printStackTrace();
-//			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get Product out model!", null);
-//		}
-//		return jsonResponse;
-//	}
-	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.PUT, headers = {
 			"Accept=*/*" }, produces = "application/json;charset=UTF-8")

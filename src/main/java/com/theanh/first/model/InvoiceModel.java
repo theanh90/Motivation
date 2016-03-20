@@ -19,6 +19,9 @@ public class InvoiceModel implements Serializable {
 	@Column(name = "INID")	
 	private Integer inid;
 	
+	@Column(name = "CID")	
+	private Integer cid;
+	
 	@Column(name = "DATECREATE", nullable = false)
 	private Date dateCreate;
 	
@@ -42,6 +45,12 @@ public class InvoiceModel implements Serializable {
 	}
 	public void setInid(Integer inid) {
 		this.inid = inid;
+	}
+	public Integer getCid() {
+		return cid;
+	}
+	public void setCid(Integer cid) {
+		this.cid = cid;
 	}
 	public Date getDateCreate() {
 		return dateCreate;

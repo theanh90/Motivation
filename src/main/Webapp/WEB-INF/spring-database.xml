@@ -14,4 +14,8 @@
 		<property name="washTypePriceDao" ref="washTypePriceDao" />
 	</bean>
 	
+	<bean id="invoiceService" class="com.theanh.first.service.InvoiceServiceImpl">
+		<!-- <property name="invoiceDao" ref="invoiceDao" /> -->
+	</bean>
+	
 </beans>

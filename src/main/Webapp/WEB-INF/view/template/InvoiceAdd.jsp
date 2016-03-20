@@ -139,7 +139,7 @@
 	      </div>
 	      
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-success" data-dismiss="modal">Tiếp Tục</button>
+	        <button ng-click="saveInvoiceDB()" type="button" class="btn btn-success" data-dismiss="modal">Tiếp Tục</button>
 	        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
 	      </div>
 	    </div>

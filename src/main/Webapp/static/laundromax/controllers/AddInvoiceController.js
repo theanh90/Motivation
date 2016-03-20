@@ -344,10 +344,9 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		tbl_total.html(tbl_total_html);
 		
 		$('#invoice-cfr-modal').modal({backdrop: "static"});
+		$scope.invoice_info.products = $scope.list_product;
 		
-		console.log($scope.list_product);
 		console.log($scope.invoice_info);
-		console.log(product_all);
 	}
 	
 	$scope.validateInvoice = function() {
@@ -382,6 +381,27 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		}
 		
 		return result;
+	}
+	
+	$scope.saveInvoiceDB = function() {	
+	   $http({
+		   method: 'POST',
+		   url: 'api/invoice',
+		   data : {
+			   invoice : $scope.invoice_info		   
+		   },
+		   params: {
+			   _csrf : csrf
+		   }
+		   
+	   })
+	   .then(function(response){		   
+		   console.log(response);
+		  
+	   }, function(error){
+		   alert("The error occurs when Saving Invoice!!!" + error.statusText);
+	   });
+		
 	}
 	
 	// Call function when page loaded

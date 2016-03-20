@@ -23,6 +23,7 @@
 	
 4. INVOICE
 	InId
+	CId -- customerID
 	DateCreate
 	TotalPrice
 	TotalPay
