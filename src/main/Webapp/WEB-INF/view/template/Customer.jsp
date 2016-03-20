@@ -11,8 +11,8 @@
 			<div>				
 				<div class="input-group">				
 		            <div class="input-group-btn">
-	            		<select id="search-customer-select" ng-model="search.type">
-						  <option value="all"><spring:message code='customer.search.all' text='All' /></option>
+	            		<select style="width: 120px" id="search-customer-select" ng-model="search.type">
+						  <option value="all" selected="selected"><spring:message code='customer.search.all' text='All' /></option>
 						  <option value="name"><spring:message code='customer.fullname' text='Full name' /></option>
 						  <option value="phone"><spring:message code='customer.phone' text='Phone' /></option>
 						  <option value="email"><spring:message code='customer.email' text='Email' /></option>
@@ -161,11 +161,8 @@
 		$(document).ready(function(){
 			
 			$('#search-customer-select').select2({
-				  containerCssClass: 'tpx-select2-container',
-				  dropdownCssClass: 'tpx-select2-drop'
+				theme: "bootstrap"
 			});
-			
-			$("#search-customer-select").select2('val', 'all'); 
 
 			angular.element($('#template-div')).scope().getListCustomer();
 			

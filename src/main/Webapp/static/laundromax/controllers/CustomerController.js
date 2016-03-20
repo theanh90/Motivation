@@ -65,7 +65,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 	  if (type == 'SUCCESS') {
 		  dialog_type = BootstrapDialog.TYPE_SUCCESS;
 	  }if (type == 'ERROR') {
-		  dialog_type = BootstrapDialog.TYPE_ERROR;
+		  dialog_type = BootstrapDialog.TYPE_DANGER;
 	  }
 	  BootstrapDialog.show({
 		  size: BootstrapDialog.SIZE_SMALL,

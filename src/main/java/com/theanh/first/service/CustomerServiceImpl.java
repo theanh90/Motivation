@@ -51,13 +51,16 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 	
 	@Override
-	public DataTableJson getListCustomerSelect2(String sort, String order, int limit, int offset, String typeSearch, String textSearch) {
+	public DataTableJson getListCustomerSelect2(String textSearch) {
 		DataTableJson dataTableJson = new DataTableJson();
 		List<Object> lsObj = new ArrayList<>(); 
-		lsObj = customerDao.getListCustomer(sort, order, limit, offset, typeSearch, textSearch);
+		lsObj = customerDao.getListCustomerSelect2(textSearch);
 		
-		dataTableJson.setTotal((long)lsObj.get(lsObj.size() - 1));
-		lsObj.remove(lsObj.size() - 1);
+		if (lsObj.isEmpty()) {
+			return null;
+		}
+		
+		dataTableJson.setTotal((long)lsObj.size());
 		dataTableJson.setStatus(DataTableJson.SUCCESS);
 		dataTableJson.setRows(lsObj);
 		

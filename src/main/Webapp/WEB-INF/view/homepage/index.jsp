@@ -36,9 +36,14 @@
   		<script src="<c:url value='/static/bootstrap-form-helper/js/bootstrap-formhelpers.min.js'/>"> </script>
   		
   		<!-- Select2 -->
-  		<link href="<c:url value='/static/select2/select2.css'/>" rel="stylesheet">
+  		<%-- <link href="<c:url value='/static/select2/select2.css'/>" rel="stylesheet">
   		<link href="<c:url value='/static/select2/select2-skins.min.css'/>" rel="stylesheet">	
-  		<script src="<c:url value='/static/select2/select2.min.js'/>"> </script>
+  		<script src="<c:url value='/static/select2/select2.min.js'/>"> </script> --%>
+  		
+  		<!-- Select2 temp -->
+  		<link href="<c:url value='/static/sl2/select2.css'/>" rel="stylesheet">
+	  	<link href="<c:url value='/static/sl2/select2-bootstrap.css'/>" rel="stylesheet">
+	  	<script src="<c:url value='/static/sl2/select2.full.min.js'/>"> </script>
   		  		
   		<!-- My css -->
   		<link href="<c:url value='/static/laundromax/css/style.css'/>" rel="stylesheet">	

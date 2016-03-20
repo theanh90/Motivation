@@ -4,6 +4,10 @@ body {
 	background:url(../images/body.jpg) repeat 50% 0%; 
 }
 
+.cus-number {
+	text-align: right;
+}
+
 .navbar-inverse {
 	background-color: #3d3d3d;
     border-radius: 0px;
@@ -50,6 +54,9 @@ body {
 /* ------ for customer page ------ */
 .laundromax-view .modal-header {
 	background-color: #23c6c8;
+    /* border-radius: 5px; */
+    border-top-left-radius:5px;
+	border-top-right-radius:5px;
 }
 
 .laundromax-view .modal-content .table>tbody>tr>td {
@@ -57,7 +64,7 @@ body {
 }
 
 .laundromax-view .modal-footer {
-	background-color: #f3f3f3;
+/* 	background-color: #f3f3f3; */
 }
 
 .laundromax-view .text-field {
@@ -150,6 +157,43 @@ body {
 .amount-total-tbl-footer span.right {
 	float: right;
 }
+
 .blue-background {
 	background-color: #e7f5fe;
 }
+
+.panel-customer span.c-title {
+	font-weight: bold;
+}
+
+#invoice-cfr-modal .invoide-cfr-title {
+    margin-bottom: 10px;
+    font-size: 130%;
+    font-weight: bold;
+}
+
+#invoice_note_title {
+	
+}
+
+.customer-invoice-div {
+	margin-bottom: 20px;
+}
+
+.amount-total-tbl-footer .col-note {
+    margin-top: 15px;
+}
+
+.amount-total-tbl-footer textarea {
+    margin-top: 15px;
+}
+
+
+
+
+
+
+
+
+
+

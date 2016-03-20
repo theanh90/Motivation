@@ -3,16 +3,18 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 	
 	$scope.list_product = new Array();
 	$scope.invoice_info = {
-			express50 : 0,
-			totalPay : 0,
+			express_wash : 0,
+			totalPay : null,
 			note : null
 	};
 	$scope.cbk = {
-			express50 : false
+			express_wash : false
 	};
+	$scope.customer = {};
 	
-	$scope.isExpress = 1;
+	$scope.isExpress = 1;	
 	
+	// functions
 	$scope.addInvoice = function() {
 		var data = {
 				sort: 'desc',
@@ -33,10 +35,15 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		   .then(function(response){
 			   var tbody = $('#list-product-tbl tbody');
 			   var row;
-			   var data;
+			   var data;			   
+
+			   // global variable
+			   product_all = {};
 			   
 			   for (var i=0; i<response.data.rows.length; i++) {
 				   data = response.data.rows[i];
+				   product_all[data.pid] = data;
+				   
 				   row = '';
 				   
 				   row += '<tr pid="' + data.pid + '">';
@@ -59,17 +66,6 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 				   
 				   tbody.append(row);
 			   }
-
-//			   var table_footer = '<tr class="amout-total"><td class="left" colspan="6">Ghi chú</td> <td class="right" colspan="5"><input type="textarea"></td></tr>';
-//			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Giặt nhanh thêm 50% </td> <td class="right" colspan="5"><input type="checkbox"></td></tr>';
-//			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Tổng cộng </td> <td id="total-amout" class="right" colspan="5"></td></tr>';
-//			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Khách thanh toán</td> <td class="right" colspan="5"><input type="text"></td></tr>';
-//			   table_footer += '<tr class="amout-total"><td class="left" colspan="6">Còn lại</td> <td class="right" colspan="5"><input type="text"></td></tr>';
-			   
-//			   tbody.append(table_footer);
-			   
-			   // add NOTE
-			   // add CURRENT PAY
 			  
 		   }, function(error){
 			   alert("The error occurs when Saving/Update Product!!!" + error.statusText);
@@ -211,18 +207,13 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		
 	}
 	
-	$scope.saveInvoice = function() {
-		console.log($scope.list_product);
-		console.log($scope.invoice_info);
-	}
-	
-	$scope.express50 = function() {
-		if ($scope.cbk.express50) {
-			$scope.invoice_info.express50 = 1;
+	$scope.express_wash = function() {
+		if ($scope.cbk.express_wash) {
+			$scope.invoice_info.express_wash = 1;
 			$scope.isExpress = 2;
 			$('#express-li').addClass('blue-background');
 		} else {
-			$scope.invoice_info.express50 = 0;
+			$scope.invoice_info.express_wash = 0;
 			$scope.isExpress = 1;
 			$('#express-li').removeClass('blue-background');
 		}
@@ -236,7 +227,164 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		$('#invoice_remain').html(changeNumberFormat(change) + " VND");
 	}
 	
+	$scope.initSearchCustomerSelect2 = function() {
+		$("#customer-invoice").select2({
+			ajax : {
+				url : 'api/customer/listselect2',
+				type : "GET",
+				contentType : "application/json",
+				delay : 250,
+				allowClear: true,
+				data : function(params) {
+					return {
+						textSearch : params.term
+					};
+				}, 
+				processResults : function(data) {
+					var rows = new Array();
+					var row;
+					
+					for (x in data.rows) {
+						row = data.rows[x];
+						rows.push({
+							id : row.cid,
+							name : row.name,
+							phone : row.phone,
+							address : row.address,
+							email : row.email,
+							note : row.note
+						})
+					}
+					
+					return {results: rows}
+				}
+			},
+			templateResult : function(data) {
+				var result;
+				if (data.text && data.text.search('Searching') != -1) {
+					return null;
+				}
+				result =  data.name + " - " + data.address + " - " + data.phone;
+				if (data.email) {
+					result += " - " + data.email;
+				}
+				
+				return result;
+			},
+			templateSelection : function (data) {
+				if (!data.id) {
+					return data.text;
+				} else {
+					return data.name + " - " + data.address;						
+				}
+			},
+			theme: "bootstrap",
+			placeholder: 'Nhập tên khách hàng'
+		});
+	}	
+	
+	$scope.initSelect2Event = function() {
+		$('#customer-invoice').on("select2:select", function(e) {
+			var data = e.params.data;
+			$scope.customer.name = data.name;
+			$scope.customer.phone = data.phone;
+			$scope.customer.email = data.email;
+			$scope.customer.address = data.address;
+			$scope.invoice_info.customer_id = data.id;
+			
+			$scope.$apply();
+		});
+	}
+	
+	$scope.saveInvoice = function() {
+		var error_mess = '';
+		if (!$scope.validateInvoice()) {
+			return;
+		}
+		
+		var product;
+		var tbl_products = $('#invoice-cfr-products tbody');
+		var tbl_content;
+		var wash_type;
+		
+		tbl_products.html('');
+		for (x in $scope.list_product) {
+			tbl_content = '';
+			product = $scope.list_product[x];
+			product_name = product_all[product.pid].vnName + " (" + product_all[product.pid].enName + ")";
+			if (product.price_type == 'laundry') {
+				wash_type = 'Giặt nước';
+			} else if (product.price_type == 'dryclean') {
+				wash_type = 'Giặt hấp';
+			} else if (product.price_type == 'pressonly') {
+				wash_type = 'Chỉ ủi';
+			}
+			
+			tbl_content += '<tr>';
+			tbl_content +=    '<td>' + product_name + '</td>';
+			tbl_content +=    '<td>' + wash_type + '</td>';
+			tbl_content +=    '<td class="cus-number">' + product.qtt + '</td>';
+			tbl_content +=    '<td class="cus-number">' + changeNumberFormat(product.unit_price) + '</td>';
+			tbl_content += '</tr>';
+			
+			tbl_products.append(tbl_content);
+		}
+		
+		var tbl_total = $('#invoice-cfr-total');
+		var tbl_total_html = '';
+		if ($scope.invoice_info.express_wash) {
+			tbl_total_html += '<tr> <td style="font-weight: bold">' + ' Giặt nhanh ' + '</td> <td class="cus-number"><i class="fa fa-check-square-o"></td> </tr>';
+		}
+		$scope.invoice_info.totalPay = $scope.invoice_info.totalPay ? $scope.invoice_info.totalPay : 0;
+		
+		tbl_total_html += '<tr> <td style="font-weight: bold">' + 'Tổng cộng' + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPrice * $scope.isExpress) + ' VND </td> </tr>';
+		tbl_total_html += '<tr> <td style="font-weight: bold">' + 'Đã thanh toán' + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPay) + ' VND </td> </tr>';
+		tbl_total_html += '<tr> <td style="font-weight: bold">' + 'Còn nợ lại' + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPrice * $scope.isExpress - $scope.invoice_info.totalPay) + ' VND </td> </tr>';
+		
+		tbl_total.html(tbl_total_html);
+		
+		$('#invoice-cfr-modal').modal({backdrop: "static"});
+		
+		console.log($scope.list_product);
+		console.log($scope.invoice_info);
+		console.log(product_all);
+	}
+	
+	$scope.validateInvoice = function() {
+		var result = true;
+		var error_mess = '';
+		var invoice = $scope.invoice_info;
+		var products = $scope.list_product;
+		
+		if (products.length <= 0) {
+			result = false;
+			error_mess += 'Vui lòng chọn món đồ \n';
+		}
+		if (!invoice.customer_id) {
+			result = false;
+			error_mess += 'Vui lòng chọn khách hàng\n';
+		}
+		
+		if (!result) {
+			BootstrapDialog.show({
+				  size: BootstrapDialog.SIZE_SMALL,
+		          type: BootstrapDialog.TYPE_DANGER,
+		          title: 'Thiếu thông tin',
+		          message: error_mess,
+		          buttons: [{
+		              label: "OK",
+		              cssClass: 'btn-warning',
+		              action: function(dialog) {
+		                  dialog.close();
+		              }
+		          }]
+		      }); 
+		}
+		
+		return result;
+	}
+	
 	// Call function when page loaded
-	$scope.addInvoice();
+	
    
 });
