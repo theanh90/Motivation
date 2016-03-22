@@ -1,5 +1,7 @@
 package com.theanh.first.dao;
 
-public interface InvoiceDao {
+import com.theanh.first.model.InvoiceModel;
 
+public interface InvoiceDao {
+	Integer save(InvoiceModel invoice);
 }

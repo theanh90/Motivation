@@ -15,7 +15,8 @@
 	</bean>
 	
 	<bean id="invoiceService" class="com.theanh.first.service.InvoiceServiceImpl">
-		<!-- <property name="invoiceDao" ref="invoiceDao" /> -->
+		<property name="invoiceDao" ref="invoiceDao" />
+		<property name="invoiceDetailsDao" ref="invoiceDetailsDao" />
 	</bean>
 	
 </beans>

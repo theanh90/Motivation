@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,8 +14,9 @@ public class InvoiceDetailsModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue
 	@Column(name = "DID")	
-	private Integer did; // productId
+	private Integer did; // detailId
 	
 	@Column(name = "PID")	
 	private Integer pid; // productId

@@ -26,14 +26,15 @@ public class InvoiceController extends BaseController {
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, headers = {
 			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
-	public JsonResponse addInvoice(HttpServletRequest request, @RequestBody InvoiceInModel invoice) {
+	public JsonResponse addInvoice(HttpServletRequest request, @RequestBody Map<String, InvoiceInModel> data) {
 		JsonResponse jsonResponse;
 		if (!this.hasLogin())
 			return null;
 		
 		try {
 			System.out.println("da vao controller");
-			invoiceService.save(invoice);
+			
+			invoiceService.save(data.get("invoice"));
 			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Save Invoice successfully!", null);
 			logger.info("Save Invoice successfully");
 		}catch (Exception ex) {
