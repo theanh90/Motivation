@@ -188,6 +188,20 @@ body {
     margin-top: 15px;
 }
 
+.col-total .totalpay-span {
+	text-align: right;
+}
+
+.col-total .totalpay-span span{
+	text-align: right;
+	
+}
+
+.col-total .totalpay-span input {
+	width: 80%;
+	text-align: right;
+}
+
 
 
 

@@ -23,8 +23,8 @@ mainApp.config(['$routeProvider', function($routeProvider) {
       controller: 'InvoiceController'
    }).
    
-   when('/addinvoice', {
-      templateUrl: 'addinvoice', 
+   when('/invoice/addinvoice', {
+      templateUrl: 'invoice/addinvoice', 
       controller: 'AddInvoiceController'
    });
    

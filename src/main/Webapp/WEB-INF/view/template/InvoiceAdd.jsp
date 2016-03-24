@@ -77,9 +77,9 @@
 				
 				<div class="col-sm-6 col-total">
 					<ul class="list-group">
-					   <li class="list-group-item" id="express-li">Giặt nhanh thêm 50% (not set in database) <span class="right"><input ng-change="express_wash()" ng-model="cbk.express_wash" type="checkbox" /></span></li>
+					   <li class="list-group-item" id="express-li">Giặt nhanh thêm 50% <span class="right"><input ng-change="express_wash()" ng-model="cbk.express_wash" type="checkbox" /></span></li>
 					   <li class="list-group-item">Tổng cộng <span class="right label label-primary" id="amount-total"></span></li>
-					   <li class="list-group-item">Đã thanh toán <span class="right"> <input style="text-align: right" ng-blur="handleTotalPay()" ng-model="invoice_info.totalPay" type="number" /></span></li>
+					   <li class="list-group-item">Đã thanh toán <span class="right totalpay-span"> <input ng-blur="handleTotalPay()" ng-model="invoice_info.totalPay" type="number" /></span></li>
 					   <li class="list-group-item">Còn nợ lại <span id="invoice_remain" class="right label label-primary"></span></li> 
 					</ul>
 				</div>
@@ -149,7 +149,7 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			// declare variable
+			activeCurrentMenu();
 
 			angular.element($('#template-div')).scope().initSearchCustomerSelect2();
 			$('.customer-invoice-div span.select2.select2-container.select2-container--bootstrap').css("width", "100%");

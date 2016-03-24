@@ -44,6 +44,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 		invoice.setNote(invoiceIn.getNote());
 		invoice.setTotalPay(invoiceIn.getTotalPay());
 		invoice.setTotalPrice(invoiceIn.getTotalPrice());
+		invoice.setIsExpress(invoiceIn.getExpress_wash());
 		
 		Integer invoiceId = invoiceDao.save(invoice);
 		

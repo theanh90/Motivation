@@ -1,6 +1,5 @@
 package com.theanh.first.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.theanh.first.model.JsonResponse;
-import com.theanh.first.model.inmodel.InvoiceDetailsInModel;
 import com.theanh.first.model.inmodel.InvoiceInModel;
 import com.theanh.first.service.InvoiceService;
 

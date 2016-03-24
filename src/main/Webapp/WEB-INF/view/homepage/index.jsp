@@ -34,12 +34,7 @@
   		<!-- Bootstrap-from-helper -->
 		<link href="<c:url value='/static/bootstrap-form-helper/css/bootstrap-formhelpers.min.css'/>" rel="stylesheet">		
   		<script src="<c:url value='/static/bootstrap-form-helper/js/bootstrap-formhelpers.min.js'/>"> </script>
-  		
-  		<!-- Select2 -->
-  		<%-- <link href="<c:url value='/static/select2/select2.css'/>" rel="stylesheet">
-  		<link href="<c:url value='/static/select2/select2-skins.min.css'/>" rel="stylesheet">	
-  		<script src="<c:url value='/static/select2/select2.min.js'/>"> </script> --%>
-  		
+  	  		
   		<!-- Select2 temp -->
   		<link href="<c:url value='/static/sl2/select2.css'/>" rel="stylesheet">
 	  	<link href="<c:url value='/static/sl2/select2-bootstrap.css'/>" rel="stylesheet">
@@ -64,13 +59,13 @@
 		    </div>
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
-		        <li onclick="setActive(this)" class="li-nav-menu">
+		        <li onclick="setActive(this)" class="li-nav-menu customer-menu-li">
 		        	<a href="#customer"><spring:message code='menunav.customer' text='Customer' /></a>
 	        	</li>
-		        <li onclick="setActive(this)" class="li-nav-menu">
+		        <li onclick="setActive(this)" class="li-nav-menu product-menu-li">
 		        	<a href="#product"><spring:message code='menunav.item' text='Item' /></a>
 	        	</li>
-		        <li onclick="setActive(this)" class="li-nav-menu">
+		        <li onclick="setActive(this)" class="li-nav-menu invoice-menu-li">
 		        	<a href="#invoice"><spring:message code='menunav.invoice' text='Invoice' /></a>
 	        	</li>
 		      </ul>
@@ -104,7 +99,7 @@
    		<script type = "text/ng-template" id = "invoice">		
 			<div ng-include src="'<c:url value='/template/angular/invoice' />'"></div>	
    		</script>
-   		<script type = "text/ng-template" id = "addinvoice">		
+   		<script type = "text/ng-template" id = "invoice/addinvoice">		
 			<div ng-include src="'<c:url value='/template/angular/addinvoice' />'"></div>	
    		</script>
 		
@@ -180,15 +175,29 @@
 	</body>
 	
 	<script type="text/javascript">
-		$(document).ready(function() { 
-			window.location.href='#/home';
-			$('#li-nav-home').css('background-color', '#fe8f01');
-			
+		$(document).ready(function() {
+						
 			$('#li-nav-home').click(function(){
 				$('#li-nav-home').css('background-color', '#fe8f01');
 				$('.li-nav-menu').removeClass('active');
 			});
+			
+			activeCurrentMenu();
 		});
+		
+		function activeCurrentMenu() {
+			var hash = window.location.hash;
+			if (!hash || hash.match(/^#\/home/i)) {
+				setHomeMenu();
+			}
+			if (hash.match(/^#\/customer/i)) {
+				setActive(".customer-menu-li");
+			} else if (hash.match(/^#\/product/i)) {
+				setActive(".product-menu-li");
+			} else if (hash.match(/^#\/invoice/i)) {
+				setActive(".invoice-menu-li");
+			}
+		}
 		
 		function setHomeMenu() {
 			$('#li-nav-home').css('background-color', '#fe8f01');
@@ -199,6 +208,7 @@
 			$('.li-nav-menu').removeClass('active');
 			$('#li-nav-home').css('background-color', '#3d3d3d');
 			$(node).addClass('active');
+			$('#myNavbar').removeClass('in');
 		}
 	</script>
 </html>

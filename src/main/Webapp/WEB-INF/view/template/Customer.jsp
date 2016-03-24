@@ -158,7 +158,8 @@
 		var customer_note = '<spring:message code="customer.note" text="Note" />';
 		var common_confirm = '<spring:message code="common.confirm" text="Confirm" />';
 	
-		$(document).ready(function(){
+		$(document).ready(function(){			
+			activeCurrentMenu();
 			
 			$('#search-customer-select').select2({
 				theme: "bootstrap"

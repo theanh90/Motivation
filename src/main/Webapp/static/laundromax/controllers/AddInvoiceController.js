@@ -86,6 +86,7 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 			row.removeClass('selected-pro-row');
 			$scope.enableInputElement(pid);
 		} else {
+			$(element).val(0);
 			return false;
 		}
 		
@@ -395,13 +396,23 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		   }
 		   
 	   })
-	   .then(function(response){		   
-		   console.log(response);
+	   .then(function(response){
+		   var mess = 'Lưu hóa đơn thành công';
+		   var title = 'Thành công';
+		   var type = BootstrapDialog.TYPE_SUCCESS;
+		   var action = reloadPage;
+		   var size = BootstrapDialog.SIZE_SMALL;
+		   		   
+		   showMessageWithAction(title, mess, type, action, size);
 		  
 	   }, function(error){
 		   alert("The error occurs when Saving Invoice!!!" + error.statusText);
 	   });
 		
+	}
+	
+	function reloadPage() {
+		location.reload();
 	}
 	
 	// Call function when page loaded

@@ -202,6 +202,7 @@
 		
 		
 		$(document).ready(function(){
+			activeCurrentMenu();
 			
 			$('#search-product-select').select2({
 				theme: "bootstrap"

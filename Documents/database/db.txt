@@ -27,6 +27,7 @@
 	DateCreate
 	TotalPrice
 	TotalPay
+	isExpress
 	Note
 	LastStatus
 	Active

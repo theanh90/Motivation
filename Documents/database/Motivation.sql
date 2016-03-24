@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 20, 2016 at 03:05 PM
+-- Generation Time: Mar 24, 2016 at 05:54 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -67,7 +67,9 @@ INSERT INTO `CUSTOMER` (`CID`, `Name`, `Phone`, `Email`, `Address`, `Note`, `Act
 (35, 'Tuyến Đào', '0973334455', 'tuyen@xxx.com', '01 CMT8', 'đã lấy ck. From iPad', 1),
 (36, 'iPad mini 2', '0987654321', 'Xxx@yyy.com', '102/38 binh long', 'chủ nhật. xxx', 1),
 (37, 'Trần Thị Thu Thủy', '01646139496', 'xuongrong1701@gmail.com', 'KTX khu B, cá sấu hoa cà', 'fuck', 1),
-(38, 'Trần Thị Thịnh', '01268962357', 'thinh.tran@laundromax.com', '235 V5, sunrise city, quận 7', 'Chủ cửa hàng', 1);
+(38, 'Trần Thị Thịnh', '01268962357', 'thinh.tran@laundromax.com', '235 V5, sunrise city, quận 7', 'Chủ cửa hàng', 1),
+(39, 'chan doi', '34534534534', 'metmoi@gmail.com', 'hoa phu, chupah, gia lai', 'xxx', 1),
+(40, 'nguyễn hồng đào', '43523453445', 'sss@sdfsf.com', 'xxx, yyy', 'ffff', 1);
 
 -- --------------------------------------------------------
 
@@ -81,10 +83,32 @@ CREATE TABLE `INVOICE` (
   `DateCreate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `TotalPrice` int(11) NOT NULL,
   `TotalPay` int(11) DEFAULT NULL,
+  `IsExpress` int(11) NOT NULL,
   `Note` text COLLATE utf8_unicode_ci,
   `LastStatus` int(11) NOT NULL,
   `Active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `INVOICE`
+--
+
+INSERT INTO `INVOICE` (`InId`, `Cid`, `DateCreate`, `TotalPrice`, `TotalPay`, `IsExpress`, `Note`, `LastStatus`, `Active`) VALUES
+(3, 20, '2016-03-22 15:00:58', 21333, 20000, 0, 'xxx uyyyy', 1, 1),
+(4, 23, '2016-03-23 15:20:31', 266682, 1, 200000, 'chán vl ra', 1, 1),
+(5, 23, '2016-03-23 15:21:40', 266682, 1, 200000, 'chán vl ra', 1, 1),
+(7, 20, '2016-03-23 15:32:17', 10017, 10000, 1, 'dddddd ddd d', 1, 1),
+(8, 23, '2016-03-23 15:40:32', 267108, 45000, 1, NULL, 1, 1),
+(9, 11, '2016-03-23 15:42:40', 26039, 0, 0, NULL, 1, 1),
+(10, 9, '2016-03-23 15:48:24', 15000, 0, 0, NULL, 1, 1),
+(11, 19, '2016-03-23 15:49:04', 6666, 0, 0, NULL, 1, 1),
+(12, 36, '2016-03-23 16:00:43', 6000, 0, 0, NULL, 1, 1),
+(13, 19, '2016-03-23 16:02:24', 180154, 0, 0, NULL, 1, 1),
+(14, 13, '2016-03-23 16:08:46', 6666, 0, 0, NULL, 1, 1),
+(15, 20, '2016-03-23 16:13:28', 9999, 0, 0, NULL, 1, 1),
+(16, 39, '2016-03-24 15:52:31', 11331, 3333, 0, 'giao vào sáng mai nhé', 1, 1),
+(17, 19, '2016-03-24 16:01:50', 266676, 266676, 0, NULL, 1, 1),
+(18, 23, '2016-03-24 16:43:01', 220692, 500000, 0, 'xxx, uuu', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -100,6 +124,39 @@ CREATE TABLE `INVOICEDETAILS` (
   `TypePrice` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `INVOICEDETAILS`
+--
+
+INSERT INTO `INVOICEDETAILS` (`Did`, `Pid`, `InId`, `UnitPrice`, `TypePrice`, `Quantity`) VALUES
+(1, 6, 3, 1111, 'laundry', 3),
+(2, 4, 3, 9000, 'pressonly', 2),
+(3, 3, 4, 88888, 'laundry', 3),
+(4, 7, 4, 9, 'pressonly', 2),
+(5, 3, 5, 88888, 'laundry', 3),
+(6, 7, 5, 9, 'pressonly', 2),
+(7, 11, 7, 3333, 'laundry', 3),
+(8, 13, 7, 6, 'pressonly', 3),
+(9, 3, 8, 88888, 'laundry', 3),
+(10, 10, 8, 222, 'dryclean', 2),
+(11, 3, 9, 2000, 'dryclean', 1),
+(12, 7, 9, 2013, 'dryclean', 3),
+(13, 4, 9, 9000, 'pressonly', 2),
+(14, 4, 10, 5000, 'laundry', 3),
+(15, 6, 11, 2222, 'dryclean', 3),
+(16, 3, 12, 2000, 'dryclean', 3),
+(17, 8, 13, 60000, 'dryclean', 3),
+(18, 12, 13, 77, 'pressonly', 2),
+(19, 6, 14, 2222, 'dryclean', 3),
+(20, 11, 15, 3333, 'dryclean', 3),
+(21, 6, 16, 1111, 'laundry', 3),
+(22, 16, 16, 3999, 'dryclean', 2),
+(23, 3, 17, 88888, 'laundry', 3),
+(24, 13, 17, 6, 'pressonly', 2),
+(25, 8, 18, 50000, 'laundry', 3),
+(26, 7, 18, 2013, 'dryclean', 2),
+(27, 11, 18, 22222, 'pressonly', 3);
 
 -- --------------------------------------------------------
 
@@ -311,17 +368,17 @@ ALTER TABLE `WASHTYPEPRICE`
 -- AUTO_INCREMENT for table `CUSTOMER`
 --
 ALTER TABLE `CUSTOMER`
-  MODIFY `CID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `CID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `INVOICE`
 --
 ALTER TABLE `INVOICE`
-  MODIFY `InId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `InId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `INVOICEDETAILS`
 --
 ALTER TABLE `INVOICEDETAILS`
-  MODIFY `Did` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `INVOICEHISTORY`
 --

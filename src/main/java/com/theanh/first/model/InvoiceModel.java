@@ -28,6 +28,9 @@ public class InvoiceModel implements Serializable {
 	@Column(name = "TOTALPRICE", nullable = false)
 	private Integer totalPrice;
 	
+	@Column(name = "ISEXPRESS", nullable = true)
+	private Integer isExpress;
+	
 	@Column(name = "TOTALPAY", nullable = true)
 	private Integer totalPay;
 	
@@ -66,6 +69,12 @@ public class InvoiceModel implements Serializable {
 	}
 	public Integer getTotalPay() {
 		return totalPay;
+	}
+	public Integer getIsExpress() {
+		return isExpress;
+	}
+	public void setIsExpress(Integer isExpress) {
+		this.isExpress = isExpress;
 	}
 	public void setTotalPay(Integer totalPay) {
 		this.totalPay = totalPay;
