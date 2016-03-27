@@ -183,6 +183,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 		  }else {
 			  var mess = customer_get_fail;
 			  var type = 'ERROR';
+			  showConfirmModal(mess, type);
 		  }
 		  
 		  $('#list-customer').bootstrapTable('refresh', {

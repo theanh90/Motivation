@@ -175,6 +175,8 @@
 	</body>
 	
 	<script type="text/javascript">
+		// global variable
+	
 		$(document).ready(function() {
 						
 			$('#li-nav-home').click(function(){

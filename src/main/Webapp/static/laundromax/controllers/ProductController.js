@@ -221,6 +221,8 @@ mainApp.controller('ProductController', function($scope, $http) {
 			  }else {
 				  var mess = lang_get_fail;
 				  var type = 'ERROR';
+				  showConfirmModal(mess, type);
+				  
 			  }
 			  
 			  $('#list-product').bootstrapTable('refresh', {

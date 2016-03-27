@@ -184,6 +184,10 @@ body {
     margin-top: 15px;
 }
 
+.amount-total-tbl-footer .col-note textarea {
+    height: 195px;
+}
+
 .amount-total-tbl-footer textarea {
     margin-top: 15px;
 }

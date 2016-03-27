@@ -8,6 +8,9 @@ public class InvoiceInModel {
 	private String note;
 	private Integer customer_id;
 	private Integer totalPrice;
+	private Integer totalCalculated;
+	private Integer discount;
+	private Integer vat;
 	private List<InvoiceDetailsInModel> products;
 	
 	public Integer getExpress_wash() {
@@ -40,8 +43,26 @@ public class InvoiceInModel {
 	public void setTotalPrice(Integer totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+	public Integer getTotalCalculated() {
+		return totalCalculated;
+	}
+	public void setTotalCalculated(Integer totalCalculated) {
+		this.totalCalculated = totalCalculated;
+	}
 	public List<InvoiceDetailsInModel> getProducts() {
 		return products;
+	}
+	public Integer getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+	public Integer getVat() {
+		return vat;
+	}
+	public void setVat(Integer vat) {
+		this.vat = vat;
 	}
 	public void setProducts(List<InvoiceDetailsInModel> products) {
 		this.products = products;

@@ -43,8 +43,18 @@ public class InvoiceServiceImpl implements InvoiceService {
 		invoice.setLastStatus(Constant.INVOICE_STATUS_NEW);
 		invoice.setNote(invoiceIn.getNote());
 		invoice.setTotalPay(invoiceIn.getTotalPay());
-		invoice.setTotalPrice(invoiceIn.getTotalPrice());
+		invoice.setTotalPrice(invoiceIn.getTotalCalculated());
 		invoice.setIsExpress(invoiceIn.getExpress_wash());
+		if (invoiceIn.getDiscount() == null) {
+			invoice.setDiscount(0);
+		} else {
+			invoice.setDiscount(invoiceIn.getDiscount());			
+		}
+		if (invoiceIn.getVat() == null) {
+			invoice.setVat(0);
+		} else {
+			invoice.setVat(invoiceIn.getVat());
+		}
 		
 		Integer invoiceId = invoiceDao.save(invoice);
 		

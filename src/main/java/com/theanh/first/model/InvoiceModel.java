@@ -34,6 +34,12 @@ public class InvoiceModel implements Serializable {
 	@Column(name = "TOTALPAY", nullable = true)
 	private Integer totalPay;
 	
+	@Column(name = "VAT", nullable = true)
+	private Integer vat;
+	
+	@Column(name = "DISCOUNT", nullable = true)
+	private Integer discount;
+	
 	@Column(name = "NOTE", nullable = true)
 	private String note;
 	
@@ -78,6 +84,18 @@ public class InvoiceModel implements Serializable {
 	}
 	public void setTotalPay(Integer totalPay) {
 		this.totalPay = totalPay;
+	}
+	public Integer getVat() {
+		return vat;
+	}
+	public void setVat(Integer vat) {
+		this.vat = vat;
+	}
+	public Integer getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
 	}
 	public String getNote() {
 		return note;

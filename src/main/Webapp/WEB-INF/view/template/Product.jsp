@@ -179,6 +179,7 @@
 	</div>
 	
 	<script type="text/javascript">
+		// multiple language variable
 		var lang_vnName = '<spring:message code="product.vnName" text="VN Name" />';
 		var lang_enName = '<spring:message code="product.enName" text="EN Name" />';
 		var lang_unit = '<spring:message code="product.unit" text="Unit" />';

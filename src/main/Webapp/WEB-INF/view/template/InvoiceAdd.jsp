@@ -13,22 +13,22 @@
 		
 		<div class="col-sm-12">
 			<div class="panel panel-success panel-customer">
-      			<div class="panel-heading">Thông tin khách hàng</div>
+      			<div class="panel-heading"><spring:message code="invoice.customerinfo" text="customer information" /></div>
       			<div class="panel-body">
       				<div class="col-sm-4">
-      					<span class="c-title">Khách hàng:</span>
+      					<span class="c-title"><spring:message code="customer.fullname" text="Name" />:</span>
       					<span ng-bind="customer.name"></span>
       				</div>
       				<div class="col-sm-4">
-      					<span class="c-title">Địa chỉ:</span>
+      					<span class="c-title"><spring:message code="customer.address" text="Addess" />:</span>
       					<span ng-bind='customer.address'></span>
       				</div>
       				<div class="col-sm-2">
-      					<span class="c-title">SDT:</span>
+      					<span class="c-title"><spring:message code="customer.phone" text="Phone" />:</span>
       					<span ng-bind="customer.phone"></span>
       				</div>
       				<div class="col-sm-2">
-      					<span class="c-title">Email:</span>
+      					<span class="c-title"><spring:message code="customer.email" text="Email" />:</span>
       					<span ng-bind="customer.email"></span>
       				</div>
       			</div>
@@ -42,24 +42,24 @@
 							bootstrap-table">
 						<thead>
 							<tr>
-								<td rowspan="2">Món Giặt</td>
-								<td colspan="3">Giặt nước</td>
-								<td colspan="3">Giặt hấp</td>
-								<td colspan="3">Chỉ ủi</td>
-								<td rowspan="2">Ghi chú</td>
+								<td rowspan="2"><spring:message code='menunav.item' text='Item' /></td>
+								<td colspan="3"><spring:message code="product.laundry" text="Laundry" /></td>
+								<td colspan="3"><spring:message code="product.dryclean" text="Dryclean" /></td>
+								<td colspan="3"><spring:message code="product.pressonly" text="PressOnly" /></td>
+								<td rowspan="2"><spring:message code="product.note" text="Note" /></td>
 							</tr>
 							<tr>
-								<td>Đ.giá</td>
-								<td>S.lượng</td>
-								<td>T.tiền</td>
+								<td><spring:message code="invoice.unitPrice" text="unit price" /></td>
+								<td><spring:message code="invoice.quantity" text="quantity" /></td>
+								<td><spring:message code="invoice.subTotal" text="sub total" /></td>
 								
-								<td>Đ.giá</td>
-								<td>S.lượng</td>
-								<td>T.tiền</td>
+								<td><spring:message code="invoice.unitPrice" text="unit price" /></td>
+								<td><spring:message code="invoice.quantity" text="quantity" /></td>
+								<td><spring:message code="invoice.subTotal" text="sub total" /></td>
 								
-								<td>Đ.giá</td>
-								<td>S.lượng</td>
-								<td>T.tiền</td>
+								<td><spring:message code="invoice.unitPrice" text="unit price" /></td>
+								<td><spring:message code="invoice.quantity" text="quantity" /></td>
+								<td><spring:message code="invoice.subTotal" text="sub total" /></td>
 							</tr>
 						</thead>
 						
@@ -71,22 +71,24 @@
 						
 			<div class="amount-total-tbl-footer">
 				<div class="col-sm-6 form-group col-note">
-					<span id="invoice_note_title">Nhập ghi chú</span>
+					<span id="invoice_note_title"><spring:message code="invoice.leaveANote" text="leave a note" /></span>
 					<textarea class="form-control" rows="5" ng-model="invoice_info.note"></textarea>
 				</div>
 				
 				<div class="col-sm-6 col-total">
 					<ul class="list-group">
-					   <li class="list-group-item" id="express-li">Giặt nhanh thêm 50% <span class="right"><input ng-change="express_wash()" ng-model="cbk.express_wash" type="checkbox" /></span></li>
-					   <li class="list-group-item">Tổng cộng <span class="right label label-primary" id="amount-total"></span></li>
-					   <li class="list-group-item">Đã thanh toán <span class="right totalpay-span"> <input ng-blur="handleTotalPay()" ng-model="invoice_info.totalPay" type="number" /></span></li>
-					   <li class="list-group-item">Còn nợ lại <span id="invoice_remain" class="right label label-primary"></span></li> 
+					   <li class="list-group-item" id="express-li"><spring:message code="invoice.expressWash" text="express washing" /> <span class="right"><input ng-change="express_wash()" ng-model="cbk.express_wash" type="checkbox" /></span></li>
+					   <li class="list-group-item" id="discount-li"><spring:message code="invoice.discount" text="discount" /> <span class="right"><input ng-blur="changeDiscount()" ng-model="invoice_info.discount" type="number" min="1" max="100"/></span></li>
+					   <li class="list-group-item" id="vat-li"><spring:message code="invoice.vat" text="vat" /> <span class="right"><input ng-change="changeVAT()" ng-model="cbk.vat" type="checkbox" /></span></li>
+					   <li class="list-group-item"><spring:message code="invoice.total" text="total" /> <span class="right label label-primary" id="amount-total"></span></li>
+					   <li class="list-group-item"><spring:message code="invoice.paidUpfront" text="paid upfront" /> <span class="right totalpay-span"> <input ng-blur="handleTotalPay()" ng-model="invoice_info.totalPay" type="number" /></span></li>
+					   <li class="list-group-item"><spring:message code="invoice.dueAmount" text="due amount" /> <span id="invoice_remain" class="right label label-primary"></span></li> 
 					</ul>
 				</div>
 					
 			</div> <!-- end total-amount -->
 			
-			<button ng-click="saveInvoice()" type="button" class="btn btn-success btn-block">Lưu</button>
+			<button ng-click="saveInvoice()" type="button" class="btn btn-success btn-block"><spring:message code="common.save" text="save" /></button>
 		
 		</div> <!-- end col-sm-12 content -->
 	</div>
@@ -98,15 +100,15 @@
 	    <!-- Modal content-->
 	    <div class="modal-content">		        
 	      <div class="modal-body">
-	        <div class="invoide-cfr-title">Xác nhận thông tin hóa đơn</div>
+	        <div class="invoide-cfr-title"><spring:message code="invoice.confirmInfo" text="information confirm" /> </div>
 	        <div class="invoice-cfr-content">
 	        	<div class="panel panel-default table-responsive">
 	    			<table class="table bootstrap-table">
 	    				<tr style="font-weight: bold">
-	    					<td>Tên</td>
-	    					<td>Địa chỉ</td>
-	    					<td>SDT</td>
-	    					<td>Email</td>
+	    					<td><spring:message code="customer.fullname" text="Name" /></td>
+	    					<td><spring:message code="customer.address" text="Addess" /></td>
+	    					<td><spring:message code="customer.phone" text="Phone" /></td>
+	    					<td><spring:message code="customer.email" text="Email" /></td>	    				
 	    				</tr>	    				
 	    				<tr>
 	    					<td ng-bind="customer.name"></td>
@@ -121,10 +123,10 @@
 			    	<table id="invoice-cfr-products" class="table bootstrap-table">
 			    		<thead>
 				    		<tr style="font-weight: bold">
-				    			<td>Món đồ</td>
-				    			<td>Kiểu giặt</td>
-				    			<td class="cus-number">số lượng</td>
-				    			<td class="cus-number">Đơn giá</td>
+				    			<td><spring:message code='menunav.item' text='Item' /></td>
+				    			<td><spring:message code='invoice.washService' text='wash service' /></td>
+				    			<td class="cus-number"><spring:message code='invoice.quantity' text='quantity' /></td>
+				    			<td class="cus-number"><spring:message code='invoice.subTotal' text='sub total' /></td>
 				    		</tr>			    		
 			    		</thead>
 			    		<tbody></tbody>
@@ -139,8 +141,12 @@
 	      </div>
 	      
 	      <div class="modal-footer">
-	        <button ng-click="saveInvoiceDB()" type="button" class="btn btn-success" data-dismiss="modal">Tiếp Tục</button>
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+	        <button ng-click="saveInvoiceDB()" type="button" class="btn btn-success" data-dismiss="modal">
+	        	<spring:message code='common.save' text='save' />
+	        </button>
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">
+	        	<spring:message code='common.cancel' text='cancel' />
+	        </button>
 	      </div>
 	    </div>
 	
@@ -148,7 +154,27 @@
 	</div>
 	
 	<script type="text/javascript">
-		$(document).ready(function(){
+		// multiple language variable		
+		var lang_input_holder =  '<spring:message code="invoice.inputCustomerName" text="input customer name" />';
+		var lang_laundry = '<spring:message code="product.laundry" text="Laundry" />';
+		var lang_dryclean = '<spring:message code="product.dryclean" text="Dryclean" />';
+		var lang_pressonly = '<spring:message code="product.pressonly" text="PressOnly" />';
+		var lang_express = '<spring:message code="invoice.expressWash" text="express washing" />';
+		var lang_total = '<spring:message code="invoice.total" text="total" />';
+		var lang_paid_upfront = '<spring:message code="invoice.paidUpfront" text="paid upfront" />';
+		var lang_due_amount = '<spring:message code="invoice.dueAmount" text="due amount" />';
+		var lang_valid_select_item = '<spring:message code="invoice.validate.selectItem" text="pls select item" />';
+		var lang_valid_select_customer = '<spring:message code="invoice.validate.selectCustomer" text="pls select customer" />';
+		var lang_add_success = '<spring:message code="invoice.add.success" text="add invoice successfully" />';
+		var lang_add_fail = '<spring:message code="invoice.add.fail" text="fail to add invoice" />';
+		var lang_confirm = '<spring:message code="common.confirm" text="confirm" />';
+		var lang_validate_missing = '<spring:message code="invoice.validate.miss" text="information is missing" />';
+		var lang_discount = '<spring:message code="invoice.discount" text="discount" />';
+		var lang_vat = '<spring:message code="invoice.vat" text="vat" />';
+		
+		var lang_error_get = '<spring:message code="invoice.error.product.get" text="error when get list product" />';
+	
+		$(document).ready(function(){			
 			activeCurrentMenu();
 
 			angular.element($('#template-div')).scope().initSearchCustomerSelect2();
@@ -164,7 +190,6 @@
 		var loadX = function() {
 			angular.element($('#template-div')).scope().customer.name = 'loadxxx';
 		}
-
 		
 	</script>
 </div>

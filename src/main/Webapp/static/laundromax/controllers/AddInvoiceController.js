@@ -5,14 +5,17 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 	$scope.invoice_info = {
 			express_wash : 0,
 			totalPay : null,
-			note : null
+			note : null,
+			vat : 0,
+			discount : null,
+			totalCalculated: 0
 	};
 	$scope.cbk = {
 			express_wash : false
 	};
 	$scope.customer = {};
 	
-	$scope.isExpress = 1;	
+	$scope.isExpress = 1;
 	
 	// functions
 	$scope.addInvoice = function() {
@@ -33,40 +36,49 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		   
 		   })
 		   .then(function(response){
-			   var tbody = $('#list-product-tbl tbody');
-			   var row;
-			   var data;			   
+			   if (response.data.status == 'ERROR') {
+				   var title = lang_confirm;
+				   var mess = lang_error_get;
+				   var type = 'danger';
+				   var size = 'small';
+				   var action = function(){location.href = '';};
+				   
+				   showMessageWithAction(title, mess, type, action, size);
+			   } else {
+				   var tbody = $('#list-product-tbl tbody');
+				   var row;
+				   var data;			   
 
-			   // global variable
-			   product_all = {};
-			   
-			   for (var i=0; i<response.data.rows.length; i++) {
-				   data = response.data.rows[i];
-				   product_all[data.pid] = data;
+				   // global variable
+				   product_all = {};
 				   
-				   row = '';
-				   
-				   row += '<tr pid="' + data.pid + '">';
-				   row += 		'<td>' + data.vnName + ' (' + data.enName + ')' + '</td>';
-				   
-				   row += 		'<td price="' + data.laundry + '" id="' + data.pid + '_laundry_price' + '" class="price">' + changeNumberFormat(data.laundry) + '</td>';
-				   row += 		'<td class="qtt">' + '<input id="' + data.pid + '_laundry' + '" type="number" min="0" onchange="changeQTT(this, \'laundry\')" />' + '</td>';
-				   row += 		'<td id="' + data.pid + '_laundry_amount' + '" >' + '' + '</td>';
-				   
-				   row += 		'<td price="' + data.dryclean + '" id="' + data.pid + '_dryclean_price' + '" class="price">' + changeNumberFormat(data.dryclean) + '</td>';
-				   row += 		'<td class="qtt">' + '<input id="' + data.pid + '_dryclean' + '" type="number" min="0" onchange="changeQTT(this, \'dryclean\')" />' + '</td>';
-				   row += 		'<td id="' + data.pid + '_dryclean_amount' + '" >' + '' + '</td>';
-				   
-				   row += 		'<td price="' + data.pressonly + '" id="' + data.pid + '_pressonly_price' + '" class="price">' + changeNumberFormat(data.pressonly) + '</td>';
-				   row += 		'<td class="qtt">' + '<input id="' + data.pid + '_pressonly' + '" type="number" min="0" onchange="changeQTT(this, \'pressonly\')" />' + '</td>';
-				   row += 		'<td id="' + data.pid + '_pressonly_amount' + '" >' + '' + '</td>';
-				   
-				   row += 		'<td>' + data.note + '</td>';
-				   row += '</tr>';
-				   
-				   tbody.append(row);
+				   for (var i=0; i<response.data.rows.length; i++) {
+					   data = response.data.rows[i];
+					   product_all[data.pid] = data;
+					   
+					   row = '';
+					   
+					   row += '<tr pid="' + data.pid + '">';
+					   row += 		'<td>' + data.vnName + ' (' + data.enName + ')' + '</td>';
+					   
+					   row += 		'<td price="' + data.laundry + '" id="' + data.pid + '_laundry_price' + '" class="price">' + changeNumberFormat(data.laundry) + '</td>';
+					   row += 		'<td class="qtt">' + '<input id="' + data.pid + '_laundry' + '" type="number" min="0" onchange="changeQTT(this, \'laundry\')" />' + '</td>';
+					   row += 		'<td id="' + data.pid + '_laundry_amount' + '" >' + '' + '</td>';
+					   
+					   row += 		'<td price="' + data.dryclean + '" id="' + data.pid + '_dryclean_price' + '" class="price">' + changeNumberFormat(data.dryclean) + '</td>';
+					   row += 		'<td class="qtt">' + '<input id="' + data.pid + '_dryclean' + '" type="number" min="0" onchange="changeQTT(this, \'dryclean\')" />' + '</td>';
+					   row += 		'<td id="' + data.pid + '_dryclean_amount' + '" >' + '' + '</td>';
+					   
+					   row += 		'<td price="' + data.pressonly + '" id="' + data.pid + '_pressonly_price' + '" class="price">' + changeNumberFormat(data.pressonly) + '</td>';
+					   row += 		'<td class="qtt">' + '<input id="' + data.pid + '_pressonly' + '" type="number" min="0" onchange="changeQTT(this, \'pressonly\')" />' + '</td>';
+					   row += 		'<td id="' + data.pid + '_pressonly_amount' + '" >' + '' + '</td>';
+					   
+					   row += 		'<td>' + data.note + '</td>';
+					   row += '</tr>';
+					   
+					   tbody.append(row);
+				   }
 			   }
-			  
 		   }, function(error){
 			   alert("The error occurs when Saving/Update Product!!!" + error.statusText);
 		   });
@@ -167,8 +179,15 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 			index = $scope.list_product[x];
 			result += (index.unit_price * index.qtt);
 		}
+		$scope.invoice_info.totalCalculated = ((result * $scope.isExpress)/100)*(100-$scope.invoice_info.discount);
 		
-		$('#amount-total').html(changeNumberFormat(result * $scope.isExpress) + " VND");
+		if ($scope.invoice_info.vat) {
+			$scope.invoice_info.totalCalculated = ($scope.invoice_info.totalCalculated/100)*110;
+		}
+		
+		$scope.invoice_info.totalCalculated = Math.floor($scope.invoice_info.totalCalculated);
+		
+		$('#amount-total').html(changeNumberFormat($scope.invoice_info.totalCalculated) + " VND");
 		$scope.invoice_info.totalPrice = result;
 		// update remain price after user change select
 		$scope.handleTotalPay();
@@ -223,8 +242,30 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		$scope.handleTotalPay();
 	}
 	
+	$scope.changeVAT = function() {
+		if ($scope.cbk.vat) {
+			$('#vat-li').addClass('blue-background');
+			$scope.invoice_info.vat = 1;
+		} else {
+			$('#vat-li').removeClass('blue-background');
+			$scope.invoice_info.vat = 0;
+		}
+		$scope.calculateTotalPrice();
+	}
+	
+	$scope.changeDiscount = function() {
+		if ($scope.invoice_info.discount) {
+			$('#discount-li').addClass('blue-background');
+		} else {
+			$('#discount-li').removeClass('blue-background');
+			$scope.invoice_info.discount = 0;
+		}
+		
+		$scope.calculateTotalPrice();
+	}
+	
 	$scope.handleTotalPay = function() {
-		var change = ($scope.invoice_info.totalPrice * $scope.isExpress) - $scope.invoice_info.totalPay;
+		var change = ($scope.invoice_info.totalCalculated) - $scope.invoice_info.totalPay;
 		$('#invoice_remain').html(changeNumberFormat(change) + " VND");
 	}
 	
@@ -280,7 +321,7 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 				}
 			},
 			theme: "bootstrap",
-			placeholder: 'Nhập tên khách hàng'
+			placeholder: lang_input_holder
 		});
 	}	
 	
@@ -314,11 +355,11 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 			product = $scope.list_product[x];
 			product_name = product_all[product.pid].vnName + " (" + product_all[product.pid].enName + ")";
 			if (product.price_type == 'laundry') {
-				wash_type = 'Giặt nước';
+				wash_type = lang_laundry;
 			} else if (product.price_type == 'dryclean') {
-				wash_type = 'Giặt hấp';
+				wash_type = lang_dryclean;
 			} else if (product.price_type == 'pressonly') {
-				wash_type = 'Chỉ ủi';
+				wash_type = lang_pressonly;
 			}
 			
 			tbl_content += '<tr>';
@@ -333,21 +374,28 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		
 		var tbl_total = $('#invoice-cfr-total');
 		var tbl_total_html = '';
+		
 		if ($scope.invoice_info.express_wash) {
-			tbl_total_html += '<tr> <td style="font-weight: bold">' + ' Giặt nhanh ' + '</td> <td class="cus-number"><i class="fa fa-check-square-o"></td> </tr>';
+			tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_express + '</td> <td class="cus-number"><i class="fa fa-check-square-o"></td> </tr>';
 		}
+		if ($scope.invoice_info.discount) {
+			tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_discount + '</td> <td class="cus-number">' + $scope.invoice_info.discount + '% </td> </tr>';
+		}
+		if ($scope.invoice_info.vat) {
+			tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_vat + '</td> <td class="cus-number"><i class="fa fa-check-square-o"></td> </tr>';
+		}
+		
 		$scope.invoice_info.totalPay = $scope.invoice_info.totalPay ? $scope.invoice_info.totalPay : 0;
 		
-		tbl_total_html += '<tr> <td style="font-weight: bold">' + 'Tổng cộng' + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPrice * $scope.isExpress) + ' VND </td> </tr>';
-		tbl_total_html += '<tr> <td style="font-weight: bold">' + 'Đã thanh toán' + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPay) + ' VND </td> </tr>';
-		tbl_total_html += '<tr> <td style="font-weight: bold">' + 'Còn nợ lại' + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPrice * $scope.isExpress - $scope.invoice_info.totalPay) + ' VND </td> </tr>';
+		tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_total + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPrice * $scope.isExpress) + ' VND </td> </tr>';
+		tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_paid_upfront + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPay) + ' VND </td> </tr>';
+		tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_due_amount + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPrice * $scope.isExpress - $scope.invoice_info.totalPay) + ' VND </td> </tr>';
 		
 		tbl_total.html(tbl_total_html);
 		
 		$('#invoice-cfr-modal').modal({backdrop: "static"});
 		$scope.invoice_info.products = $scope.list_product;
 		
-		console.log($scope.invoice_info);
 	}
 	
 	$scope.validateInvoice = function() {
@@ -358,18 +406,18 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		
 		if (products.length <= 0) {
 			result = false;
-			error_mess += 'Vui lòng chọn món đồ \n';
+			error_mess += lang_valid_select_item + '\n';
 		}
 		if (!invoice.customer_id) {
 			result = false;
-			error_mess += 'Vui lòng chọn khách hàng\n';
+			error_mess += lang_valid_select_customer;
 		}
 		
 		if (!result) {
 			BootstrapDialog.show({
 				  size: BootstrapDialog.SIZE_SMALL,
 		          type: BootstrapDialog.TYPE_DANGER,
-		          title: 'Thiếu thông tin',
+		          title: lang_validate_missing,
 		          message: error_mess,
 		          buttons: [{
 		              label: "OK",
@@ -397,22 +445,26 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		   
 	   })
 	   .then(function(response){
-		   var mess = 'Lưu hóa đơn thành công';
-		   var title = 'Thành công';
-		   var type = BootstrapDialog.TYPE_SUCCESS;
-		   var action = reloadPage;
-		   var size = BootstrapDialog.SIZE_SMALL;
-		   		   
+		   var action;
+		   var size = 'small';	
+		   if (response.data.returnStatus == 'SUCCESS') {
+			   var mess = lang_add_success;
+			   var title = lang_confirm;
+			   var type = 'success';
+			   action = function(){location.reload();};
+		   } else {
+			   var mess = lang_add_fail;
+			   var title = lang_confirm;
+			   var type = 'danger';
+			   action = function(){location.href = '';};
+		   }
+   		   
 		   showMessageWithAction(title, mess, type, action, size);
 		  
 	   }, function(error){
 		   alert("The error occurs when Saving Invoice!!!" + error.statusText);
 	   });
 		
-	}
-	
-	function reloadPage() {
-		location.reload();
 	}
 	
 	// Call function when page loaded
