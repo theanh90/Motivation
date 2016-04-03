@@ -27,6 +27,15 @@
 		</div> <!-- end class col-sm content -->
 	</div> <!-- end class row -->
 	
+	<div class="row">
+		<div class="col-sm-3">
+			<input placeholder="From" type='text' class="form-control" id='start-timepicker' />
+		</div>
+		<div class="col-sm-3">
+			<input placeholder="To" type='text' class="form-control" id='end-timepicker' />
+		</div>
+	</div>
+	
 	<div id="list-template-div">
 		<table id="list-invoice"></table>		
 	</div>
@@ -42,7 +51,17 @@
 		});
 		
 		angular.element($('#template-div')).scope().getListProduct();
+		
+		$('#start-timepicker').datetimepicker({
+            sideBySide: true
+		});
+		
+		$('#end-timepicker').datetimepicker({
+            sideBySide: true
+		});
 	});
+	
+	
 	
 </script>
 </div>

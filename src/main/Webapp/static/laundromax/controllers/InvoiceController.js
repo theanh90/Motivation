@@ -44,13 +44,13 @@ mainApp.controller('InvoiceController', function($scope) {
 				title : 'Total price',
 				align : 'left',
 				valign : 'middle',
-				sortable : true
+				sortable : false
 			}, {
 				field : 'totalPay',
 				title : 'Total pay',
 				align : 'left',
 				valign : 'middle',
-				sortable : true
+				sortable : false
 			}, {
 				field : 'note',
 				title : 'Note',
@@ -62,13 +62,13 @@ mainApp.controller('InvoiceController', function($scope) {
 				title : 'Status',
 				align : 'right',
 				valign : 'middle',
-				sortable : false
+				sortable : true
 			}, {
 				field : 'dateCreate',
 				title : 'Date create',
 				align : 'right',
 				valign : 'middle',
-				sortable : false,
+				sortable : true,
 				formatter: dateFormatter
 			}]
 		
