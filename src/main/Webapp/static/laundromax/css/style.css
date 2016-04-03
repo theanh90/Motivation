@@ -107,6 +107,10 @@ body {
 	min-width: 130px;
 }
 
+#template-div div.row {
+	margin-top: 20px;
+}
+
 /* ----------- END for common page ------------ */
 
 /* for product page */

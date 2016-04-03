@@ -39,6 +39,9 @@
   		<link href="<c:url value='/static/sl2/select2.css'/>" rel="stylesheet">
 	  	<link href="<c:url value='/static/sl2/select2-bootstrap.css'/>" rel="stylesheet">
 	  	<script src="<c:url value='/static/sl2/select2.full.min.js'/>"> </script>
+	  	
+	  	<!-- Moment time library -->
+  		<script src="<c:url value='/static/moment/moment.js'/>"> </script> 
   		  		
   		<!-- My css -->
   		<link href="<c:url value='/static/laundromax/css/style.css'/>" rel="stylesheet">	

@@ -1,11 +1,14 @@
 package com.theanh.first.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
 import com.theanh.first.dao.InvoiceDao;
 import com.theanh.first.dao.InvoiceDetailsDao;
+import com.theanh.first.model.DataTableJson;
 import com.theanh.first.model.InvoiceDetailsModel;
 import com.theanh.first.model.InvoiceModel;
 import com.theanh.first.model.inmodel.InvoiceDetailsInModel;
@@ -69,6 +72,22 @@ public class InvoiceServiceImpl implements InvoiceService {
 			
 			invoiceDetailsDao.save(product);
 		}
+	}
+
+	@Override
+	public DataTableJson getListInvoiceCustomer(String sort, String order, Integer limit, int offset, 
+			String typeSearch, String textSearch) {
+		DataTableJson dataTableJson = new DataTableJson();
+		List<Object> lsObj = new ArrayList<>(); 
+		
+		lsObj = invoiceDao.getListInvoiceCustomer(sort, order, limit, offset, typeSearch, textSearch);		
+		
+		dataTableJson.setTotal((long)lsObj.get(lsObj.size() - 1));
+		lsObj.remove(lsObj.size() - 1);
+		dataTableJson.setStatus(DataTableJson.SUCCESS);
+		dataTableJson.setRows(lsObj);
+		
+		return dataTableJson;
 	}
 
 }

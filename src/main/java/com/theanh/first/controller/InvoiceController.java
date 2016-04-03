@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.theanh.first.model.DataTableJson;
 import com.theanh.first.model.JsonResponse;
 import com.theanh.first.model.inmodel.InvoiceInModel;
 import com.theanh.first.service.InvoiceService;
@@ -20,6 +22,27 @@ import com.theanh.first.service.InvoiceService;
 public class InvoiceController extends BaseController {
 	@Autowired
 	private InvoiceService invoiceService;
+	
+	@ResponseBody
+	@RequestMapping(value = "/list", method = RequestMethod.GET, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public DataTableJson getListProduct(HttpServletRequest request, @RequestParam(value = "sort", required = false) String sort,
+			@RequestParam String order, @RequestParam(value = "limit", required = false) Integer limit, @RequestParam int offset, 
+			@RequestParam String typeSearch, @RequestParam String textSearch) {		
+		DataTableJson dataTableJson;
+		
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			dataTableJson = invoiceService.getListInvoiceCustomer(sort, order, limit, offset, typeSearch, textSearch);
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			dataTableJson = new DataTableJson(DataTableJson.ERROR, "Fail to load list Product");
+		}
+		
+		return dataTableJson;
+	}
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, headers = {

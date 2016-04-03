@@ -50,7 +50,7 @@ public class ProductDaoImpl extends AbstractDao<Integer, ProductModel> implement
 		}
 		SQLQuery query = this.getSession().createSQLQuery(sql); 
 		
-		if ("id".equals(typeSearch)) {
+		if ("id".equals(typeSearch) && (textSearch != null && textSearch != "")) {
 			Integer id = 0;
 			try {
 				id = Integer.parseInt(textSearch);

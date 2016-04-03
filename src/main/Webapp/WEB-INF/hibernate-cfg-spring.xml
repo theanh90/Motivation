@@ -33,6 +33,7 @@
 				<value>com.theanh.first.model.InvoiceModel</value>
 				<value>com.theanh.first.model.InvoiceDetailsModel</value>
 				<value>com.theanh.first.model.InvoiceHistoryModel</value>
+				<value>com.theanh.first.model.InvoiceCustomerViewModel</value>
 			</list>
 		</property>
 

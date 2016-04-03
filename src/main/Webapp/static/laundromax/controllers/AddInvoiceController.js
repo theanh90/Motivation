@@ -387,9 +387,9 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		
 		$scope.invoice_info.totalPay = $scope.invoice_info.totalPay ? $scope.invoice_info.totalPay : 0;
 		
-		tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_total + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPrice * $scope.isExpress) + ' VND </td> </tr>';
+		tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_total + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalCalculated) + ' VND </td> </tr>';
 		tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_paid_upfront + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPay) + ' VND </td> </tr>';
-		tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_due_amount + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalPrice * $scope.isExpress - $scope.invoice_info.totalPay) + ' VND </td> </tr>';
+		tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_due_amount + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice_info.totalCalculated - $scope.invoice_info.totalPay) + ' VND </td> </tr>';
 		
 		tbl_total.html(tbl_total_html);
 		
