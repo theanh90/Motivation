@@ -9,16 +9,28 @@
 			<div>				
 				<div class="input-group">				
 		            <div class="input-group-btn">
-	            		<select style="width: 120px" id="search-invoice-select" ng-model="search.type">
+	            		<select ng-change="searchInvoiceChange()" style="width: 120px" id="search-invoice-select" ng-model="search.type">
 	            		  <option value="all" selected="selected"><spring:message code='customer.search.all' text='all' /></option>
+	            		  <option value="status">Status</option>
 						  <option value="name"><spring:message code='invoice.name' text='name' /></option>
 						  <option value="note"><spring:message code='product.note' text='note' /></option>
 						  <option value="date"><spring:message code='invoice.date' text='date' /></option>
 						  <option value="id"><spring:message code='common.id' text='id' /></option>
 						</select>
 		            </div>
-					<input type="text" class="form-control" placeholder="<spring:message code='customer.search.inputSearch' text='Input search' />" 
+					<input id="invoice-search-input" type="text" class="form-control" placeholder="<spring:message code='customer.search.inputSearch' text='Input search' />" 
 						ng-model="search.input">
+						
+					<div style="display: none" id="invoice-status-search-div">
+						<select style="width: 120px" id="invoice-status-search" ng-model="search.status_type">
+	            		  <option value="all" selected="selected"><spring:message code='customer.search.all' text='all' /></option>
+	            		  <option value="1">New</option>
+						  <option value="2">Sent partner</option>
+						  <option value="3">Receive partner</option>
+						  <option value="4">Delivery</option>
+						</select>
+					</div>
+					
 					<div class="input-group-btn">
 		            	<button type="button" ng-click="doSearch()" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
 		            </div>
@@ -29,10 +41,10 @@
 	
 	<div class="row">
 		<div class="col-sm-3">
-			<input placeholder="From" type='text' class="form-control" id='start-timepicker' />
+			<input placeholder='From' type='text' class='form-control' id='from-timepicker'/>
 		</div>
 		<div class="col-sm-3">
-			<input placeholder="To" type='text' class="form-control" id='end-timepicker' />
+			<input placeholder='To' type='text' class='form-control' id='to-timepicker'/>
 		</div>
 	</div>
 	
@@ -50,14 +62,16 @@
 			theme: "bootstrap"
 		});
 		
-		angular.element($('#template-div')).scope().getListProduct();
-		
-		$('#start-timepicker').datetimepicker({
-            sideBySide: true
+		$('#invoice-status-search').select2({
+			theme: "bootstrap"	
 		});
 		
-		$('#end-timepicker').datetimepicker({
-            sideBySide: true
+		angular.element($('#template-div')).scope().getListProduct();
+		
+		$('#from-timepicker').datetimepicker({
+		});
+		
+		$('#to-timepicker').datetimepicker({
 		});
 	});
 	
