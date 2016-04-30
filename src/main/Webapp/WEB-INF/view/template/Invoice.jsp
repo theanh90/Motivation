@@ -23,7 +23,6 @@
 						
 					<div style="display: none" id="invoice-status-search-div">
 						<select style="width: 150px" id="invoice-status-search" ng-model="search.status_type">
-	            		  <%-- <option value="0" selected="selected"><spring:message code='customer.search.all' text='all' /></option> --%>
 	            		  <option value="1">New</option>
 						  <option value="2">Sent partner</option>
 						  <option value="3">Receive partner</option>
