@@ -1,6 +1,9 @@
 package com.theanh.first.dao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -10,29 +13,34 @@ import com.theanh.first.model.InvoiceModel;
 
 @Repository("invoiceDao")
 public class InvoiceDaoImpl extends AbstractDao<Integer, InvoiceModel> implements InvoiceDao{
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/YYYY");
 
 	@Override
-	public List<Object> getListInvoiceCustomer(String sort, String order, int limit, int offset, String typeSearch, String textSearch) {		
+	public List<Object> getListInvoiceCustomer(String sort, String order, int limit, int offset, String typeSearch, 
+			String textSearch, Integer statusType, Long from, Long to) throws ParseException {		
 		List<Object> lsResult = new ArrayList<>();
 		String sql = "FROM InvoiceCustomerViewModel WHERE 1=1 ";
 		String condition = "";
-		if (textSearch != null && textSearch != "") {
+		
+		if ("status".equals(typeSearch)) {
+			condition += " AND lastStatus = :statusType ";
+		} else if (textSearch != null && textSearch != "") {
 			if ("all".equals(typeSearch)) {
-				condition += " and ( ";
-				condition += "name like :textSearch ";
-//				condition += "or phone like :textSearch ";
-//				condition += "or email like :textSearch ";
-//				condition += "or address like :textSearch ";
-				condition += "or note like :textSearch ";
+				condition += " AND ( ";
+				condition += "name LIKE :textSearch ";
+				condition += "OR note LIKE :textSearch ";
 				condition += ") ";
 			} else if ("id".equals(typeSearch)) {
-				condition += " and inId = :textSearch ";
-			} else if ("date".equals(typeSearch)) {
-				// handle for date search
+				condition += " AND inId = :textSearch ";
 			} else {
-				condition += "and " + typeSearch + " like :textSearch ";
+				condition += "AND  " + typeSearch + " like :textSearch ";
 			}		
 		}
+		if (from != null || to != null) {
+			condition += "AND dateCreate BETWEEN :from and :to ";			
+		}
+		
 		condition += "and active = 1 ";
 		
 		sql += condition;
@@ -41,7 +49,9 @@ public class InvoiceDaoImpl extends AbstractDao<Integer, InvoiceModel> implement
 		}
 		Query query = this.getSession().createQuery(sql); 
 		
-		if ("id".equals(typeSearch) && (textSearch != null && textSearch != "")){
+		if ("status".equals(typeSearch)) {
+			query.setParameter("statusType", statusType);
+		} else if ("id".equals(typeSearch) && (textSearch != null && textSearch != "")){
 			Integer id = 0;
 			try {
 				id = Integer.parseInt(textSearch);
@@ -52,6 +62,20 @@ public class InvoiceDaoImpl extends AbstractDao<Integer, InvoiceModel> implement
 			query.setParameter("textSearch", id);
 		} else if (textSearch != null && textSearch != "") {
 			query.setParameter("textSearch", "%" + textSearch + "%");
+		}
+		
+		if (from != null || to != null) {
+			if (from != null && to != null) {
+				query.setDate("from", new Date(from * 1000));
+				query.setDate("to", new Date((to + 86399) * 1000));
+			} else if (from != null) {
+				query.setDate("from", new Date(from * 1000));
+				query.setDate("to", new Date((from + 86399) * 1000));
+			} else {
+				query.setDate("from", new Date(to * 1000));
+				query.setDate("to", new Date((to + 86399) * 1000));
+			}
+			
 		}
 		
 		Long totalRow = (long)query.list().size();

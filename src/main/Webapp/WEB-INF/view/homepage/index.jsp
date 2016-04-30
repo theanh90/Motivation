@@ -31,7 +31,7 @@
   		<link href="<c:url value='/static/bootstrap-dialog/bootstrap-dialog.min.css'/>" rel="stylesheet">		
   		<script src="<c:url value='/static/bootstrap-dialog/bootstrap-dialog.min.js'/>"> </script>
   		
-  		<!-- Bootstrap-from-helper -->
+  		<!-- Bootstrap-form-helper -->
 		<link href="<c:url value='/static/bootstrap-form-helper/css/bootstrap-formhelpers.min.css'/>" rel="stylesheet">		
   		<script src="<c:url value='/static/bootstrap-form-helper/js/bootstrap-formhelpers.min.js'/>"> </script>
   	  		

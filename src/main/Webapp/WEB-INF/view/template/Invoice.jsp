@@ -14,7 +14,7 @@
 	            		  <option value="status">Status</option>
 						  <option value="name"><spring:message code='invoice.name' text='name' /></option>
 						  <option value="note"><spring:message code='product.note' text='note' /></option>
-						  <option value="date"><spring:message code='invoice.date' text='date' /></option>
+						  <%-- <option value="date"><spring:message code='invoice.date' text='date' /></option> --%>
 						  <option value="id"><spring:message code='common.id' text='id' /></option>
 						</select>
 		            </div>
@@ -22,8 +22,8 @@
 						ng-model="search.input">
 						
 					<div style="display: none" id="invoice-status-search-div">
-						<select style="width: 120px" id="invoice-status-search" ng-model="search.status_type">
-	            		  <option value="all" selected="selected"><spring:message code='customer.search.all' text='all' /></option>
+						<select style="width: 150px" id="invoice-status-search" ng-model="search.status_type">
+	            		  <%-- <option value="0" selected="selected"><spring:message code='customer.search.all' text='all' /></option> --%>
 	            		  <option value="1">New</option>
 						  <option value="2">Sent partner</option>
 						  <option value="3">Receive partner</option>
@@ -69,9 +69,13 @@
 		angular.element($('#template-div')).scope().getListProduct();
 		
 		$('#from-timepicker').datetimepicker({
+			 format: 'DD/MM/YYYY',
+			 showClear: true
 		});
 		
 		$('#to-timepicker').datetimepicker({
+			format: 'DD/MM/YYYY',
+			showClear: true
 		});
 	});
 	

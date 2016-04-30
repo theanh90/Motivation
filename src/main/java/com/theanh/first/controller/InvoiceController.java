@@ -28,14 +28,15 @@ public class InvoiceController extends BaseController {
 			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
 	public DataTableJson getListProduct(HttpServletRequest request, @RequestParam(value = "sort", required = false) String sort,
 			@RequestParam String order, @RequestParam(value = "limit", required = false) Integer limit, @RequestParam int offset, 
-			@RequestParam String typeSearch, @RequestParam String textSearch) {		
+			@RequestParam String typeSearch, @RequestParam String textSearch, @RequestParam(value = "from", required = false) Long from,
+			@RequestParam(value = "to", required = false) Long to, @RequestParam(value = "statusType", required = false) Integer statusType) {		
 		DataTableJson dataTableJson;
 		
 		if (!this.hasLogin())
 			return null;
 		
 		try {
-			dataTableJson = invoiceService.getListInvoiceCustomer(sort, order, limit, offset, typeSearch, textSearch);
+			dataTableJson = invoiceService.getListInvoiceCustomer(sort, order, limit, offset, typeSearch, textSearch, statusType, from, to);
 		}catch (Exception ex) {
 			ex.printStackTrace();
 			dataTableJson = new DataTableJson(DataTableJson.ERROR, "Fail to load list Product");

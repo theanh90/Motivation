@@ -120,26 +120,28 @@ mainApp.controller('InvoiceController', function($scope) {
     
     function dateFormatter(value, row, index) {
     	var date = moment(value);
-    	return date.format("DD-MM-YYYY, HH:mm:ss");
+    	return date.format("DD/MM/YYYY - HH:mm:ss");
     }
    
     function queryParams(params) {	   
-    	$scope.search.type = !$scope.search.type ? "" : $scope.search.type;
+    	$scope.search.type = !$scope.search.type ? "all" : $scope.search.type;
     	$scope.search.input = !$scope.search.input ? "" : $scope.search.input;
 	   
     	params.typeSearch = $scope.search.type;
     	params.textSearch = $scope.search.input;
-    	params.from = $('#from-timepicker').val();
-    	var xx = moment(params.from);
-    	var ff = xx.unix();
-    	var yy = moment.utc(params.from);
-    	var zz = yy.unix();
-    	params.to = $('#to-timepicker').val();
-	   
-    	console.log(moment.locale()); 
+    	
+    	var from_time = $('#from-timepicker').val();
+    	var to_time = $('#to-timepicker').val();
+    	
+    	if (from_time) {
+        	params.from = moment.utc(from_time, 'DD/MM/YYYY').unix();  
+    	} 
+    	if (to_time) {
+        	params.to = moment.utc(to_time, 'DD/MM/YYYY').unix();  
+    	}
+    	params.statusType = $scope.search.status_type;
     	
     	return params;
-    	console.log(params);
     }
     
     

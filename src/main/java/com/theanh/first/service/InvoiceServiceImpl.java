@@ -1,5 +1,6 @@
 package com.theanh.first.service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -76,11 +77,11 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 	@Override
 	public DataTableJson getListInvoiceCustomer(String sort, String order, Integer limit, int offset, 
-			String typeSearch, String textSearch) {
+			String typeSearch, String textSearch, Integer statusType, Long from, Long to) throws ParseException {
 		DataTableJson dataTableJson = new DataTableJson();
 		List<Object> lsObj = new ArrayList<>(); 
 		
-		lsObj = invoiceDao.getListInvoiceCustomer(sort, order, limit, offset, typeSearch, textSearch);		
+		lsObj = invoiceDao.getListInvoiceCustomer(sort, order, limit, offset, typeSearch, textSearch, statusType, from, to);		
 		
 		dataTableJson.setTotal((long)lsObj.get(lsObj.size() - 1));
 		lsObj.remove(lsObj.size() - 1);
