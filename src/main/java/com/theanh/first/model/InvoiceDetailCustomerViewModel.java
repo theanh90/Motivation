@@ -78,6 +78,12 @@ public class InvoiceDetailCustomerViewModel implements Serializable {
 
 	@Column(name = "CUSTOMERACTIVE")
 	private Integer customerActive;
+	
+	@Column(name = "ENNAME")
+	private String enName;
+	
+	@Column(name = "VNNAME")
+	private String vnName;
 
 	public InvoiceDetailCustomerViewModelId getId() {
 		return id;
@@ -251,6 +257,22 @@ public class InvoiceDetailCustomerViewModel implements Serializable {
 		return serialVersionUID;
 	}
 
+	public String getEnName() {
+		return enName;
+	}
+
+	public void setEnName(String enName) {
+		this.enName = enName;
+	}
+
+	public String getVnName() {
+		return vnName;
+	}
+
+	public void setVnName(String vnName) {
+		this.vnName = vnName;
+	}
+
 	@Override
 	public String toString() {
 		return "InvoiceDetailCustomerViewModel [id=" + id + ", datecreate=" + datecreate + ", totalPrice=" + totalPrice
@@ -258,10 +280,9 @@ public class InvoiceDetailCustomerViewModel implements Serializable {
 				+ ", invoiceNote=" + invoiceNote + ", lastStatus=" + lastStatus + ", invoiceActive=" + invoiceActive
 				+ ", pid=" + pid + ", unitPrice=" + unitPrice + ", typePrice=" + typePrice + ", quantity=" + quantity
 				+ ", cid=" + cid + ", name=" + name + ", phone=" + phone + ", email=" + email + ", address=" + address
-				+ ", customerNote=" + customerNote + ", customerActive=" + customerActive + "]";
+				+ ", customerNote=" + customerNote + ", customerActive=" + customerActive + ", enName=" + enName
+				+ ", vnName=" + vnName + "]";
 	}
-	
-	
-	
+
 	
 }

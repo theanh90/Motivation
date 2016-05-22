@@ -12,10 +12,13 @@ ORDER BY I.DateCreate DESC
 CREATE OR REPLACE VIEW InvoiceDetailCustomerView AS
 SELECT I.InId, I.DateCreate, I.TotalPrice, I.TotalPay, I.Vat, I.Discount, I.IsExpress, I.Note InvoiceNote, I.LastStatus, I.Active InvoiceActive,
 		D.Did, D.Pid, D.UnitPrice, D.TypePrice, D.Quantity,
-		C.CID, C.Name, C.Phone, C.Email, C.Address, C.Note CustomerNote, C.Active CustomerActive
+		C.CID, C.Name, C.Phone, C.Email, C.Address, C.Note CustomerNote, C.Active CustomerActive,
+        P.EnName, P.VnName
 FROM INVOICE I
 	INNER JOIN INVOICEDETAILS D
     	ON I.InId = D.InId
     INNER JOIN CUSTOMER C
-    	ON I.Cid = C.CID  
+    	ON I.Cid = C.CID
+    INNER JOIN PRODUCT P
+    	ON D.Pid = P.PID
 ORDER BY I.InId  DESC
