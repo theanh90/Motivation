@@ -28,6 +28,11 @@ public class TemplateController extends BaseController {
 		return "template/InvoiceAdd";
 	}
 	
+	@RequestMapping(value = "/viewinvoice", method = RequestMethod.GET)
+	public String invoiceViewPage() {
+		return "template/InvoiceView";
+	}
+	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String testPage() {
 		return "template/Test";

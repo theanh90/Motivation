@@ -9,6 +9,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import com.theanh.first.model.InvoiceDetailCustomerViewModel;
 import com.theanh.first.model.InvoiceModel;
 
 @Repository("invoiceDao")
@@ -86,6 +87,18 @@ public class InvoiceDaoImpl extends AbstractDao<Integer, InvoiceModel> implement
 		lsResult.add(totalRow);
 		
 		return lsResult;
+	}
+
+	@Override
+	public List<InvoiceDetailCustomerViewModel> getById(Integer id) {
+		List<InvoiceDetailCustomerViewModel> results = new ArrayList<>();
+		String sql = "from InvoiceDetailCustomerViewModel where id.inId = :id ";
+		Query query = this.getSession().createQuery(sql);
+		
+		query.setParameter("id", id);		
+		results = query.list();
+		
+		return results;
 	}
 	
 

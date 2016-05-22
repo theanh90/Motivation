@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.theanh.first.dao.InvoiceDao;
 import com.theanh.first.dao.InvoiceDetailsDao;
 import com.theanh.first.model.DataTableJson;
+import com.theanh.first.model.InvoiceDetailCustomerViewModel;
 import com.theanh.first.model.InvoiceDetailsModel;
 import com.theanh.first.model.InvoiceModel;
 import com.theanh.first.model.inmodel.InvoiceDetailsInModel;
@@ -89,6 +90,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 		dataTableJson.setRows(lsObj);
 		
 		return dataTableJson;
+	}
+
+	@Override
+	public List<InvoiceDetailCustomerViewModel> getById(Integer id) {
+		return invoiceDao.getById(id);
+		
 	}
 
 }

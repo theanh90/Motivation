@@ -58,7 +58,7 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 					   
 					   row = '';
 					   
-					   row += '<tr pid="' + data.pid + '">';
+					   row += '<tr qtt-value="" pid="' + data.pid + '">';
 					   row += 		'<td>' + data.vnName + ' (' + data.enName + ')' + '</td>';
 					   
 					   row += 		'<td price="' + data.laundry + '" id="' + data.pid + '_laundry_price' + '" class="price">' + changeNumberFormat(data.laundry) + '</td>';
@@ -89,14 +89,19 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		var pid = row.attr('pid');
 		var qtt = $(element).val();
 		
+		row_qtt = $('#' + pid + '_laundry').val() + $('#' + pid + '_dryclean').val() + $('#' + pid + '_pressonly').val(); 
+		
 		if (qtt > 0) {
 			// disable 2 other input
 			row.addClass('selected-pro-row');			
-			$scope.disableInputElement(pid, price_type);
+//			$scope.disableInputElement(pid, price_type);
 		} else if (qtt == 0) {
 			// enable 2 other input
-			row.removeClass('selected-pro-row');
-			$scope.enableInputElement(pid);
+			$('#' + pid + price_type).val('');
+			if (row_qtt == 0) {
+				row.removeClass('selected-pro-row');				
+			}
+//			$scope.enableInputElement(pid);
 		} else {
 			$(element).val(0);
 			return false;
@@ -104,7 +109,7 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		
 		// remove old value to avoid duplicate product id
 		for (var i=0; i<$scope.list_product.length; i++) {
-			if ($scope.list_product[i].pid == pid) {
+			if ($scope.list_product[i].pid == pid && $scope.list_product[i].price_type == price_type) {
 				$scope.list_product.splice(i, 1);
 				break;
 			}
@@ -230,7 +235,7 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 	$scope.express_wash = function() {
 		if ($scope.cbk.express_wash) {
 			$scope.invoice_info.express_wash = 1;
-			$scope.isExpress = 2;
+			$scope.isExpress = 1.5;
 			$('#express-li').addClass('blue-background');
 		} else {
 			$scope.invoice_info.express_wash = 0;

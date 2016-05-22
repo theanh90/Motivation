@@ -49,41 +49,52 @@ mainApp.controller('InvoiceController', function($scope) {
 				align : 'center',
 				valign : 'center',
 				sortable : true,
-				width : '50px'
+				width : '50px',
+				formatter : invoiceIdFormatter
 			},{
 				field: 'name',
-				title : 'Cus name',
+				title : lang_customer,
 				align : 'left',
 				valign : 'middle',
 				sortable : true
 			}, {
-				field : 'totalPrice',
-				title : 'Total price',
+				field : 'note',
+				title : lang_note,
 				align : 'left',
 				valign : 'middle',
-				sortable : false
+				sortable : false	
+			}, {
+				field : 'totalPrice',
+				title : lang_totalPrice,
+				align : 'right',
+				valign : 'middle',
+				sortable : true,
+				formatter : numberFormatter
 			}, {
 				field : 'totalPay',
-				title : 'Total pay',
-				align : 'left',
+				title : lang_totalPay,
+				align : 'right',
 				valign : 'middle',
-				sortable : false
+				sortable : false,
+				formatter : numberFormatter
 			}, {
-				field : 'note',
-				title : 'Note',
-				align : 'left',
+				field : '',
+				title : lang_dueAmount,
+				align : 'right',
 				valign : 'middle',
-				sortable : false			
+				sortable : false,
+				formatter : dueAmountFormatter,
+				cellStyle : dueAmountCellStyle
 			}, {
 				field : 'lastStatus',
-				title : 'Status',
+				title : lang_status,
 				align : 'center',
 				valign : 'middle',
 				sortable : true,
 				formatter: statusFormatter
 			}, {
 				field : 'dateCreate',
-				title : 'Date create',
+				title : lang_createdDate,
 				align : 'right',
 				valign : 'middle',
 				sortable : true,
@@ -93,6 +104,30 @@ mainApp.controller('InvoiceController', function($scope) {
 			}).on('load-success.bs.table', function(e, data) {
 				$scope.data = data.rows;
 		});
+    }
+    
+    function invoiceIdFormatter(value, row, index) {
+    	var curr_url = window.location.href;
+    	return '<a href="' + curr_url + '/viewinvoice/' +value + '">' + value + '</a>';
+    }
+    
+    function dueAmountCellStyle(value, row, index) {
+    	if (value == 0) {
+    		return {
+        		css: {"color": "blue"}
+    	    }; 
+    	}
+    	return value;
+    }
+    
+    function dueAmountFormatter(value, row, index) {
+    	var result = row.totalPrice - row.totalPay;
+    	if (result == 0) {
+    		return changeNumberFormat(result);
+    	} else {
+    		return changeNumberFormat(result);
+    	}
+    	
     }
     
     function statusFormatter(value, row, index) {
@@ -121,6 +156,10 @@ mainApp.controller('InvoiceController', function($scope) {
     function dateFormatter(value, row, index) {
     	var date = moment(value);
     	return date.format("DD/MM/YYYY - HH:mm:ss");
+    }
+    
+    function numberFormatter(value, row, index) {
+    	return changeNumberFormat(value);
     }
    
     function queryParams(params) {	   

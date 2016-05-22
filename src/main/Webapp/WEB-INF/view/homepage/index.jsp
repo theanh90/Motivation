@@ -108,6 +108,9 @@
    		</script>
    		<script type = "text/ng-template" id = "invoice/addinvoice">		
 			<div ng-include src="'<c:url value='/template/angular/addinvoice' />'"></div>	
+   		</script>   		
+   		<script type = "text/ng-template" id = "invoice/viewinvoice">		
+			<div ng-include src="'<c:url value='/template/angular/viewinvoice' />'"></div>	
    		</script>
 		
 		
@@ -176,6 +179,7 @@
 		<script src="<c:url value='/static/laundromax/controllers/HomeController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/controllers/InvoiceController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/controllers/AddInvoiceController.js' />"></script>
+		<script src="<c:url value='/static/laundromax/controllers/ViewInvoiceController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/controllers/ProductController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/common.js' />"></script>
 		

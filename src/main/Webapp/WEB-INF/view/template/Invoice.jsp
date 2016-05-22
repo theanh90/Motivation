@@ -11,10 +11,9 @@
 		            <div class="input-group-btn">
 	            		<select ng-change="searchInvoiceChange()" style="width: 120px" id="search-invoice-select" ng-model="search.type">
 	            		  <option value="all" selected="selected"><spring:message code='customer.search.all' text='all' /></option>
-	            		  <option value="status">Status</option>
+	            		  <option value="status"><spring:message code='invoice.status' text='status' /></option>
 						  <option value="name"><spring:message code='invoice.name' text='name' /></option>
 						  <option value="note"><spring:message code='product.note' text='note' /></option>
-						  <%-- <option value="date"><spring:message code='invoice.date' text='date' /></option> --%>
 						  <option value="id"><spring:message code='common.id' text='id' /></option>
 						</select>
 		            </div>
@@ -23,10 +22,13 @@
 						
 					<div style="display: none" id="invoice-status-search-div">
 						<select style="width: 150px" id="invoice-status-search" ng-model="search.status_type">
-	            		  <option value="1">New</option>
-						  <option value="2">Sent partner</option>
-						  <option value="3">Receive partner</option>
-						  <option value="4">Delivery</option>
+	            		  <option value="1"><spring:message code='invoice.status.new' text='new' /></option>
+	            		  <option value="2"><spring:message code='invoice.status.confirmed' text='confirmed' /></option>
+						  <option value="3"><spring:message code='invoice.status.sendPartner' text='send partner' /></option>
+						  <option value="4"><spring:message code='invoice.status.receivePartner' text='receive partner' /></option>
+						  <option value="5"><spring:message code='invoice.status.delivery' text='delivery' /></option>
+						  <%-- <option value="6"><spring:message code='invoice.status.requestCancel' text='request cancel' /></option> --%>
+						  <option value="7"><spring:message code='invoice.status.cancel' text='cancel' /></option>
 						</select>
 					</div>
 					
@@ -54,6 +56,16 @@
 	
 	
 <script type="text/javascript">
+
+	/* language variable */
+	var lang_customer = "<spring:message code='menunav.customer' text='customer' />";
+	var lang_note = "<spring:message code='customer.note' text='note' />";
+	var lang_totalPrice = "<spring:message code='invoice.totalPrice' text='total price' />";
+	var lang_totalPay = "<spring:message code='invoice.totalPay' text='total pay' />";
+	var lang_dueAmount = "<spring:message code='invoice.dueAmount' text='due amount' />";
+	var lang_status = "<spring:message code='invoice.status' text='status' />";
+	var lang_createdDate = "<spring:message code='invoice.createdDate' text='created date' />";
+
 	$(document).ready(function(){
 		activeCurrentMenu();
 		
@@ -77,8 +89,7 @@
 			showClear: true
 		});
 	});
-	
-	
+
 	
 </script>
 </div>

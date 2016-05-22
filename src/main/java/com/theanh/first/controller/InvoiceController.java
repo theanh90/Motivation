@@ -1,5 +1,6 @@
 package com.theanh.first.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.theanh.first.model.DataTableJson;
+import com.theanh.first.model.InvoiceDetailCustomerViewModel;
 import com.theanh.first.model.JsonResponse;
 import com.theanh.first.model.inmodel.InvoiceInModel;
 import com.theanh.first.service.InvoiceService;
@@ -53,15 +55,35 @@ public class InvoiceController extends BaseController {
 		if (!this.hasLogin())
 			return null;
 		
-		try {
-			System.out.println("da vao controller");
-			
+		try {			
 			invoiceService.save(data.get("invoice"));
 			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Save Invoice successfully!", null);
 			logger.info("Save Invoice successfully");
 		}catch (Exception ex) {
 			ex.printStackTrace();
 			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to save Invoice!", null);
+		}
+		
+		return jsonResponse;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getbyid", method = RequestMethod.GET, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public JsonResponse getInvoiceById(HttpServletRequest request, @RequestParam Integer id) {
+		JsonResponse jsonResponse;
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			List<InvoiceDetailCustomerViewModel> results = invoiceService.getById(id);
+			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get Invoice successfully!", null);
+			jsonResponse.setData(results);
+			
+			logger.info("Get Invoice successfully");
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get Invoice!", null);
 		}
 		
 		return jsonResponse;

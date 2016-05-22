@@ -344,19 +344,22 @@ mainApp.controller('ProductController', function($scope, $http) {
 					title : lang_laundry,
 					align : 'right',
 					valign : 'middle',
-					sortable : false
+					sortable : false,
+					formatter : numberFormatter
 				}, {
 					field : 'dryclean',
 					title : lang_dryclean,
 					align : 'right',
 					valign : 'middle',
-					sortable : false
+					sortable : false,
+					formatter : numberFormatter
 				}, {
 					field : 'pressonly',
 					title : lang_pressonly,
 					align : 'right',
 					valign : 'middle',
-					sortable : false
+					sortable : false,
+					formatter : numberFormatter
 				}, {
 					title : lang_action,
 					align : 'center',
@@ -369,6 +372,10 @@ mainApp.controller('ProductController', function($scope, $http) {
 					$scope.data = data.rows;
 			});
 		}
+	   
+	    function numberFormatter(value, row, index) {
+	    	return changeNumberFormat(value);
+	    }
 	   
 	   function queryParams(params) {	   
 		   $scope.search.type = !$scope.search.type ? "" : $scope.search.type;

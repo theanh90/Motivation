@@ -1,12 +1,11 @@
 var mainApp = angular.module("mainApp", ['ngRoute']);
 
 mainApp.config(['$routeProvider', function($routeProvider) {
-   $routeProvider.
-   
+   $routeProvider.   
    when('/home', {
       templateUrl: 'home', 
       controller: 'HomeController'
-   }).
+   }).   
    
    when('/customer', {
 	  templateUrl: 'customer', 
@@ -26,6 +25,11 @@ mainApp.config(['$routeProvider', function($routeProvider) {
    when('/invoice/addinvoice', {
       templateUrl: 'invoice/addinvoice', 
       controller: 'AddInvoiceController'
+   }).
+   
+   when('/invoice/viewinvoice/:id', {
+      templateUrl: 'invoice/viewinvoice', 
+      controller: 'ViewInvoiceController'
    });
    
 //   otherwise({
