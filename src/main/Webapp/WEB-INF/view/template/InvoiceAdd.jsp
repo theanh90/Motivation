@@ -170,8 +170,7 @@
 		var lang_confirm = '<spring:message code="common.confirm" text="confirm" />';
 		var lang_validate_missing = '<spring:message code="invoice.validate.miss" text="information is missing" />';
 		var lang_discount = '<spring:message code="invoice.discount" text="discount" />';
-		var lang_vat = '<spring:message code="invoice.vat" text="vat" />';
-		
+		var lang_vat = '<spring:message code="invoice.vat" text="vat" />';		
 		var lang_error_get = '<spring:message code="invoice.error.product.get" text="error when get list product" />';
 	
 		$(document).ready(function(){			

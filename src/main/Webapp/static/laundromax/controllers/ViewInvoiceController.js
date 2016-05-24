@@ -9,7 +9,6 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route) {
 		   })
 		   .then(function(response){
 		   		if (response.data.returnStatus == 'SUCCESS') {
-				  	console.log(response);
 				  	$scope.invoice = response.data.data;
 				  	console.log($scope.invoice);
 				  	
@@ -45,22 +44,24 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route) {
 					var tbl_total_html = '';
 					
 					if ($scope.invoice[0].isExpress) {
-						tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_express + '</td> <td class="cus-number"><i class="fa fa-check-square-o"></td> </tr>';
+						tbl_total_html += '<tr> <td class="c-bold">' + lang_express + '</td> <td class="cus-number"><i class="fa fa-check-square-o"></td> </tr>';
 					}
 					if ($scope.invoice[0].discount) {
-						tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_discount + '</td> <td class="cus-number">' + $scope.invoice[0].discount + '% </td> </tr>';
+						tbl_total_html += '<tr> <td class="c-bold">' + lang_discount + '</td> <td class="cus-number">' + $scope.invoice[0].discount + '% </td> </tr>';
 					}
 					if ($scope.invoice[0].vat) {
-						tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_vat + '</td> <td class="cus-number"><i class="fa fa-check-square-o"></td> </tr>';
+						tbl_total_html += '<tr> <td class="c-bold">' + lang_vat + '</td> <td class="cus-number"><i class="fa fa-check-square-o"></td> </tr>';
 					}
 										
-					tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_total + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice) + ' VND </td> </tr>';
-					tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_paid_upfront + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPay) + ' VND </td> </tr>';
-					tbl_total_html += '<tr> <td style="font-weight: bold">' + lang_due_amount + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay) + ' VND </td> </tr>';
+					tbl_total_html += '<tr> <td class="c-bold">' + lang_total + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice) + ' VND </td> </tr>';
+					tbl_total_html += '<tr> <td class="c-bold">' + lang_paid_upfront + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPay) + ' VND </td> </tr>';
+					tbl_total_html += '<tr> <td class="c-bold">' + lang_due_amount + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay) + ' VND </td> </tr>';
 					
 					tbl_total.html(tbl_total_html);
+					$('#h-invoiceid').html(($('#h-invoiceid').html() + ' #' + $scope.invoice[0].id.inId));
+					$('#invoice-note').html('<span class="c-bold">' + lang_note + ': </span>' + ($scope.invoice[0].invoiceNote ? $scope.invoice[0].invoiceNote : ''));
 					
-			  }else {
+			  } else {
 //				  var mess = lang_get_fail;
 				  var type = 'ERROR';
 				  showConfirmModal(mess, type);				  
@@ -72,5 +73,5 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route) {
 	}
 	
 	// call function on loaded
-	$scope.getInvoice();
+	//	$scope.getInvoice();
 });

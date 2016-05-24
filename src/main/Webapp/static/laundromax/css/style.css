@@ -51,6 +51,14 @@ body {
 }
 
 /* ------------------- for common page ------------------- */
+.c-hidden {
+	display: none !important;
+}
+
+.c-bold {
+	font-weight: bold !important;
+}
+
 /* ------ for customer page ------ */
 .laundromax-view .modal-header {
 	background-color: #23c6c8;
@@ -208,6 +216,10 @@ body {
 .col-total .totalpay-span input {
 	width: 80%;
 	text-align: right;
+}
+
+#invoice-note {
+	padding: 10px !important;
 }
 
 

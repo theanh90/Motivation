@@ -4,7 +4,8 @@
 
 <div id="template-div" class="view-invoice-view">
 	<div class="row">
-		<h1>Invoice view</h1>
+		<div class="col-sm-8">
+		<h3 id="h-invoiceid"><spring:message code='invoice.numberid' text='invoiceid' /></h3>
 		
 		<div class="panel panel-default table-responsive">
 	    	<table id="invoice-view-tbl" class="table bootstrap-table">
@@ -20,11 +21,16 @@
 	    	</table>
 		</div> <!-- end panel-default -->  
 		
+		<div id="invoice-note" class="panel panel-default table-responsive">
+		    abcxxx
+		</div> <!-- end panel-default -->
+		
 		<div class="panel panel-default table-responsive">
 		    <table id="invoice-view-total" class="table bootstrap-table">
 	    	</table>
 		</div> <!-- end panel-default --> 
 		
+		</div> <!-- end col-sm-8 -->
 	</div>
 	
 	<script type="text/javascript">
@@ -38,9 +44,10 @@
 		var lang_total = '<spring:message code="invoice.total" text="total" />';
 		var lang_paid_upfront = '<spring:message code="invoice.paidUpfront" text="paid upfront" />';
 		var lang_due_amount = '<spring:message code="invoice.dueAmount" text="due amount" />';
+		var lang_note = '<spring:message code="product.note" text="Note" />';
 		
 		$(document).ready(function(){
-			
+			angular.element($('#template-div')).scope().getInvoice();
 		});
 	</script>
 </div>
