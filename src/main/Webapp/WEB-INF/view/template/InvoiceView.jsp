@@ -98,7 +98,7 @@
 					    	font-weight: bold;
 					    }
 						.print-div .p-header img {
-						    width: 200px;
+						    width: 230px;
 						}
 						
 						.print-div .p-content {

@@ -127,14 +127,14 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 	
 	$scope.printInvoice = function() {
 		var content = $scope.getPrintContent();
-		$scope.print_window = window.open('', 'Print Bill', 'height=700, width=300, resizable=no');
+		$scope.print_window = window.open('', 'Print Bill', 'height=700, width=300, left=300');
 		
 		if (!$scope.print_window.document.body.innerHTML) {
 			$scope.print_window.document.write(content);
 		}
 
-//      mywindow.print();
-//      mywindow.close();
+		$scope.print_window.print();
+		$scope.print_window.close();
 
         return true;
 	}
