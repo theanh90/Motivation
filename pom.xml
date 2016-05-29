@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Motivation</groupId>
 	<artifactId>Motivation</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>001</version>
 	<packaging>war</packaging>
 
 	<build>
@@ -21,7 +21,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
-					<warSourceDirectory>Webapp</warSourceDirectory>
+					<warSourceDirectory>src\main\Webapp</warSourceDirectory>
 					<webXml>src\main\Webapp\WEB-INF\web.xml</webXml>  
 				</configuration>
 			</plugin>
