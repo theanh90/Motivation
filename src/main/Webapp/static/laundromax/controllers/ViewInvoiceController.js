@@ -1,17 +1,16 @@
-mainApp.controller('ViewInvoiceController', function($scope, $http, $route) {
+mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $compile) {
+	var csrf = $('#token').val();
 	$scope.invoice_id = $route.current.params.id;
 	
 	$scope.getInvoice = function() {
 		$http({
 			   method: 'GET',
-			   url: 'api/invoice/getbyid?id=' + $scope.invoice_id
-		   
+			   url: 'api/invoice/getviewbyid?id=' + $scope.invoice_id		   
 		   })
 		   .then(function(response){
 		   		if (response.data.returnStatus == 'SUCCESS') {
 				  	$scope.invoice = response.data.data;
 				  	console.log($scope.invoice);
-				  	
 				  	var product;
 					var tbl_products = $('#invoice-view-tbl tbody');
 					var tbl_content;
@@ -61,8 +60,44 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route) {
 					$('#h-invoiceid').html(($('#h-invoiceid').html() + ' #' + $scope.invoice[0].id.inId));
 					$('#invoice-note').html('<span class="c-bold">' + lang_note + ': </span>' + ($scope.invoice[0].invoiceNote ? $scope.invoice[0].invoiceNote : ''));
 					
+					// for current invoice status
+					$('#current-status').html($scope.renderInvoiceStatusColor($scope.invoice[0].lastStatus));
+					
+					// for change status
+					if ($scope.invoice[0].lastStatus > 0 && $scope.invoice[0].lastStatus < 5) {
+						$scope.renderChangeStatusButton($scope.invoice[0].lastStatus);
+					} else {
+						$('.c-fg-change-status').remove();
+					}
+					
+					// for delete New_Invoice
+					if ($scope.invoice[0].lastStatus == 1) {
+						var delete_element = $('#c-delete-span');
+						var html = 	'<div class="col-sm-4">' +
+										'<div class="form-group c-fg-change-status">' +
+											'<a class="w3-btn w3-margin-bottom" style="background-color: red" ng-click="confirmDelete()">' + lang_invoice_delete_text + '</a>' +
+										'</div>' +
+									'</div>';
+						delete_element.html(html);
+					}
+					
+					// for send request cancel with Confirmed_invoice to Admin
+					if ($scope.invoice[0].lastStatus == 2) {
+						var request_element = $('#c-request-cancel-span');
+						var html = 	'<div class="col-sm-4">' +
+										'<div class="form-group c-fg-change-status">' +
+											'<a class="w3-btn w3-margin-bottom" style="background-color: black" ng-click="confirmRequestCancel()">' + lang_invoice_request_text + '</a>' +
+										'</div>' +
+									'</div>';
+						request_element.html(html);
+					}
+					
+					// compile with Angular to run function confirmDelete()
+					$compile(delete_element)($scope);
+					$compile(request_element)($scope);
+					
 			  } else {
-//				  var mess = lang_get_fail;
+				  var mess = 'Error when get Invoice detail!!';
 				  var type = 'ERROR';
 				  showConfirmModal(mess, type);				  
 			  }
@@ -70,6 +105,235 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route) {
 		   }, function(error){
 			   alert("The error occurs when get Invoice details!!!" + error.statusText);
 		   });
+	}
+	
+	$scope.changeInvoiceStatus = function(dialog) {
+		var current_invoice_id = $scope.invoice[0].id.inId;
+		$http({
+			   method: 'PUT',
+			   url: 'api/invoice/status',
+			   data : {
+				   invoiceId : current_invoice_id
+			   },
+			   params: {
+				   _csrf : csrf
+			   }
+			   
+		   })
+		   .then(function(response){
+			   dialog.close();
+			   if (response.data.returnStatus == 'SUCCESS') {
+				   var mess = lang_invoice_change_success;
+				   var type = 'SUCCESS';
+				   showConfirmModal(mess, type, $scope.reload);
+			   } else {
+				   var mess = 'Error when Changing Invoice status!!';
+				   var type = 'ERROR';
+				   showConfirmModal(mess, type);				   
+			   }
+			  
+		   }, function(error){
+			   alert("The error occurs when Changing Invoice status!!!" + error.statusText);
+	   });
+	}
+	
+	$scope.reload = function() {
+		location.reload();
+	}
+	
+	$scope.goToInvoiceLink = function(dialog) {
+		dialog.close();
+		location.href = url_common + '#/invoice/';
+	}
+	
+	$scope.confirmChange = function() {
+	   BootstrapDialog.show({
+		   size: BootstrapDialog.SIZE_SMALL,
+           type: BootstrapDialog.TYPE_WARNING,
+           title: lang_common_confirm,
+           message: lang_invoice_confirm_changestatus,
+           buttons: [{
+               label: lang_common_continue,
+               cssClass: 'btn-success',
+               action: function(dialog) {
+                   return $scope.changeInvoiceStatus(dialog);
+               }
+               
+           }, {
+               label: lang_common_cancel,
+               cssClass: 'btn-danger',
+               action: function(dialog) {
+                   dialog.close();
+               }
+           }]
+       }); 	   
+
+    }
+	
+	$scope.confirmDelete = function() {
+	   BootstrapDialog.show({
+		   size: BootstrapDialog.SIZE_SMALL,
+           type: BootstrapDialog.TYPE_WARNING,
+           title: lang_common_confirm,
+           message: lang_invoice_confirm_delete,
+           buttons: [{
+               label: lang_common_continue,
+               cssClass: 'btn-success',
+               action: function(dialog) {
+                   return $scope.deleteInvoice(dialog);
+               }
+               
+           }, {
+               label: lang_common_cancel,
+               cssClass: 'btn-danger',
+               action: function(dialog) {
+                   dialog.close();
+               }
+           }]
+       }); 	   
+
+    }
+	
+	$scope.confirmRequestCancel = function() {
+	   BootstrapDialog.show({
+		   size: BootstrapDialog.SIZE_SMALL,
+           type: BootstrapDialog.TYPE_WARNING,
+           title: lang_common_confirm,
+           message: lang_invoice_confirm_request,
+           buttons: [{
+               label: lang_common_continue,
+               cssClass: 'btn-success',
+               action: function(dialog) {
+                   return $scope.setInvoiceStatusToRequest(dialog);
+               }
+               
+           }, {
+               label: lang_common_cancel,
+               cssClass: 'btn-danger',
+               action: function(dialog) {
+                   dialog.close();
+               }
+           }]
+       }); 	   
+
+    }
+	
+	$scope.setInvoiceStatusToRequest = function(dialog) {
+		var current_invoice_id = $scope.invoice[0].id.inId;
+		$http({
+			   method: 'PUT',
+			   url: 'api/invoice/torequest?invoiceId=' + current_invoice_id,
+			   params: {
+				   _csrf : csrf
+			   }
+			   
+		   })
+		   .then(function(response){
+			   dialog.close();
+			   if (response.data.returnStatus == 'SUCCESS') {
+				   var mess = lang_invoice_sendrequest_success;
+				   var type = 'SUCCESS';
+				   showConfirmModal(mess, type, $scope.goToInvoiceLink);
+			   } else {
+				   var mess = 'Error when send request cancel!!';
+				   var type = 'ERROR';
+				   showConfirmModal(mess, type);				   
+			   }
+			  
+		   }, function(error){
+			   alert("The error occurs when send request cancel!!!" + error.statusText);
+	   });
+	}
+	
+	$scope.deleteInvoice = function(dialog) {
+		var current_invoice_id = $scope.invoice[0].id.inId;
+		$http({
+			   method: 'DELETE',
+			   url: 'api/invoice/delete?invoiceId=' + current_invoice_id,
+			   params: {
+				   _csrf : csrf
+			   }
+			   
+		   })
+		   .then(function(response){
+			   dialog.close();
+			   if (response.data.returnStatus == 'SUCCESS') {
+				   var mess = lang_invoice_remove_success;
+				   var type = 'SUCCESS';
+				   showConfirmModal(mess, type, $scope.goToInvoiceLink);
+			   } else {
+				   var mess = 'Error when delete Invoice!!';
+				   var type = 'ERROR';
+				   showConfirmModal(mess, type);				   
+			   }
+			  
+		   }, function(error){
+			   alert("The error occurs when delete Invoice!!!" + error.statusText);
+	   });
+	}
+	
+	$scope.renderChangeStatusButton = function(status) {
+		if (status <= 0 || status >= 5)
+			return;		
+		var element = $('#change-status');
+		var content = '';
+		
+		switch(status) {
+			case 1:
+				content += lang_common_status_confirmed;
+				break;
+				
+			case 2:
+				content += lang_common_status_sent;
+				break;
+				
+			case 3:
+				content += lang_common_status_receive;
+				break;
+				
+			case 4:
+				content += lang_common_status_delivery;
+				break;
+		}
+		
+		element.html(content);
+		
+	}
+	
+	$scope.renderInvoiceStatusColor = function(status) {
+		var result = '';
+		
+		switch(status) {
+			case -1:
+				result += '<div class="alert c-status-request" role="alert">' + lang_common_status_requestcancel + '</div>';
+				break;
+				
+			case 0:
+				result += '<div class="alert c-status-cancel" role="alert">' + lang_common_status_cancel + '</div>';
+				break;
+				
+			case 1:
+				result += '<div class="alert c-status-new" role="alert">' + lang_common_status_new + '</div>';
+				break;
+				
+			case 2:
+				result += '<div class="alert c-status-confirm" role="alert">' + lang_common_status_confirmed + '</div>';				
+				break;
+				
+			case 3:
+				result += '<div class="alert c-status-sent" role="alert">' + lang_common_status_sent + '</div>';
+				break;
+				
+			case 4:
+				result += '<div class="alert c-status-receive" role="alert">' + lang_common_status_receive + '</div>';
+				break;
+				
+			case 5:
+				result += '<div class="alert c-status-delivery" role="alert">' + lang_common_status_delivery + '</div>';
+				break;		
+		}
+		
+		return result;
 	}
 	
 	// call function on loaded

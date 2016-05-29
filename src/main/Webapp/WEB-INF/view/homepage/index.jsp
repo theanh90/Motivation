@@ -51,6 +51,8 @@
   		<link href="<c:url value='/static/laundromax/css/style.css'/>" rel="stylesheet">	
 		
 		<title>GIẶT ỦI LAUNDROMAX</title>
+		
+		<%@include file="../template/CommonJSP.jsp"%>
 	</head>
 	<body ng-app="mainApp">
 	

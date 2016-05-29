@@ -70,26 +70,31 @@ function showMessageWithAction(title, msg, type, action, size) {
     dialog.open();
 }
 
-function showConfirmModal(mess, type) {
+function showConfirmModal(mess, type, action) {
 	  var dialog_type = null;
+	  var action;
+	  
+	  if (!action) {
+		  action = function(dialog) {
+              dialog.close();
+          }
+	  }
 	  
 	  if (type == 'SUCCESS') {
 		  dialog_type = BootstrapDialog.TYPE_SUCCESS;
 	  }if (type == 'ERROR') {
 		  dialog_type = BootstrapDialog.TYPE_DANGER;
 	  }
-	  BootstrapDialog.show({
-		  size: BootstrapDialog.SIZE_SMALL,
+	  dialog_keep = BootstrapDialog.show({
+		size: BootstrapDialog.SIZE_SMALL,
         type: dialog_type,
         title: common_confirm,
         message: mess,
         buttons: [{
             label: "OK",
             cssClass: 'btn-success',
-            action: function(dialog) {
-                dialog.close();
-            }
+            action: action
         }]
-    }); 
+	  });
 	  
  }

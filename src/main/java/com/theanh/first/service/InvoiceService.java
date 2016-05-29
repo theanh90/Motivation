@@ -11,6 +11,9 @@ public interface InvoiceService {
 	void save(InvoiceInModel invoice);
 	DataTableJson getListInvoiceCustomer(String sort, String order, Integer limit, int offset, 
 			String typeSearch, String textSearch, Integer statusType, Long from, Long to) throws ParseException;
-	List<InvoiceDetailCustomerViewModel> getById(Integer id);
+	List<InvoiceDetailCustomerViewModel> getViewById(Integer id);
+	Integer changeInvoiceStatus(Integer invoiceId);
+	Boolean deleteInvoice(Integer invoiceId);
+	Boolean setInvoiceStatusToRquest(Integer invoiceId);
 
 }

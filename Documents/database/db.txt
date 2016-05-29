@@ -56,6 +56,22 @@
 	ID
 	ExPricePercent
 	
+//-- data for InvoiceStatus --
+-1: Request cancel ---> user only can send Cancel request to Admin, only Admin can Cancel invoice
+
+0: Cancel
+
+1: New ---> after create an invoice
+
+2: Confirmed ---> after confirm, invoice can be printed
+
+3: Sent to Partner
+
+4: Receive from Partner
+
+5: Delivery
+// -- END data for InvoiceStatus --
+	
 	
 	
 	

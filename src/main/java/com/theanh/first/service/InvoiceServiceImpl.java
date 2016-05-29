@@ -93,9 +93,53 @@ public class InvoiceServiceImpl implements InvoiceService {
 	}
 
 	@Override
-	public List<InvoiceDetailCustomerViewModel> getById(Integer id) {
-		return invoiceDao.getById(id);
+	public List<InvoiceDetailCustomerViewModel> getViewById(Integer id) {
+		return invoiceDao.getViewById(id);		
+	}
+
+	@Override
+	public Integer changeInvoiceStatus(Integer invoiceId) {
+		Integer currentStatus;
+		InvoiceModel invoice = new InvoiceModel();
+		invoice = invoiceDao.getByKey(invoiceId);
 		
+		currentStatus = invoice.getLastStatus();
+		if (currentStatus <= 0 || currentStatus >= 5) {
+			return null;
+		}
+		
+		invoice.setLastStatus(currentStatus + 1);
+		
+		invoiceDao.update(invoice);
+		return invoice.getLastStatus();
+	}
+
+	@Override
+	public Boolean deleteInvoice(Integer invoiceId) {
+		InvoiceModel invoice = new InvoiceModel();
+		invoice = invoiceDao.getByKey(invoiceId);
+		
+		if (invoice.getLastStatus() != 1)
+			return false;
+		
+		invoiceDao.delete(invoice);
+		invoiceDetailsDao.deleteByInvoiceId(invoiceId);
+		
+		return true;
+	}
+
+	@Override
+	public Boolean setInvoiceStatusToRquest(Integer invoiceId) {
+		InvoiceModel invoice = new InvoiceModel();
+		invoice = invoiceDao.getByKey(invoiceId);
+		
+		if (invoice.getLastStatus() != 2)
+			return false;
+		
+		invoice.setLastStatus(-1);
+		invoiceDao.save(invoice);
+		
+		return true;
 	}
 
 }

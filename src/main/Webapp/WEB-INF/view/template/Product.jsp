@@ -199,8 +199,6 @@
 		var lang_add_fail = '<spring:message code="product.add.fail" text="Add product successully" />';
 		var lang_edit_success = '<spring:message code="product.edit.success" text="Edit product successully" />';
 		var lang_edit_fail = '<spring:message code="product.edit.fail" text="Fail to edit product" />';
-		var common_confirm = '<spring:message code="common.confirm" text="Confirm" />';
-		
 		
 		$(document).ready(function(){
 			activeCurrentMenu();

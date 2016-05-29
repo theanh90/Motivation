@@ -28,7 +28,7 @@
 						  <option value="4"><spring:message code='invoice.status.receivePartner' text='receive partner' /></option>
 						  <option value="5"><spring:message code='invoice.status.delivery' text='delivery' /></option>
 						  <%-- <option value="6"><spring:message code='invoice.status.requestCancel' text='request cancel' /></option> --%>
-						  <option value="7"><spring:message code='invoice.status.cancel' text='cancel' /></option>
+						  <option value="-1"><spring:message code='invoice.status.requestCancel' text='request cancel' /></option>
 						</select>
 					</div>
 					

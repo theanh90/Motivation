@@ -3,14 +3,16 @@ mainApp.controller('InvoiceController', function($scope) {
 	$scope.search = {};
 	$scope.invoice_status = {
 		NEW: 1,
-		SENT_PARTNER: 2,
-		RECEIVE_PARTNER: 3,
-		DELIVERY: 4
+		CONFIRMED: 2,
+		SENT_PARTNER: 3,
+		RECEIVE_PARTNER: 4,
+		DELIVERY: 5,
+		REQUEST_CANCEL: -1,
+		CANCEL: 0
 	};
 	
 	
 	$scope.doSearch = function() {
-		console.log($scope.search);
 		$('#list-invoice').bootstrapTable('refresh', {
 			silent: true
 		});
@@ -20,6 +22,7 @@ mainApp.controller('InvoiceController', function($scope) {
 		if ($scope.search.type == 'status') {
 			$('#invoice-search-input').hide();
 			$('#invoice-status-search-div').show();
+			$scope.search.status_type = 1;
 		} else {
 			$('#invoice-search-input').show();
 			$('#invoice-status-search-div').hide();
@@ -91,6 +94,7 @@ mainApp.controller('InvoiceController', function($scope) {
 				align : 'center',
 				valign : 'middle',
 				sortable : true,
+				cellStyle: statusCellStyle,
 				formatter: statusFormatter
 			}, {
 				field : 'dateCreate',
@@ -104,6 +108,42 @@ mainApp.controller('InvoiceController', function($scope) {
 			}).on('load-success.bs.table', function(e, data) {
 				$scope.data = data.rows;
 		});
+    }
+    
+    function statusCellStyle(value, row, index) {
+    	var row_class = '';
+    	
+    	switch (row.lastStatus) {
+	    	case $scope.invoice_status.NEW:
+	    		row_class = 'alert c-status-new'; 
+	    		break;
+	
+	    	case $scope.invoice_status.CONFIRMED:
+	    		row_class = 'c-status-confirm';
+	    		break;
+	    		
+	    	case $scope.invoice_status.SENT_PARTNER:
+	    		row_class = 'c-status-sent';
+	    		break;
+	    		
+	    	case $scope.invoice_status.RECEIVE_PARTNER:
+	    		row_class = 'c-status-receive';
+	    		break;
+	    		
+	    	case $scope.invoice_status.DELIVERY:
+	    		row_class = 'c-status-delivery';
+	    		break;
+	    		
+	    	case $scope.invoice_status.REQUEST_CANCEL:
+	    		row_class = 'c-status-request';
+	    		break;
+	    		
+	    	case $scope.invoice_status.CANCEL:
+	    		row_class = 'c-status-cancel';
+	    		break;	  	    		
+    	}
+    	
+    	return {classes: row_class}
     }
     
     function invoiceIdFormatter(value, row, index) {
@@ -134,20 +174,33 @@ mainApp.controller('InvoiceController', function($scope) {
     	var result = '';
     	switch (value) {
 	    	case $scope.invoice_status.NEW:
-	    		result = '<span style="color: red; background-color: blue" class="badge"> Mới </span>';
+	    		result = '<span class="badge" style="color: #337ab7; background-color: #fff"> ' + lang_common_status_new + ' </span>';
+	    		break;
+
+	    	case $scope.invoice_status.CONFIRMED:
+	    		result = '<span class="badge" style="color: #337ab7; background-color: #fff"> ' + lang_common_status_confirmed + ' </span>';
 	    		break;
 	    		
 	    	case $scope.invoice_status.SENT_PARTNER:
-	    		result = '<span style="color: red; background-color: blue" class="badge"> Sent partner </span>';
+	    		result = '<span class="badge" style="color: #337ab7; background-color: #fff"> ' + lang_common_status_sent + ' </span>';
 	    		break;
 	    		
 	    	case $scope.invoice_status.RECEIVE_PARTNER:
-	    		result = '<span style="color: red; background-color: blue" class="badge"> Receive partner </span>';
+	    		result = '<span class="badge" style="color: #337ab7; background-color: #fff"> ' + lang_common_status_receive + ' </span>';
 	    		break;
 	    		
 	    	case $scope.invoice_status.DELIVERY:
-	    		result = '<span style="color: red; background-color: blue" class="badge"> Delivery </span>';
-	    		break;	    		
+	    		result = '<span class="badge" style="color: #337ab7; background-color: #fff"> ' + lang_common_status_delivery + ' </span>';
+	    		break;
+	    		
+	    	case $scope.invoice_status.REQUEST_CANCEL:
+	    		result = '<span class="badge" style="color: #337ab7; background-color: #fff"> ' + lang_common_status_requestcancel + ' </span>';
+	    		break;
+	    		
+	    	case $scope.invoice_status.CANCEL:
+	    		result = '<span class="badge" style="color: #337ab7; background-color: #fff"> ' + lang_common_status_cancel + ' </span>';
+	    		break;		
+	    		
     	}
     	
     	return result;

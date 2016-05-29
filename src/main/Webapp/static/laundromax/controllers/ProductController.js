@@ -38,7 +38,7 @@ mainApp.controller('ProductController', function($scope, $http) {
 				  }
 				  
 				  var type = 'SUCCESS';
-				  $scope.showConfirmModal(mess, type);
+				  showConfirmModal(mess, type);
 			  }else {
 				  
 				  if (method == 'POST') {
@@ -47,7 +47,7 @@ mainApp.controller('ProductController', function($scope, $http) {
 					  mess = lang_edit_fail;
 				  }
 				  var type = 'ERROR';
-				  $scope.showConfirmModal(mess, type);
+				  showConfirmModal(mess, type);
 			  }
 			  
 			  $('#list-product').bootstrapTable('refresh', {
@@ -59,29 +59,29 @@ mainApp.controller('ProductController', function($scope, $http) {
 		   });
 	   };
 	   
-	   $scope.showConfirmModal = function(mess, type) {
-		   dialog_type = null;
-			  
-		   if (type == 'SUCCESS') {
-			   dialog_type = BootstrapDialog.TYPE_SUCCESS;
-		   }if (type == 'ERROR') {
-			   dialog_type = BootstrapDialog.TYPE_DANGER;
-		   }
-		   
-		   BootstrapDialog.show({
-			   size: BootstrapDialog.SIZE_SMALL,
-	           type: dialog_type,
-	           title: common_confirm,
-	           message: mess,
-	           buttons: [{
-	               label: "OK",
-	               cssClass: 'btn-success',
-	               action: function(dialog) {
-	                   dialog.close();
-	               }
-	           }]
-	       }); 
-	   }
+//	   $scope.showConfirmModal = function(mess, type) {
+//		   dialog_type = null;
+//			  
+//		   if (type == 'SUCCESS') {
+//			   dialog_type = BootstrapDialog.TYPE_SUCCESS;
+//		   }if (type == 'ERROR') {
+//			   dialog_type = BootstrapDialog.TYPE_DANGER;
+//		   }
+//		   
+//		   BootstrapDialog.show({
+//			   size: BootstrapDialog.SIZE_SMALL,
+//	           type: dialog_type,
+//	           title: common_confirm,
+//	           message: mess,
+//	           buttons: [{
+//	               label: "OK",
+//	               cssClass: 'btn-success',
+//	               action: function(dialog) {
+//	                   dialog.close();
+//	               }
+//	           }]
+//	       }); 
+//	   }
 	   
 	   $scope.validateAddProduct = function(method) {
 		   var valid;
@@ -269,11 +269,11 @@ mainApp.controller('ProductController', function($scope, $http) {
 			  if (response.data.returnStatus == 'SUCCESS') {			  
 				  var mess = lang_delete_success;
 				  var type = 'SUCCESS';
-				  $scope.showConfirmModal(mess, type);
+				  showConfirmModal(mess, type);
 			  }else {
 				  var mess = lang_delete_fail;
 				  var type = 'ERROR';
-				  $scope.showConfirmModal(mess, type);
+				  showConfirmModal(mess, type);
 			  }
 			  
 			  $('#list-product').bootstrapTable('refresh', {

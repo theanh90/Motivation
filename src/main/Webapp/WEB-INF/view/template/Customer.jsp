@@ -156,7 +156,6 @@
 		var customer_email = '<spring:message code="customer.email" text="Email" />';
 		var customer_address = '<spring:message code="customer.address" text="Addess" />';
 		var customer_note = '<spring:message code="customer.note" text="Note" />';
-		var common_confirm = '<spring:message code="common.confirm" text="Confirm" />';
 	
 		$(document).ready(function(){			
 			activeCurrentMenu();

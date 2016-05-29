@@ -270,6 +270,10 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 	}
 	
 	$scope.handleTotalPay = function() {
+		if ($scope.invoice_info.totalPay > $scope.invoice_info.totalCalculated) {
+			$scope.invoice_info.totalPay = $scope.invoice_info.totalCalculated;
+		}
+		
 		var change = ($scope.invoice_info.totalCalculated) - $scope.invoice_info.totalPay;
 		$('#invoice_remain').html(changeNumberFormat(change) + " VND");
 	}

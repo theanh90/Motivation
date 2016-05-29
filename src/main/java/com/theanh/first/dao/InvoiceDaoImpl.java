@@ -90,7 +90,7 @@ public class InvoiceDaoImpl extends AbstractDao<Integer, InvoiceModel> implement
 	}
 
 	@Override
-	public List<InvoiceDetailCustomerViewModel> getById(Integer id) {
+	public List<InvoiceDetailCustomerViewModel> getViewById(Integer id) {
 		List<InvoiceDetailCustomerViewModel> results = new ArrayList<>();
 		String sql = "from InvoiceDetailCustomerViewModel where id.inId = :id ";
 		Query query = this.getSession().createQuery(sql);

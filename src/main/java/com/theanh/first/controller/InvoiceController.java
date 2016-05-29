@@ -68,22 +68,115 @@ public class InvoiceController extends BaseController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/getbyid", method = RequestMethod.GET, headers = {
+	@RequestMapping(value = "/getviewbyid", method = RequestMethod.GET, headers = {
 			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
-	public JsonResponse getInvoiceById(HttpServletRequest request, @RequestParam Integer id) {
+	public JsonResponse getInvoiceViewById(HttpServletRequest request, @RequestParam Integer id) {
 		JsonResponse jsonResponse;
 		if (!this.hasLogin())
 			return null;
 		
 		try {
-			List<InvoiceDetailCustomerViewModel> results = invoiceService.getById(id);
-			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get Invoice successfully!", null);
-			jsonResponse.setData(results);
+			List<InvoiceDetailCustomerViewModel> results = invoiceService.getViewById(id);
 			
-			logger.info("Get Invoice successfully");
+			if (results.size() <= 0) {
+				jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get Invoice!", null);
+				logger.info("Fail to get Invoice");
+			} else {
+				jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get Invoice successfully!", null);
+				jsonResponse.setData(results);		
+				logger.info("Get Invoice successfully");
+			}
+			
 		}catch (Exception ex) {
 			ex.printStackTrace();
 			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get Invoice!", null);
+		}
+		
+		return jsonResponse;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/status", method = RequestMethod.PUT, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public JsonResponse changeInvoiceStatus(HttpServletRequest request, @RequestBody Map<String, Integer> data) {
+		JsonResponse jsonResponse;
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			Integer newStatus = null;
+			newStatus = invoiceService.changeInvoiceStatus(data.get("invoiceId"));
+			
+			if (newStatus != null) {
+				jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Change Invoice status successfully!", newStatus);
+				logger.info("Change Invoice status successfully!");				
+			} else {
+				jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to Change Invoice status!", null);
+				logger.info("Fail to change Invoice status!");		
+			}
+			
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to Change Invoice status!", null);
+			logger.info("Fail to change Invoice status!");		
+		}
+		
+		return jsonResponse;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public JsonResponse deleteInvoice(HttpServletRequest request, @RequestParam Integer invoiceId) {
+		JsonResponse jsonResponse;
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			Boolean result;
+			result = invoiceService.deleteInvoice(invoiceId);
+			
+			if (result == true) {
+				jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Delete Invoice successfully!", null);
+				logger.info("Change Invoice status successfully!");				
+			} else {
+				jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to delete Invoice!", null);
+				logger.info("Fail to delete Invoice!");		
+			}
+			
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to delete Invoice!", null);
+			logger.info("Fail to delete Invoice!");		
+		}
+		
+		return jsonResponse;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/torequest", method = RequestMethod.PUT, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public JsonResponse setInvoiceStatusToRquest(HttpServletRequest request, @RequestParam Integer invoiceId) {
+		JsonResponse jsonResponse;
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			Boolean result;
+			result = invoiceService.setInvoiceStatusToRquest(invoiceId);
+			
+			if (result == true) {
+				jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Send request cancel successfully!", null);
+				logger.info("Change Invoice status successfully!");				
+			} else {
+				jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to send request cancel!", null);
+				logger.info("Fail to send request cancel!");		
+			}
+			
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to send request cancel!", null);
+			logger.info("Fail to send request cancel!");		
 		}
 		
 		return jsonResponse;
