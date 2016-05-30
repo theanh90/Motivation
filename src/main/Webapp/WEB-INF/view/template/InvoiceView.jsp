@@ -80,11 +80,13 @@
 					<title>Print Bill</title>
 					<link rel="stylesheet" href="<c:url value='/static/font-awesome-4.5.0/css/font-awesome.min.css' />"> 
 					<style type="text/css">
-						body {
+						body .print-div {
 							font-family: sans-serif;
+							font-weight: lighter;
 						}
 						.print-div {
-							width: 284px;
+							width: 250px;
+							font-weight: lighter !important;
  							/* border: 1px solid black; */
 						}
 						
@@ -98,7 +100,7 @@
 					    	font-weight: bold;
 					    }
 						.print-div .p-header img {
-						    width: 230px;
+						    width: 250px;
 						}
 						
 						.print-div .p-content {
@@ -124,8 +126,12 @@
 							border-top: 1px dashed black;
     						border-bottom: 1px dashed black;
 						}
+						.print-div .p-content .p-invoice-detail thead {
+							font-weight: lighter;
+						}
 						.print-div .p-content .p-invoice-detail tbody {
 							font-size: 90% !important;
+							font-weight: lighter;
 						}
 						.print-div .p-content .p-invoice-detail .cus-number {
 							text-align: right;
@@ -156,12 +162,12 @@
 						
 					</style>
 				</head>
-				<body>
+				<body class="p-print">
 					<div class="print-div">
 						<div class="p-header">
 							<img class="img-responsive" src="<c:url value='/static/laundromax/images/logo-laundromax.png' />">
 							<div class="p-shopname">LAUNDROMAX SUNRISE CITY</div>
-							<div class="slogan">B1 V5 South Tower: 0945.580.147</div>
+							<div class="slogan">B1 V5 South Tower: 0984.017.179</div>
 							<hr>
 							<div class="slogan">Clean, Fresh Looking Your Best!</div>
 							<hr>
@@ -199,8 +205,8 @@
 							</div>
 						</div>
 						<div class="p-footer">
-							<p>Cảm ơn và hẹn gặp lại! :)</p>
-							<p class="p-last">Thank you and see you again! :)</p>
+							<p>Cảm ơn và hẹn gặp lại ! :)</p>
+							<p class="p-last">Thank you and see you again ! :)</p>
 						</div>
 						
 					</div>
