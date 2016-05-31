@@ -460,12 +460,18 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 			   var mess = lang_add_success;
 			   var title = lang_confirm;
 			   var type = 'success';
-			   action = function(){location.reload();};
+			   action = function(dialog) {
+				   location.href = url_common + '#/invoice/viewinvoice/' + response.data.data;
+				   dialog.close();
+			   };
 		   } else {
 			   var mess = lang_add_fail;
 			   var title = lang_confirm;
 			   var type = 'danger';
-			   action = function(){location.href = '';};
+			   action = function() {
+				   location.href = url_common + '#/invoice/';
+				   dialog.close();
+			   };
 		   }
    		   
 		   showMessageWithAction(title, mess, type, action, size);

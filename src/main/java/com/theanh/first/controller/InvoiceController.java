@@ -56,8 +56,8 @@ public class InvoiceController extends BaseController {
 			return null;
 		
 		try {			
-			invoiceService.save(data.get("invoice"));
-			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Save Invoice successfully!", null);
+			Integer invoiceId = invoiceService.save(data.get("invoice"));
+			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Save Invoice successfully!", invoiceId);
 			logger.info("Save Invoice successfully");
 		}catch (Exception ex) {
 			ex.printStackTrace();

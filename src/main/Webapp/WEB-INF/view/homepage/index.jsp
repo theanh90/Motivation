@@ -49,6 +49,10 @@
   		  		
   		<!-- My css -->
   		<link href="<c:url value='/static/laundromax/css/style.css'/>" rel="stylesheet">	
+  		
+		<!-- Webui-Popover -->
+		<script src="<c:url value='/static/webui-popover/jquery.webui-popover.min.js'/>"> </script>
+		<link href="<c:url value='/static/webui-popover/jquery.webui-popover.min.css'/>" rel="stylesheet">	
 		
 		<title>GIẶT ỦI LAUNDROMAX</title>
 		

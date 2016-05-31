@@ -10,6 +10,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 		   .then(function(response){
 		   		if (response.data.returnStatus == 'SUCCESS') {
 				  	$scope.invoice = response.data.data;
+				  	$scope.total_item = 0;
 				  	console.log($scope.invoice);
 				  	var product;
 					var tbl_products = $('#invoice-view-tbl tbody');
@@ -17,9 +18,10 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 					var wash_type;
 					
 					tbl_products.html('');
-					for (x in $scope.invoice) {
+					for (x in $scope.invoice) {						
 						tbl_content = '';
 						product = $scope.invoice[x];
+						$scope.total_item += product.quantity;
 						product_name = product.vnName + " (" + product.enName + ")";
 						if (product.typePrice == 'laundry') {
 							wash_type = lang_laundry;
@@ -103,16 +105,22 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 						var print_element = $('#c-print-span');
 						var html = 	'<div class="col-sm-4">' +
 										'<div class="form-group c-fg-change-status">' +
-											'<a class="w3-btn w3-margin-bottom w3-print" style="background-color: black" ng-click="printInvoice()">' + 'Print Bill' + '</a>' +
+											'<a id="c-print-action" class="w3-btn w3-margin-bottom w3-print" style="background-color: black">' + 'Print Bill' + '</a>' +
 										'</div>' +
 									'</div>';
 						print_element.html(html);
 					}
+					$('#c-print-action').webuiPopover ({
+						title: '<div>' + lang_invoice_choose_print + '</div>',
+						content:'<div id="c-print-popover">' +
+									'<p onclick=printInvoiceCustomer(0)><a>' + lang_invoice_choose_print_customer + '</a></p>' +
+									'<p onclick=printInvoiceCustomer(1)><a>' + lang_invoice_choose_print_partner + '</a></p>' +
+								'</div>'
+					});
 					
 					// compile with Angular to run function confirmDelete()
 					$compile(delete_element)($scope);
 					$compile(request_element)($scope);
-					$compile(print_element)($scope);
 					
 			  } else {
 				  var mess = 'Error when get Invoice detail!!';
@@ -125,9 +133,15 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 		   });
 	}
 	
-	$scope.printInvoice = function() {
-		var content = $scope.getPrintContent();
+	printInvoiceCustomer = function(type) {
+		var content;
 		$scope.print_window = window.open('', 'Print Bill', 'height=700, width=500, left=300');
+
+		if (type === 0) { // customer bill
+			content = $scope.getPrintCustomer();				
+		} else {
+			content = $scope.getPrintPartner();
+		}
 		
 		if (!$scope.print_window.document.body.innerHTML) {
 			$scope.print_window.document.write(content);
@@ -139,7 +153,9 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
         return true;
 	}
 	
-	$scope.getPrintContent = function() {
+	$scope.getPrintCustomer = function() {
+		$('.p-total-delete').show();
+		$('.p-mark-partner').hide();
 		var first_row = $scope.invoice[0];
 		var date = moment(first_row.datecreate);
 		var invoice_detail = $('.p-invoice-detail table tbody');
@@ -178,6 +194,9 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 			table_content += (tbl_content);
 		}
 		
+		table_content += '<tr> <td colspan="2">' + '<b>Số món</b> - Items count' + 
+				'</td> <td class="cus-number">' + $scope.total_item + '</td> </tr>';
+		
 		if ($scope.invoice[0].isExpress) {
 			table_content += '<tr> <td colspan="2">' + '<b>Giặt nhanh</b> - Express' + 
 				'</td> <td colspan="2" class="cus-number"><i class="fa fa-check-square-o"></td> </tr>';
@@ -187,13 +206,63 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 				$scope.invoice[0].discount + '% </td> </tr>';
 		}
 		if ($scope.invoice[0].vat) {
-			table_content += '<tr> <t colspan="2">' + '<b>VAT</b>' + 
+			table_content += '<tr> <td colspan="2">' + '<b>VAT</b>' + 
 				'</td> <td colspan="2" class="cus-number"><i class="fa fa-check-square-o"></td> </tr>';
 		}
 							
 		table_content += '<tr> <td colspan="2">' + '<b>Tổng cộng</b> - Total' + '</td> <td colspan="2" class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice) + '</td> </tr>';
 		table_content += '<tr> <td colspan="2">' + '<b>Đã trả</b> - Upfront' + '</td> <td colspan="2" class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPay) + '</td> </tr>';
 		table_content += '<tr> <td colspan="2">' + '<b>Còn lại</b> - Amount' + '</td> <td colspan="2" class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay) + '</td> </tr>';
+		
+		invoice_detail.html(table_content);
+		
+		var content = $('.c-print-holder').html();
+		
+		return content;
+	}
+	
+	$scope.getPrintPartner = function() {
+		$('.p-total-delete').hide();
+		$('.p-mark-partner').show();
+		var first_row = $scope.invoice[0];
+		var date = moment(first_row.datecreate);
+		var invoice_detail = $('.p-invoice-detail table tbody');
+		var table_content = '';
+		
+		$('#p-invoice-id-span').html(first_row.id.inId);
+		$('.p-invoice-cname').html('<b>' + first_row.name.toUpperCase() + '</b>');
+		$('.p-invoice-cadd').html(first_row.address);
+		$('.p-invoice-date').html(date.format("DD/MM/YYYY - HH:mm"));
+
+		// render invoice detail
+		for (x in $scope.invoice) {
+			tbl_content = '';
+			product = $scope.invoice[x];
+			product_name = product.vnName + " - " + product.enName;
+			if (product.typePrice == 'laundry') {
+				wash_type = 'Giặt nước - Laundry';
+			} else if (product.typePrice == 'dryclean') {
+				wash_type = 'Giặt hấp - Dryclean';
+			} else if (product.typePrice == 'pressonly') {
+				wash_type = 'Chỉ ủi - PressOnly'
+			}
+			
+			if (x == $scope.invoice.length-1) {
+				tbl_content += '<tr class="c-bottom">';
+			} else {
+				tbl_content += '<tr>';	
+			}
+			tbl_content +=    '<td>' + product_name + '</td>';
+			tbl_content +=    '<td>' + wash_type + '</td>';
+			tbl_content +=    '<td class="cus-number">' + product.quantity + '</td>';
+			tbl_content +=    '<td class="cus-number">' + '' + '</td>';
+			tbl_content += '</tr>';
+			
+			table_content += (tbl_content);
+		}
+		
+		table_content += '<tr> <td colspan="2">' + '<b>Số món</b> - Items count' + 
+				'</td> <td class="cus-number">' + $scope.total_item + '</td> </tr>';
 		
 		invoice_detail.html(table_content);
 		

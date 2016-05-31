@@ -159,6 +159,10 @@
 						    padding-bottom: 10px;
 						}
 						
+						.p-mark-partner {
+							text-align: center;
+						}
+						
 						
 					</style>
 				</head>
@@ -184,7 +188,7 @@
 									 <i class="fa fa-map-marker" aria-hidden="true"></i>  - 
 									<span class="p-invoice-cadd"></span>
 								</div>
-								<div>
+								<div class="p-total-delete">
 									<i class="fa fa-phone" aria-hidden="true"></i> - 
 								 	<span class="p-invoice-cphone"></span>
 							 	</div>
@@ -196,7 +200,7 @@
 					    					<td><b>Món Đồ</b> (Item)</td>
 					    					<td><b>Dịch Vụ</b> (Service)</td>
 					    					<td class="cus-number"><b>S.Lg</b> (Qtt)</td>
-					    					<td class="cus-number"><b>T.Tiền</b> (VND)</td>	    				
+					    					<td class="cus-number p-total-delete"><b>T.Tiền</b> (VND)</td>	    				
 					    				</tr>
 				    				</thead>
 				    				<tbody>	
@@ -204,10 +208,11 @@
 				    			</table>
 							</div>
 						</div>
-						<div class="p-footer">
-							<p>Cảm ơn và hẹn gặp lại ! :)</p>
-							<p class="p-last">Thank you and see you again ! :)</p>
+						<div class="p-footer p-total-delete">
+							<p>Cảm ơn và hẹn gặp lại ! <i class="fa fa-smile-o" aria-hidden="true"></i></p>
+							<p class="p-last">Thank you and see you again ! <i class="fa fa-smile-o" aria-hidden="true"></i></p>
 						</div>
+						<h2 class="p-mark-partner">Bill nhà giặt</h2>
 						
 					</div>
 				</body>
@@ -237,6 +242,10 @@
 		var lang_invoice_change_success = '<spring:message code="invoice.change.success" text="change invoice status successfully" />';
 		var lang_invoice_remove_success = '<spring:message code="invoice.remove.success" text="remove invoice successfully" />';
 		var lang_invoice_sendrequest_success = '<spring:message code="invoice.sendrequest.success" text="send request cancel to Admin successfully" />';
+		var lang_invoice_choose_print = '<spring:message code="invoice.print.choose" text="please choose bill type" />';
+		var lang_invoice_choose_print_customer = '<spring:message code="invoice.print.customer" text="customer bill" />';
+		var lang_invoice_choose_print_partner = '<spring:message code="invoice.print.partner" text="partner bill" />';
+		
 		
 		$(document).ready(function(){
 			angular.element($('#template-div')).scope().getInvoice();

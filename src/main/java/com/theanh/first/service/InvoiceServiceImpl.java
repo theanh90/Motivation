@@ -40,7 +40,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 	}
 
 	@Override
-	public void save(InvoiceInModel invoiceIn) {
+	public Integer save(InvoiceInModel invoiceIn) {
 		InvoiceModel invoice = new InvoiceModel();
 		invoice.setActive(1);
 		invoice.setCid(invoiceIn.getCustomer_id());
@@ -74,6 +74,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 			
 			invoiceDetailsDao.save(product);
 		}
+		
+		return invoiceId;
 	}
 
 	@Override
