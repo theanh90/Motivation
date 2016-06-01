@@ -182,4 +182,33 @@ public class InvoiceController extends BaseController {
 		return jsonResponse;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/pay", method = RequestMethod.PUT, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public JsonResponse doPay(HttpServletRequest request, @RequestBody Map<String, Integer> data) {
+		JsonResponse jsonResponse;
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			Boolean result;
+			result = invoiceService.doPay(data);
+			
+			if (result == true) {
+				jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Success to pay invoice!", null);
+				logger.info("Success to pay invoice!");				
+			} else {
+				jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to pay invoice!", null);
+				logger.info("Fail to pay invoice!");		
+			}
+			
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to pay invoice!", null);
+			logger.info("Fail to pay invoice!");		
+		}
+		
+		return jsonResponse;
+	}
+	
 }

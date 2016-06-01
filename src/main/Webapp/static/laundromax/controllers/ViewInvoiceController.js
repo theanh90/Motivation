@@ -1,5 +1,6 @@
 mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $compile) {
 	var csrf = $('#token').val();
+	$scope.pay = {};
 	$scope.invoice_id = $route.current.params.id;
 	
 	$scope.getInvoice = function() {
@@ -57,6 +58,10 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 					tbl_total_html += '<tr> <td class="c-bold">' + lang_total + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice) + ' VND </td> </tr>';
 					tbl_total_html += '<tr> <td class="c-bold">' + lang_paid_upfront + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPay) + ' VND </td> </tr>';
 					tbl_total_html += '<tr> <td class="c-bold">' + lang_due_amount + '</td> <td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay) + ' VND </td> </tr>';
+					
+					if ($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay > 0) {
+						tbl_total_html += '<tr> <td colspan="2" class="c-bold">' + '<button ng-click="doPay()" type="button" class="btn btn-success">Thanh toán</button>' + '</td> </tr>';
+					}
 					
 					tbl_total.html(tbl_total_html);
 					$('#h-invoiceid').html(($('#h-invoiceid').html() + ' #' + $scope.invoice[0].id.inId));
@@ -121,6 +126,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 					// compile with Angular to run function confirmDelete()
 					$compile(delete_element)($scope);
 					$compile(request_element)($scope);
+					$compile(tbl_total)($scope);
 					
 			  } else {
 				  var mess = 'Error when get Invoice detail!!';
@@ -131,6 +137,81 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 		   }, function(error){
 			   alert("The error occurs when get Invoice details!!!" + error.statusText);
 		   });
+	}
+	
+	$scope.doPay = function() {
+		var mess = 	'<table class="table bootstrap-table c-dopay">' +
+						'<tr class="c-firstrow"><td>' + lang_total + ' </td><td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice) + '</td></tr>' +
+						'<tr><td>' + lang_paid_upfront + ' </td><td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPay) + '</td></tr>' +
+						'<tr><td>' + 'Nợ cũ' + ' </td><td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay) + '</td></tr>' +
+						'<tr><td>' + 'Thanh toán' + ' </td><td class="cus-number">' + '<input onchange="handleDoPay(this)" class="cus-number" type="number" />' + '</td></tr>' +
+						'<tr><td>' + 'Còn lại' + ' </td><td id="pay-remain" class="cus-number">' + '' + '</td></tr>' +
+					'</table>';
+		
+		BootstrapDialog.show({
+		   size: BootstrapDialog.SIZE_SMALL,
+           type: BootstrapDialog.TYPE_DEFAULT,
+           title: lang_common_confirm,
+           message: mess,
+           buttons: [{
+               label: lang_common_continue,
+               cssClass: 'btn-success',
+               action: function(dialog) {
+                   return $scope.doPaySubmmit(dialog);
+               }
+               
+           }, {
+               label: lang_common_cancel,
+               cssClass: 'btn-danger',
+               action: function(dialog) {
+                   dialog.close();
+               }
+           }]
+       }); 	
+	}
+	
+	handleDoPay = function(element) {
+		var value = $(element).val();
+		$scope.pay.newpay = value;
+		if (value > ($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay)) {
+			value = $scope.invoice[0].totalPrice - $scope.invoice[0].totalPay;
+			$(element).val(value);
+		}
+		
+		var pay_remain = ($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay) - value;		
+		var new_pay_remain = $('#pay-remain');
+		
+		new_pay_remain.html(changeNumberFormat(pay_remain));
+	}
+	
+	$scope.doPaySubmmit = function(dialog) {
+		$http({
+			   method: 'PUT',
+			   url: 'api/invoice/pay',
+			   data : {
+				   invoiceId : $scope.invoice[0].id.inId,
+				   money : $scope.pay.newpay
+			   },
+			   params: {
+				   _csrf : csrf
+			   }
+			   
+		   })
+		   .then(function(response){
+			   dialog.close();
+			   if (response.data.returnStatus == 'SUCCESS') {
+				   var mess = 'Thanh toán thành công';
+				   var type = 'SUCCESS';
+				   showConfirmModal(mess, type, $scope.reload);
+			   } else {
+				   var mess = 'Thanh toán thất bại!!';
+				   var type = 'ERROR';
+				   showConfirmModal(mess, type);				   
+			   }
+			  
+		   }, function(error){
+			   alert("The error occurs when Changing Invoice status!!!" + error.statusText);
+	   });
 	}
 	
 	printInvoiceCustomer = function(type) {
@@ -260,7 +341,6 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 			
 			table_content += (tbl_content);
 		}
-		
 		table_content += '<tr> <td colspan="2">' + '<b>Số món</b> - Items count' + 
 				'</td> <td class="cus-number">' + $scope.total_item + '</td> </tr>';
 		

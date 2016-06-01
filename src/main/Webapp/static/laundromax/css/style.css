@@ -59,6 +59,10 @@ body {
 	font-weight: bold !important;
 }
 
+.table thead {
+	background-color: #03A9C0;
+}
+
 /* ------ for customer page ------ */
 .laundromax-view .modal-header {
 	background-color: #23c6c8;
@@ -129,14 +133,17 @@ body {
 
 
 /* For Invoice */
+#list-product-tbl thead {
+	font-weight: bold;
+}
+
 #list-product-tbl tbody td input {
-	width: 40px;
-	
+	width: 40px;	
 }
 
 #list-product-tbl thead {
 	text-align: center;
-	v-align: center;	
+	v-align: center;
 }
 
 #list-product-tbl tbody .price {
@@ -312,6 +319,10 @@ body {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	cursor: pointer;
+}
+
+.c-dopay .c-firstrow td {
+	border-top: 0;
 }
 
 

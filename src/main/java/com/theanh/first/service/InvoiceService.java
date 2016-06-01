@@ -2,6 +2,7 @@ package com.theanh.first.service;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 import com.theanh.first.model.DataTableJson;
 import com.theanh.first.model.InvoiceDetailCustomerViewModel;
@@ -15,5 +16,6 @@ public interface InvoiceService {
 	Integer changeInvoiceStatus(Integer invoiceId);
 	Boolean deleteInvoice(Integer invoiceId);
 	Boolean setInvoiceStatusToRquest(Integer invoiceId);
+	Boolean doPay(Map<String, Integer> data);
 
 }

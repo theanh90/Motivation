@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -140,6 +141,23 @@ public class InvoiceServiceImpl implements InvoiceService {
 		
 		invoice.setLastStatus(-1);
 		invoiceDao.save(invoice);
+		
+		return true;
+	}
+
+	@Override
+	public Boolean doPay(Map<String, Integer> data) {
+		Integer invoiceId = data.get("invoiceId");
+		Integer money = data.get("money");
+		
+		InvoiceModel invoice = new InvoiceModel();
+		invoice = invoiceDao.getByKey(invoiceId);
+		
+		if (invoice.getTotalPrice() - invoice.getTotalPay() == 0)
+			return false;
+		
+		invoice.setTotalPay(invoice.getTotalPay() + money);
+		invoiceDao.save(invoice);		
 		
 		return true;
 	}
