@@ -13,6 +13,8 @@ mainApp.controller('ProductController', function($scope, $http) {
 			   return null;
 		   
 		   var data = method == 'POST' ? $scope.product : $scope.edit_product;
+		   if (!data.pressonly)
+			   data.pressonly = 0;
 		   
 		   $scope.resetInput();
 		   $http({
@@ -88,18 +90,16 @@ mainApp.controller('ProductController', function($scope, $http) {
 		   var element = {};
 		   if (method == 'POST') {
 			   element.nameVn = $('#product-name-vn');
-//			   element.nameEn = $('#product-name-en');
 			   element.unit = $('#product-unit');
 			   element.laundry = $('#product-laundry');
 			   element.dryclean = $('#product-dryclean');
-			   element.pressonly = $('#product-pressonly');
+//			   element.pressonly = $('#product-pressonly');
 		   } else if (method == 'PUT') {
 			   element.nameVn = $('#product-name-vn-edit');
-//			   element.nameEn = $('#product-name-en-edit');
 			   element.unit = $('#product-unit-edit');
 			   element.laundry = $('#product-laundry-edit');
 			   element.dryclean = $('#product-dryclean-edit');
-			   element.pressonly = $('#product-pressonly-edit');   
+//			   element.pressonly = $('#product-pressonly-edit');   
 		   }
 		   $scope.removeHightLight(element); // remove validate css
 		   $scope.removeValidateTooltip(element);	// remove tooltip
@@ -129,8 +129,8 @@ mainApp.controller('ProductController', function($scope, $http) {
 			element.dryclean.css('border', '');
 			element.dryclean.css('box-shadow', '');
 			
-			element.pressonly.css('border', '');
-			element.pressonly.css('box-shadow', '');
+//			element.pressonly.css('border', '');
+//			element.pressonly.css('box-shadow', '');
 	   }
 	   
 	   $scope.removeValidateTooltip = function(element) {
@@ -139,7 +139,7 @@ mainApp.controller('ProductController', function($scope, $http) {
 		   element.unit.tooltip('disable');
 		   element.laundry.tooltip('disable');
 		   element.dryclean.tooltip('disable');
-		   element.pressonly.tooltip('disable');
+//		   element.pressonly.tooltip('disable');
 	   }
 	   
 	   $scope.displayValidateError = function(element, method) {
@@ -182,12 +182,12 @@ mainApp.controller('ProductController', function($scope, $http) {
 			   element.dryclean.tooltip('show');
 			   $scope.fieldHightLight(element.dryclean);
 		   }
-		   if (!check.pressonly || (!check.pressonly.match(/^\d*$/g))) {
-			   valid = false;
-			   element.pressonly.tooltip('enable');
-			   element.pressonly.tooltip('show');
-			   $scope.fieldHightLight(element.pressonly);
-		   }
+//		   if (!check.pressonly || (!check.pressonly.match(/^\d*$/g))) {
+//			   valid = false;
+//			   element.pressonly.tooltip('enable');
+//			   element.pressonly.tooltip('show');
+//			   $scope.fieldHightLight(element.pressonly);
+//		   }
 		   
 		   return valid;	   
 	   }

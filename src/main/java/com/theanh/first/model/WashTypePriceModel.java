@@ -22,7 +22,7 @@ public class WashTypePriceModel implements Serializable {
 	@Column(name = "DRYCLEAN")
 	private Integer dryClean; // Giat hap
 	
-	@Column(name = "PRESSONLY")
+	@Column(name = "PRESSONLY", nullable = true)
 	private Integer pressOnly; // Chi ui
 	
 	public Integer getPid() {

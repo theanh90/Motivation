@@ -121,7 +121,8 @@ public class ProductServiceImpl  implements ProductService{
 		typePrice = washTypePriceDao.getByKey(Integer.parseInt(data.get("id")));
 		typePrice.setDryClean(Integer.parseInt(data.get("dryclean")));
 		typePrice.setLaundry(Integer.parseInt(data.get("laundry")));
-		typePrice.setPressOnly(Integer.parseInt(data.get("pressonly")));		
+		typePrice.setPressOnly(Integer.parseInt(data.get("pressonly")));
+		
 		washTypePriceDao.update(typePrice);
 	}
 
