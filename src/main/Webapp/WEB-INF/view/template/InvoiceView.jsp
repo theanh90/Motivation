@@ -200,7 +200,7 @@
 					    					<td><b>Món Đồ</b> (Item)</td>
 					    					<td><b>Dịch Vụ</b> (Service)</td>
 					    					<td class="cus-number"><b>S.Lg</b> (Qtt)</td>
-					    					<td class="cus-number p-total-delete"><b>T.Tiền</b> (VND)</td>	    				
+					    					<td class="cus-number p-total-delete"><b>Đ.Giá</b> (VND)</td>	    				
 					    				</tr>
 				    				</thead>
 				    				<tbody>	

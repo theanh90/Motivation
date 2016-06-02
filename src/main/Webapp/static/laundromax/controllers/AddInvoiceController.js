@@ -70,11 +70,15 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 					   row += 		'<td id="' + data.pid + '_dryclean_amount' + '" >' + '' + '</td>';
 					   
 					   row += 		'<td price="' + data.pressonly + '" id="' + data.pid + '_pressonly_price' + '" class="price">' + changeNumberFormat(data.pressonly) + '</td>';
-					   row += 		'<td class="qtt">' + '<input id="' + data.pid + '_pressonly' + '" type="number" min="0" onchange="changeQTT(this, \'pressonly\')" />' + '</td>';
+					   if (data.pressonly == 0) {
+						    row += 	'<td class="qtt">' + '' + '</td>';
+					   } else {
+						   	row += 	'<td class="qtt">' + '<input id="' + data.pid + '_pressonly' + '" type="number" min="0" onchange="changeQTT(this, \'pressonly\')" />' + '</td>';
+				   	   }
 					   row += 		'<td id="' + data.pid + '_pressonly_amount' + '" >' + '' + '</td>';
 					   
-					   row += 		'<td>' + data.note + '</td>';
-					   row += '</tr>';
+					   row += 		'<td>' + (!data.note? "-" : data.note) + '</td>';
+				   row += '</tr>';
 					   
 					   tbody.append(row);
 				   }
