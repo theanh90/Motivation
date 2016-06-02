@@ -72,12 +72,13 @@ public class CustomerDaoImpl extends AbstractDao<Integer, CustomerModel> impleme
 	public List<Object> getListCustomerSelect2(String textSearch) {
 		List<Object> lsResult = new ArrayList<>();
 		String sql = "FROM CustomerModel WHERE 1=1 ";
-		String condition = "AND name LIKE :textSearch ";
+		String condition = "AND name LIKE :textSearch AND active = :active ";
 		condition += "ORDER BY name ASC ";
 		
 		sql += condition;
 		Query query = this.getSession().createQuery(sql); 
 		query.setParameter("textSearch", "%" + textSearch + "%");
+		query.setParameter("active", 1);
 		
 		
 		lsResult = query.list();
