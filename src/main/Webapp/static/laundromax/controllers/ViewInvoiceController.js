@@ -118,9 +118,10 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 					$('#c-print-action').webuiPopover ({
 						title: '<div>' + lang_invoice_choose_print + '</div>',
 						content:'<div id="c-print-popover">' +
-									'<p onclick=printInvoiceCustomer(0)><a>' + lang_invoice_choose_print_customer + '</a></p>' +
-									'<p onclick=printInvoiceCustomer(1)><a>' + lang_invoice_choose_print_partner + '</a></p>' +
-								'</div>'
+									'<p onclick=printInvoice(0)><a>' + lang_invoice_choose_print_customer + '</a></p>' +
+									'<p onclick=printInvoice(1)><a>' + lang_invoice_choose_print_partner + '</a></p>' +
+								'</div>',
+						closeable: true
 					});
 					
 					// compile with Angular to run function confirmDelete()
@@ -214,7 +215,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 	   });
 	}
 	
-	printInvoiceCustomer = function(type) {
+	printInvoice = function(type) {
 		var content;
 		$scope.print_window = window.open('', 'Print Bill', 'height=700, width=500, left=300');
 
@@ -229,6 +230,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 		}
 
 		$scope.print_window.print();
+		$('#c-print-action').webuiPopover('hide');
 		$scope.print_window.close();
 
         return true;
