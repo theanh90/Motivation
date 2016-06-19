@@ -41,9 +41,9 @@ public class InvoiceController extends BaseController {
 			dataTableJson = invoiceService.getListInvoiceCustomer(sort, order, limit, offset, typeSearch, textSearch, statusType, from, to);
 		}catch (Exception ex) {
 			ex.printStackTrace();
-			dataTableJson = new DataTableJson(DataTableJson.ERROR, "Fail to load list Product");
+			logger.info(ex.getMessage());
+			dataTableJson = new DataTableJson(DataTableJson.ERROR, ex.fillInStackTrace().toString());
 		}
-		
 		return dataTableJson;
 	}
 	

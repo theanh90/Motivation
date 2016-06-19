@@ -71,6 +71,9 @@
 		<span id="c-request-cancel-span">			
 		</span>
 		
+		<span id="c-partner-deny-span">			
+		</span>
+		
 		<span id="c-print-span">			
 		</span>
 		
@@ -238,6 +241,8 @@
 		var lang_invoice_delete_text = '<spring:message code="invoice.delete.text" text="delete Invoice" />';
 		var lang_invoice_request_text = '<spring:message code="invoice.request.text" text="request cancel" />';
 		var lang_invoice_confirm_request = '<spring:message code="invoice.request.confirm" text="are you sure to send request cancel to Admin?" />';
+		var lang_partner_deny = '<spring:message code="invoice.partner.deny" text="Partner denied" />';
+		var lang_partner_deny_confirm = '<spring:message code="invoice.partner.deny.confirm" text="Are you sure to confirm about denial invoice?" />';
 		
 		var lang_invoice_change_success = '<spring:message code="invoice.change.success" text="change invoice status successfully" />';
 		var lang_invoice_remove_success = '<spring:message code="invoice.remove.success" text="remove invoice successfully" />';

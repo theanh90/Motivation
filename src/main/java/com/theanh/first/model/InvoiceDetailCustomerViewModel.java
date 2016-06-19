@@ -28,6 +28,9 @@ public class InvoiceDetailCustomerViewModel implements Serializable {
 	@Column(name = "TOTALPAY")
 	private Integer totalPay;
 	
+	@Column(name = "DUEAMOUNT")
+	private Integer dueAmount;
+	
 	@Column(name = "VAT")
 	private Integer vat;
 	
@@ -115,6 +118,14 @@ public class InvoiceDetailCustomerViewModel implements Serializable {
 
 	public void setTotalPay(Integer totalPay) {
 		this.totalPay = totalPay;
+	}
+
+	public Integer getDueAmount() {
+		return dueAmount;
+	}
+
+	public void setDueAmount(Integer dueAmount) {
+		this.dueAmount = dueAmount;
 	}
 
 	public Integer getVat() {
@@ -276,13 +287,12 @@ public class InvoiceDetailCustomerViewModel implements Serializable {
 	@Override
 	public String toString() {
 		return "InvoiceDetailCustomerViewModel [id=" + id + ", datecreate=" + datecreate + ", totalPrice=" + totalPrice
-				+ ", totalPay=" + totalPay + ", vat=" + vat + ", discount=" + discount + ", isExpress=" + isExpress
-				+ ", invoiceNote=" + invoiceNote + ", lastStatus=" + lastStatus + ", invoiceActive=" + invoiceActive
-				+ ", pid=" + pid + ", unitPrice=" + unitPrice + ", typePrice=" + typePrice + ", quantity=" + quantity
-				+ ", cid=" + cid + ", name=" + name + ", phone=" + phone + ", email=" + email + ", address=" + address
-				+ ", customerNote=" + customerNote + ", customerActive=" + customerActive + ", enName=" + enName
-				+ ", vnName=" + vnName + "]";
+				+ ", totalPay=" + totalPay + ", dueAmount=" + dueAmount + ", vat=" + vat + ", discount=" + discount
+				+ ", isExpress=" + isExpress + ", invoiceNote=" + invoiceNote + ", lastStatus=" + lastStatus
+				+ ", invoiceActive=" + invoiceActive + ", pid=" + pid + ", unitPrice=" + unitPrice + ", typePrice="
+				+ typePrice + ", quantity=" + quantity + ", cid=" + cid + ", name=" + name + ", phone=" + phone
+				+ ", email=" + email + ", address=" + address + ", customerNote=" + customerNote + ", customerActive="
+				+ customerActive + ", enName=" + enName + ", vnName=" + vnName + "]";
 	}
 
-	
 }

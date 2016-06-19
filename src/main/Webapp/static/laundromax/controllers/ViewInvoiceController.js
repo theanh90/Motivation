@@ -105,6 +105,17 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 						request_element.html(html);
 					}
 					
+					// for Partner denied items and returned it.
+					if ($scope.invoice[0].lastStatus == 3) {
+						var request_element = $('#c-partner-deny-span');
+						var html = 	'<div class="col-sm-4">' +
+										'<div class="form-group c-fg-change-status">' +
+											'<a class="w3-btn w3-margin-bottom" style="background-color: red" ng-click="partnerDenyDialog()">' + lang_partner_deny + '</a>' +
+										'</div>' +
+									'</div>';
+						request_element.html(html);
+					}
+					
 					// for print bill
 					if ($scope.invoice[0].lastStatus == 2 || $scope.invoice[0].lastStatus == 3 || $scope.invoice[0].lastStatus == 4) {
 						var print_element = $('#c-print-span');
@@ -140,6 +151,38 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 		   });
 	}
 	
+	$scope.partnerDenyDialog = function() {
+		BootstrapDialog.show({
+		   size: BootstrapDialog.SIZE_SMALL,
+           type: BootstrapDialog.TYPE_WARNING,
+           title: lang_common_confirm,
+           message: lang_partner_deny_confirm,
+           buttons: [{
+               label: lang_common_continue,
+               cssClass: 'btn-success',
+               action: function(dialog) {
+                   return $scope.partnerDeny(dialog);
+               }
+               
+           }, {
+               label: lang_common_cancel,
+               cssClass: 'btn-danger',
+               action: function(dialog) {
+                   dialog.close();
+               }
+           }]
+       });
+	}
+	
+	$scope.partnerDeny = function(dialog) {
+		dialog.close();
+		$.post( '#invoice/addinvoice', { 'foo' : 'bar', '_csrf' : csrf }, function() {
+		    window.location.href = url_common + '#invoice/addinvoice';
+		});
+//		window.location.href = url_common + '#invoice/addinvoice?customer=' + $scope.invoice[0].cid + '&oldinvoice=' + $scope.invoice_id;
+		
+	}
+	
 	$scope.doPay = function() {
 		var mess = 	'<table class="table bootstrap-table c-dopay">' +
 						'<tr class="c-firstrow"><td>' + lang_total + ' </td><td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice) + '</td></tr>' +
@@ -173,11 +216,11 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 	
 	handleDoPay = function(element) {
 		var value = $(element).val();
-		$scope.pay.newpay = value;
 		if (value > ($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay)) {
 			value = $scope.invoice[0].totalPrice - $scope.invoice[0].totalPay;
 			$(element).val(value);
 		}
+		$scope.pay.newpay = value;
 		
 		var pay_remain = ($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay) - value;		
 		var new_pay_remain = $('#pay-remain');
@@ -211,7 +254,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 			   }
 			  
 		   }, function(error){
-			   alert("The error occurs when Changing Invoice status!!!" + error.statusText);
+			   alert("The error occurs when Paying this Invoice!!!" + error.statusText);
 	   });
 	}
 	

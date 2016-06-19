@@ -78,15 +78,15 @@ mainApp.controller('InvoiceController', function($scope) {
 				title : lang_totalPay,
 				align : 'right',
 				valign : 'middle',
-				sortable : false,
+				sortable : true,
 				formatter : numberFormatter
 			}, {
-				field : '',
+				field : 'dueAmount',
 				title : lang_dueAmount,
 				align : 'right',
 				valign : 'middle',
-				sortable : false,
-				formatter : dueAmountFormatter,
+				sortable : true,
+				formatter : numberFormatter,
 				cellStyle : dueAmountCellStyle
 			}, {
 				field : 'lastStatus',

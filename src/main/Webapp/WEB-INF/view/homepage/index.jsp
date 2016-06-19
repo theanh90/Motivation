@@ -134,11 +134,11 @@
 					    	<div>
 					    		<p>
 					    			<i class="fa fa-2x fa-phone"></i>
-					    			<span style="color: #008fca">+841229576222 - Miss Thịnh</span>
+					    			<span style="color: #008fca">0984.017.179 - Miss Thịnh</span>
 				    			</p>
 					    		<p>
 					    			<i class="fa fa-2x fa-map-marker"></i>
-					    			<span style="color: #008fca">8901 Marmora Road Glasgow, DO4 89GR.</span>
+					    			<span style="color: #008fca">B1 V5 South Tower, Sunrise City, HCM</span>
 				    			</p>					    	
 					    	</div>
 					    	

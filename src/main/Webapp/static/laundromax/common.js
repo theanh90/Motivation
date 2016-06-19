@@ -98,3 +98,13 @@ function showConfirmModal(mess, type, action) {
 	  });
 	  
  }
+
+function getUrlParameter(name) {
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }
+    else{
+       return results[1] || 0;
+    }
+};

@@ -28,6 +28,12 @@ public class TemplateController extends BaseController {
 		return "template/InvoiceAdd";
 	}
 	
+	@RequestMapping(value = "/addinvoice", method = RequestMethod.POST)
+	public String invoiceAddPageFromPartnerDeny() {
+		System.out.println("da vao post nhe");
+		return "template/InvoiceAdd";
+	}
+	
 	@RequestMapping(value = "/viewinvoice", method = RequestMethod.GET)
 	public String invoiceViewPage() {
 		return "template/InvoiceView";

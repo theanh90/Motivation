@@ -5,6 +5,11 @@
 <div id="template-div" class="add-invoice-view">
 	<div class="row">
 		
+		<!-- Reserved for handle invoice is denied from partner -->
+		<div id="partner-deny-div">
+		
+		</div>
+		
 		<!-- load customer for invoice -->
 		<div class="col-sm-6 customer-invoice-div">
 			<select class="form-control" id="customer-invoice">
@@ -177,6 +182,7 @@
 			activeCurrentMenu();
 
 			angular.element($('#template-div')).scope().initSearchCustomerSelect2();
+			angular.element($('#template-div')).scope().checkLinkFromPartnerDeny();
 			$('.customer-invoice-div span.select2.select2-container.select2-container--bootstrap').css("width", "100%");
 			
 			// call this function from here instead of inside controller to avoid

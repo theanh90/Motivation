@@ -486,7 +486,15 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		
 	}
 	
-	// Call function when page loaded
+	$scope.checkLinkFromPartnerDeny = function() {
+		var customer_id = getUrlParameter('customer');
+		var invoice_id = getUrlParameter('oldinvoice');
+		
+		if (customer_id && invoice_id) {
+			$('#partner-deny-div').html('dis, lai tra lai roi');
+		}
+	}
 	
+	// Call function when page loaded
    
 });
