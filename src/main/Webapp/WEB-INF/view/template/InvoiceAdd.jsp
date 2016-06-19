@@ -6,8 +6,19 @@
 	<div class="row">
 		
 		<!-- Reserved for handle invoice is denied from partner -->
-		<div id="partner-deny-div">
-		
+		<div class="partner-deny-div c-hidden">
+			<div class="col-sm-10">
+				<div class="panel panel-danger">
+					<div id="partner-deny-panel" class="panel-heading">
+						<p> Nhập các món đồ mà nhà giặt đã chấp nhận giặt (không nhập các món đồ mà nhà giặt từ chối giặt)</p>
+						<p> Nếu nhà giặt từ chối giặt tất cả các món đồ có trong Hóa đơn thì bấm vào nút <b>Từ chối giặt tất cả</b> bên cạnh</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-2">
+				<button class="btn btn-warning btn-lg">Từ chối giặt tất cả</button>
+			</div>
 		</div>
 		
 		<!-- load customer for invoice -->

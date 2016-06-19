@@ -176,10 +176,9 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 	
 	$scope.partnerDeny = function(dialog) {
 		dialog.close();
-		$.post( '#invoice/addinvoice', { 'foo' : 'bar', '_csrf' : csrf }, function() {
-		    window.location.href = url_common + '#invoice/addinvoice';
-		});
-//		window.location.href = url_common + '#invoice/addinvoice?customer=' + $scope.invoice[0].cid + '&oldinvoice=' + $scope.invoice_id;
+		window.location.href = url_common + '#invoice/addinvoice?customer=' + 
+			$scope.invoice[0].cid + '&oldinvoice=' + $scope.invoice_id +
+			'&temp=' + csrf;
 		
 	}
 	

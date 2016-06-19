@@ -487,11 +487,13 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 	}
 	
 	$scope.checkLinkFromPartnerDeny = function() {
+		var element = $('.partner-deny-div');
 		var customer_id = getUrlParameter('customer');
 		var invoice_id = getUrlParameter('oldinvoice');
+		var token = getUrlParameter('temp');
 		
-		if (customer_id && invoice_id) {
-			$('#partner-deny-div').html('dis, lai tra lai roi');
+		if (customer_id && invoice_id && token==csrf) {
+			element.removeClass('c-hidden');
 		}
 	}
 	
