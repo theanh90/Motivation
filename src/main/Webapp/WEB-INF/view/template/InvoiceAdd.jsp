@@ -50,6 +50,17 @@
       			</div>
     		</div>
 		</div>
+		
+		<div class="col-sm-3">
+			<div class="form-group">
+                <div class='input-group date' id='add-invoice-date'>
+                    <input id="date-invoice-input" type='text' class='form-control' onkeydown="return false;"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+			</div>
+		</div>
 	
 		<div class="col-sm-12 content">
 			<div class="table-responsive">
@@ -200,11 +211,26 @@
 			// blank data in table tbody in some case poor network...
 			angular.element($('#template-div')).scope().addInvoice();
 			angular.element($('#template-div')).scope().initSelect2Event();
-			
+
+			initAddInvoiceDatetimePicker();
 		});
 		
-		var loadX = function() {
+		/* var loadX = function() {
 			angular.element($('#template-div')).scope().customer.name = 'loadxxx';
+		} */
+
+		function initAddInvoiceDatetimePicker() {
+			var today = new Date();
+			$('#add-invoice-date').datetimepicker({
+				sideBySide: true,
+				showTodayButton: true,
+				format: 'DD/MM/YYYY HH:mm',
+				defaultDate: today,
+				showClose: true,
+				toolbarPlacement: 'top',
+				showTodayButton: true,
+				locale: moment.locale('vi')
+			});
 		}
 		
 	</script>

@@ -41,7 +41,8 @@
 	  	<script src="<c:url value='/static/sl2/select2.full.min.js'/>"> </script>
 	  	
 	  	<!-- Moment time library -->
-  		<script src="<c:url value='/static/moment/moment.js'/>"> </script> 
+  		<script src="<c:url value='/static/moment/moment.js'/>"> </script>
+  		<script src="<c:url value='/static/moment/locale/vi.js'/>"> </script> 
   		
   		<!-- Bootstrap-datetime picker -->
   		<link href="<c:url value='/static/bootstrap-datatimepicker/bootstrap-datetimepicker.css'/>" rel="stylesheet">

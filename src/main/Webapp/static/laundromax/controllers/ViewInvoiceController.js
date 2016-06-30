@@ -106,15 +106,15 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 					}
 					
 					// for Partner denied items and returned it.
-					if ($scope.invoice[0].lastStatus == 3) {
-						var request_element = $('#c-partner-deny-span');
-						var html = 	'<div class="col-sm-4">' +
-										'<div class="form-group c-fg-change-status">' +
-											'<a class="w3-btn w3-margin-bottom" style="background-color: red" ng-click="partnerDenyDialog()">' + lang_partner_deny + '</a>' +
-										'</div>' +
-									'</div>';
-						request_element.html(html);
-					}
+//					if ($scope.invoice[0].lastStatus == 3) {
+//						var request_element = $('#c-partner-deny-span');
+//						var html = 	'<div class="col-sm-4">' +
+//										'<div class="form-group c-fg-change-status">' +
+//											'<a class="w3-btn w3-margin-bottom" style="background-color: red" ng-click="partnerDenyDialog()">' + lang_partner_deny + '</a>' +
+//										'</div>' +
+//									'</div>';
+//						request_element.html(html);
+//					}
 					
 					// for print bill
 					if ($scope.invoice[0].lastStatus == 2 || $scope.invoice[0].lastStatus == 3 || $scope.invoice[0].lastStatus == 4) {

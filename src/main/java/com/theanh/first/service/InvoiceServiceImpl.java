@@ -45,7 +45,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 		InvoiceModel invoice = new InvoiceModel();
 		invoice.setActive(1);
 		invoice.setCid(invoiceIn.getCustomer_id());
-		invoice.setDateCreate(new Date());
+		invoice.setDateCreate(invoiceIn.getDate_input());
 		invoice.setLastStatus(Constant.INVOICE_STATUS_NEW);
 		invoice.setNote(invoiceIn.getNote());
 		invoice.setTotalPay(invoiceIn.getTotalPay());

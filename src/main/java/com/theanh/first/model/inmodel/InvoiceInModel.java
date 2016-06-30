@@ -1,5 +1,6 @@
 package com.theanh.first.model.inmodel;
 
+import java.util.Date;
 import java.util.List;
 
 public class InvoiceInModel {
@@ -11,6 +12,7 @@ public class InvoiceInModel {
 	private Integer totalCalculated;
 	private Integer discount;
 	private Integer vat;
+	private Date date_input;
 	private List<InvoiceDetailsInModel> products;
 	
 	public Integer getExpress_wash() {
@@ -63,6 +65,12 @@ public class InvoiceInModel {
 	}
 	public void setVat(Integer vat) {
 		this.vat = vat;
+	}
+	public Date getDate_input() {
+		return date_input;
+	}
+	public void setDate_input(Date date_input) {
+		this.date_input = date_input;
 	}
 	public void setProducts(List<InvoiceDetailsInModel> products) {
 		this.products = products;

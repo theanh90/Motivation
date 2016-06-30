@@ -416,6 +416,7 @@ mainApp.controller('AddInvoiceController', function($scope, $http) {
 		var error_mess = '';
 		var invoice = $scope.invoice_info;
 		var products = $scope.list_product;
+		$scope.invoice_info.date_input = (moment($('#date-invoice-input').val(), "DD/MM/YYYY HH:mm").unix()) * 1000;
 		
 		if (products.length <= 0) {
 			result = false;
