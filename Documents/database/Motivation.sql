@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 04, 2016 at 05:24 AM
+-- Generation Time: Jul 04, 2016 at 06:40 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -60,18 +60,19 @@ CREATE TABLE `InOutMoney` (
   `Money` int(11) NOT NULL,
   `Reason` text COLLATE utf8_unicode_ci NOT NULL,
   `DateCancel` timestamp NULL DEFAULT '0000-00-00 00:00:00',
-  `WhoCancel` text COLLATE utf8_unicode_ci
+  `WhoCancel` text COLLATE utf8_unicode_ci,
+  `Active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `InOutMoney`
 --
 
-INSERT INTO `InOutMoney` (`MId`, `Type`, `DateCreate`, `Who`, `Money`, `Reason`, `DateCancel`, `WhoCancel`) VALUES
-(1, 0, '2016-07-03 16:19:00', 'anh', -444, 'test', NULL, NULL),
-(2, 1, '2016-07-10 16:28:00', 'gg', 2234234, 'fasdf', NULL, NULL),
-(3, 1, '2016-07-04 03:18:00', 'dddd', 3333333, 'ddddd', NULL, NULL),
-(4, 0, '2016-07-04 03:23:00', 'ANh', -659999, 'Thees Anh Rut di choi', NULL, NULL);
+INSERT INTO `InOutMoney` (`MId`, `Type`, `DateCreate`, `Who`, `Money`, `Reason`, `DateCancel`, `WhoCancel`, `Active`) VALUES
+(1, 0, '2016-07-04 15:59:10', 'anh', -444, 'test', '2016-07-04 16:07:40', 'gggg', 0),
+(2, 1, '2016-07-04 15:59:10', 'gg', 2234234, 'fasdf', '2016-07-04 16:08:15', 'ssss', 0),
+(3, 1, '2016-07-04 15:59:10', 'dddd', 3333333, 'ddddd', NULL, NULL, 1),
+(4, 0, '2016-07-04 15:59:10', 'ANh', -659999, 'Thees Anh Rut di choi', '2016-07-04 16:40:20', 'Trần Thịnh', 0);
 
 -- --------------------------------------------------------
 

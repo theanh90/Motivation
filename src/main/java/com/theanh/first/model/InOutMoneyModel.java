@@ -39,6 +39,9 @@ public class InOutMoneyModel implements Serializable {
 	
 	@Column(name = "WHOCANCEL", nullable = true)
 	private String whoCancel;
+	
+	@Column(name = "ACTIVE", nullable = false)
+	private Integer active;
 
 	public Integer getMid() {
 		return mid;
@@ -106,6 +109,14 @@ public class InOutMoneyModel implements Serializable {
 
 	public void setWhoCancel(String whoCancel) {
 		this.whoCancel = whoCancel;
+	}
+
+	public Integer getActive() {
+		return active;
+	}
+
+	public void setActive(Integer active) {
+		this.active = active;
 	}
 	
 }

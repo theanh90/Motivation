@@ -34,7 +34,7 @@ mainApp.config(['$routeProvider', function($routeProvider) {
    
    when('/inout', {
       templateUrl: 'inout', 
-      controller: 'InOutController'
+      controller: 'InOutMoneyController'
    });
    
 //   otherwise({

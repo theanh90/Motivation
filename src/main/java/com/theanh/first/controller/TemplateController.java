@@ -40,7 +40,7 @@ public class TemplateController extends BaseController {
 	
 	@RequestMapping(value = "/inout", method = RequestMethod.GET)
 	public String inoutPage() {
-		return "template/Inout";
+		return "template/InoutMoney";
 	}
 
 }

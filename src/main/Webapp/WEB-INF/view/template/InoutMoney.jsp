@@ -8,10 +8,43 @@
 		<i class="fa fa-plus"></i>
 	</button>
 	
+	<div class="row">
+		<div class="col-sm-6 content">
+			<div>				
+				<div class="input-group">				
+		            <div class="input-group-btn">
+	            		<select ng-change="searchInOutChange()" style="width: 120px" id="search-inout-select" ng-model="search.type">
+						  <option value="all" selected="selected"><spring:message code='customer.search.all' text='All' /></option>
+						  <option value="type"><spring:message code='inout.type' text='Type' /></option>
+						  <option value="who"><spring:message code='inout.who' text='who' /></option>
+						  <option value="reason"><spring:message code='inout.reason' text='reason' /></option>
+						</select>
+		            </div>
+					<input id="inout-search-input" type="text" class="form-control" placeholder="<spring:message code='customer.search.inputSearch' text='Input search' />" ng-model="search.input">
+					
+					<div style="display: none" id="inout-type-search-div">
+						<select style="width: 150px" id="inout-type-search" ng-model="search.input">
+	            		  <option value="0"><spring:message code='inout.type.withdraw' text='Withdraw' /></option>
+	            		  <option value="1"><spring:message code='inout.type.put' text='Put' /></option>
+						</select>
+					</div>
+					
+					<div class="input-group-btn">
+		            	<button type="button" ng-click="doSearch()" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+		            </div>
+				</div>				
+			</div>
+		</div> <!-- end class col-sm content -->
+	</div> <!-- end class row -->
+	
+	<div id="list-template-div">
+		<table id="list-inout-money"></table>
+		
+	</div>
+	
 	<!-- Modal -->
 	<div id="add-inout-modal" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-	
+	  <div class="modal-dialog">	
 	    <!-- Modal Add content-->
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -85,10 +118,27 @@
 
 		var lang_save_success = "<spring:message code='inout.save.success' text='Save In/Out money successfully' />";
 		var lang_save_fail = "<spring:message code='inout.save.fail' text='Fail to save In/Out money' />";
-	
+		var lang_customer_action = '<spring:message code="customer.action" text="Action" />';
+		var lang_inout_delete_success = '<spring:message code="inout.delete.success" text="delete in/out money successfully" />';
+		var lang_inout_delete_fail = '<spring:message code="inout.delete.fail" text="Fail to delete in/out money" />';
+		var	common_confirm_delete_text = '<spring:message code="common.confirm.delete.text" text="Delete confirm text" />';
+		var common_confirm_delete = '<spring:message code="common.confirm.delete" text="Delete confirm" />';
+		var lang_input_whoCancel = '<spring:message code="inout.whocancel.input" text="Input who cancel" />';
+		var lang_input_whoCancel_validate = '<spring:message code="inout.whocancel.validate" text="Please input who cancel" />';
+		var lang_cancelled = '<spring:message code="inout.cancelled" text="Cancelled" />';
 	
 		$(document).ready(function() {
 			initInoutDate();
+			
+			$('#search-inout-select').select2({
+				theme: "bootstrap"
+			});
+			
+			$('#inout-type-search').select2({
+				theme: "bootstrap"	
+			});
+
+			angular.element($('#template-div')).scope().getListInOutMoney();
 		});
 
 		function initInoutDate() {

@@ -196,7 +196,7 @@
 		<script src="<c:url value='/static/laundromax/controllers/AddInvoiceController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/controllers/ViewInvoiceController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/controllers/ProductController.js' />"></script>
-		<script src="<c:url value='/static/laundromax/controllers/InOutController.js' />"></script>
+		<script src="<c:url value='/static/laundromax/controllers/InOutMoneyController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/common.js' />"></script>
 		
 	</body>

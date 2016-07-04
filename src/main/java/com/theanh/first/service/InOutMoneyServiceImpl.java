@@ -1,8 +1,13 @@
 package com.theanh.first.service;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.theanh.first.dao.InOutMoneyDao;
+import com.theanh.first.model.DataTableJson;
 import com.theanh.first.model.InOutMoneyInModel;
 import com.theanh.first.model.InOutMoneyModel;
 
@@ -35,8 +40,37 @@ public class InOutMoneyServiceImpl implements InOutMoneyService{
 			inoutMoney.setType(INOUT_TYPE_WITHDRAW);
 			inoutMoney.setMoney(-data.getMoney());
 		}
+		inoutMoney.setActive(1);
 		
 		inOutMoneyDao.save(inoutMoney);
+	}
+
+	@Override
+	public DataTableJson getListInOutMoney(String sort, String order, int limit, int offset, 
+			String typeSearch, String textSearch) {
+
+		DataTableJson dataTableJson = new DataTableJson();
+		List<Object> lsObj = new ArrayList<>(); 
+		lsObj = inOutMoneyDao.getListCustomer(sort, order, limit, offset, typeSearch, textSearch);
+		
+		dataTableJson.setTotal((long)lsObj.get(lsObj.size() - 1));
+		lsObj.remove(lsObj.size() - 1);
+		dataTableJson.setStatus(DataTableJson.SUCCESS);
+		dataTableJson.setRows(lsObj);
+		
+		return dataTableJson;
+	}
+
+	@Override
+	public void deleteInOutMoney(Integer id, String whoCancel) {
+		InOutMoneyModel inoutMoney = new InOutMoneyModel();
+		inoutMoney = inOutMoneyDao.getByKey(id);
+		
+		inoutMoney.setDateCancel(new Date());
+		inoutMoney.setWhoCancel(whoCancel);
+		inoutMoney.setActive(0);
+		
+		inOutMoneyDao.save(inoutMoney);		
 	}
 	
 }
