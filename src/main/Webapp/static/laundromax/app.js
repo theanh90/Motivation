@@ -30,6 +30,11 @@ mainApp.config(['$routeProvider', function($routeProvider) {
    when('/invoice/viewinvoice/:id', {
       templateUrl: 'invoice/viewinvoice', 
       controller: 'ViewInvoiceController'
+   }).
+   
+   when('/inout', {
+      templateUrl: 'inout', 
+      controller: 'InOutController'
    });
    
 //   otherwise({

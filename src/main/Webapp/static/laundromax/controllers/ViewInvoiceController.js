@@ -121,7 +121,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 						var print_element = $('#c-print-span');
 						var html = 	'<div class="col-sm-4">' +
 										'<div class="form-group c-fg-change-status">' +
-											'<a id="c-print-action" class="w3-btn w3-margin-bottom w3-print" style="background-color: black">' + 'Print Bill' + '</a>' +
+											'<a id="c-print-action" class="w3-btn w3-margin-bottom w3-print" style="background-color: black">' + lang_invoice_printbill + '</a>' +
 										'</div>' +
 									'</div>';
 						print_element.html(html);

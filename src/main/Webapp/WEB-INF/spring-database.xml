@@ -19,4 +19,8 @@
 		<property name="invoiceDetailsDao" ref="invoiceDetailsDao" />
 	</bean>
 	
+	<bean id="inOutMoneyService" class="com.theanh.first.service.InOutMoneyServiceImpl">
+		<property name="inOutMoneyDao" ref="inOutMoneyDao" />
+	</bean>
+	
 </beans>

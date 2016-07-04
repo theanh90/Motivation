@@ -37,5 +37,10 @@ public class TemplateController extends BaseController {
 	public String testPage() {
 		return "template/Test";
 	}
+	
+	@RequestMapping(value = "/inout", method = RequestMethod.GET)
+	public String inoutPage() {
+		return "template/Inout";
+	}
 
 }

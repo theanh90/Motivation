@@ -250,6 +250,7 @@
 		var lang_invoice_choose_print = '<spring:message code="invoice.print.choose" text="please choose bill type" />';
 		var lang_invoice_choose_print_customer = '<spring:message code="invoice.print.customer" text="customer bill" />';
 		var lang_invoice_choose_print_partner = '<spring:message code="invoice.print.partner" text="partner bill" />';
+		var lang_invoice_printbill = '<spring:message code="invoice.print.bill" text="Print Bill" />';
 		
 		
 		$(document).ready(function(){

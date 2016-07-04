@@ -13,6 +13,10 @@ function changeNumberFormat(number) {
     return output;
 }
 
+function reloadPage() {
+	location.reload();
+}
+
 function showMessageWithAction(title, msg, type, action, size) {
 	var size_convert;
 	var type_convert;

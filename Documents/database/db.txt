@@ -56,6 +56,16 @@
 	ID
 	ExPricePercent
 	
+9. INOUTMONEY
+	MId
+	Type
+	DateCreate
+	Who
+	Money
+	Reason
+	DateCancel
+	WhoCancel
+	
 //-- data for InvoiceStatus --
 -1: Request cancel ---> user only can send Cancel request to Admin, only Admin can Cancel invoice
 

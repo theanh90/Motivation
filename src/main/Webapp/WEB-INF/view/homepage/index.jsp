@@ -82,6 +82,9 @@
 		        <li onclick="setActive(this)" class="li-nav-menu invoice-menu-li">
 		        	<a href="#invoice"><spring:message code='menunav.invoice' text='Invoice' /></a>
 	        	</li>
+ 		        <li onclick="setActive(this)" class="li-nav-menu inout-menu-li">
+		        	<a href="#inout"><spring:message code='menunav.inout' text='In/Out' /></a>
+	        	</li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li>
@@ -118,6 +121,11 @@
    		</script>   		
    		<script type = "text/ng-template" id = "invoice/viewinvoice">		
 			<div ng-include src="'<c:url value='/template/angular/viewinvoice' />'"></div>	
+   		</script>
+   		
+   		<!-- view for input/output money -->
+   		<script type = "text/ng-template" id = "inout">		
+			<div ng-include src="'<c:url value='/template/angular/inout' />'"></div>	
    		</script>
 		
 		
@@ -188,6 +196,7 @@
 		<script src="<c:url value='/static/laundromax/controllers/AddInvoiceController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/controllers/ViewInvoiceController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/controllers/ProductController.js' />"></script>
+		<script src="<c:url value='/static/laundromax/controllers/InOutController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/common.js' />"></script>
 		
 	</body>
@@ -216,6 +225,8 @@
 				setActive(".product-menu-li");
 			} else if (hash.match(/^#\/invoice/i)) {
 				setActive(".invoice-menu-li");
+			} else if (hash.match(/^#\/inout/i)) {
+				setActive(".inout-menu-li");
 			}
 		}
 		

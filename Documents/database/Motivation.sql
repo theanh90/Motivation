@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 13, 2016 at 03:35 PM
+-- Generation Time: Jul 04, 2016 at 05:24 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `CUSTOMER`
+-- Table structure for table `customer`
 --
 
-CREATE TABLE `CUSTOMER` (
+CREATE TABLE `customer` (
   `CID` int(11) NOT NULL,
   `Name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
@@ -37,21 +37,49 @@ CREATE TABLE `CUSTOMER` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `CUSTOMER`
+-- Dumping data for table `customer`
 --
 
-INSERT INTO `CUSTOMER` (`CID`, `Name`, `Phone`, `Email`, `Address`, `Note`, `Active`) VALUES
-(1, 'sao da che''', '8888888888', 'slkfjas lf "', 'dfsdfsfs', 'asjf asldfj '' alsfj asldfj "', 0),
-(2, 'Đã Xóa', '1111111111', NULL, 'V1', NULL, 0),
-(3, 'ahihi', '3333333333', NULL, 'dd', NULL, 1);
+INSERT INTO `customer` (`CID`, `Name`, `Phone`, `Email`, `Address`, `Note`, `Active`) VALUES
+(2, 'Thanh', '0000000000', NULL, 'V1 2104', NULL, 1),
+(3, 'a chanh w2 1607', '0916998986', NULL, 'w2 1607', NULL, 1),
+(4, 'a hưng', '01229576222', 'thinhtran90@gmail.com', 'nvl lau 4', 'cần nhập lại', 1),
+(5, 'c My', '0909158345', NULL, 'NVL', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `INVOICE`
+-- Table structure for table `InOutMoney`
 --
 
-CREATE TABLE `INVOICE` (
+CREATE TABLE `InOutMoney` (
+  `MId` int(11) NOT NULL,
+  `Type` int(11) NOT NULL,
+  `DateCreate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `Who` text COLLATE utf8_unicode_ci NOT NULL,
+  `Money` int(11) NOT NULL,
+  `Reason` text COLLATE utf8_unicode_ci NOT NULL,
+  `DateCancel` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `WhoCancel` text COLLATE utf8_unicode_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `InOutMoney`
+--
+
+INSERT INTO `InOutMoney` (`MId`, `Type`, `DateCreate`, `Who`, `Money`, `Reason`, `DateCancel`, `WhoCancel`) VALUES
+(1, 0, '2016-07-03 16:19:00', 'anh', -444, 'test', NULL, NULL),
+(2, 1, '2016-07-10 16:28:00', 'gg', 2234234, 'fasdf', NULL, NULL),
+(3, 1, '2016-07-04 03:18:00', 'dddd', 3333333, 'ddddd', NULL, NULL),
+(4, 0, '2016-07-04 03:23:00', 'ANh', -659999, 'Thees Anh Rut di choi', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoice`
+--
+
+CREATE TABLE `invoice` (
   `InId` int(11) NOT NULL,
   `Cid` int(11) NOT NULL,
   `DateCreate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -66,11 +94,15 @@ CREATE TABLE `INVOICE` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `INVOICE`
+-- Dumping data for table `invoice`
 --
 
-INSERT INTO `INVOICE` (`InId`, `Cid`, `DateCreate`, `TotalPrice`, `TotalPay`, `Vat`, `Discount`, `IsExpress`, `Note`, `LastStatus`, `Active`) VALUES
-(56, 1, '2016-06-02 11:50:14', 95000, 0, 0, 0, 0, 'sss', 2, 1);
+INSERT INTO `invoice` (`InId`, `Cid`, `DateCreate`, `TotalPrice`, `TotalPay`, `Vat`, `Discount`, `IsExpress`, `Note`, `LastStatus`, `Active`) VALUES
+(1, 5, '2016-06-19 02:42:43', 120000, 0, 0, 0, 0, 'Bill giấy: 5232\n\nMốt Giao', 3, 1),
+(2, 5, '2016-06-30 14:34:00', 285000, 0, 0, 0, 0, NULL, 1, 1),
+(3, 4, '2016-06-22 12:35:00', 135000, 0, 0, 0, 0, NULL, 1, 1),
+(4, 4, '2016-07-15 02:30:00', 2090000, 0, 0, 0, 0, NULL, 1, 1),
+(5, 5, '2016-07-31 15:55:00', 190000, 0, 0, 0, 0, NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -83,6 +115,7 @@ CREATE TABLE `invoicecustomerview` (
 ,`DateCreate` timestamp
 ,`TotalPrice` int(11)
 ,`TotalPay` int(11)
+,`DueAmount` bigint(12)
 ,`Vat` int(11)
 ,`Discount` int(11)
 ,`IsExpress` int(11)
@@ -104,6 +137,7 @@ CREATE TABLE `invoicedetailcustomerview` (
 `InId` int(11)
 ,`DateCreate` timestamp
 ,`TotalPrice` int(11)
+,`DueAmount` bigint(12)
 ,`TotalPay` int(11)
 ,`Vat` int(11)
 ,`Discount` int(11)
@@ -130,10 +164,10 @@ CREATE TABLE `invoicedetailcustomerview` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `INVOICEDETAILS`
+-- Table structure for table `invoicedetails`
 --
 
-CREATE TABLE `INVOICEDETAILS` (
+CREATE TABLE `invoicedetails` (
   `Did` int(11) NOT NULL,
   `Pid` int(11) NOT NULL,
   `InId` int(11) NOT NULL,
@@ -143,20 +177,23 @@ CREATE TABLE `INVOICEDETAILS` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `INVOICEDETAILS`
+-- Dumping data for table `invoicedetails`
 --
 
-INSERT INTO `INVOICEDETAILS` (`Did`, `Pid`, `InId`, `UnitPrice`, `TypePrice`, `Quantity`) VALUES
-(126, 12, 56, 95000, 'laundry', 1),
-(127, 13, 56, 0, 'pressonly', 2);
+INSERT INTO `invoicedetails` (`Did`, `Pid`, `InId`, `UnitPrice`, `TypePrice`, `Quantity`) VALUES
+(1, 4, 1, 60000, 'dryclean', 2),
+(2, 12, 2, 95000, 'laundry', 3),
+(3, 5, 3, 45000, 'laundry', 3),
+(4, 12, 4, 95000, 'laundry', 22),
+(5, 12, 5, 95000, 'laundry', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `INVOICEHISTORY`
+-- Table structure for table `invoicehistory`
 --
 
-CREATE TABLE `INVOICEHISTORY` (
+CREATE TABLE `invoicehistory` (
   `HId` int(11) NOT NULL,
   `InId` int(11) NOT NULL,
   `Status` int(11) NOT NULL,
@@ -168,19 +205,19 @@ CREATE TABLE `INVOICEHISTORY` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `INVOICESTATUS`
+-- Table structure for table `invoicestatus`
 --
 
-CREATE TABLE `INVOICESTATUS` (
+CREATE TABLE `invoicestatus` (
   `SID` int(11) NOT NULL,
   `Name` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `INVOICESTATUS`
+-- Dumping data for table `invoicestatus`
 --
 
-INSERT INTO `INVOICESTATUS` (`SID`, `Name`) VALUES
+INSERT INTO `invoicestatus` (`SID`, `Name`) VALUES
 (-1, 'Request cancel'),
 (0, 'Cancel'),
 (1, 'New'),
@@ -192,10 +229,10 @@ INSERT INTO `INVOICESTATUS` (`SID`, `Name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `PRODUCT`
+-- Table structure for table `product`
 --
 
-CREATE TABLE `PRODUCT` (
+CREATE TABLE `product` (
   `PID` int(11) NOT NULL,
   `EnName` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `VnName` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
@@ -205,10 +242,10 @@ CREATE TABLE `PRODUCT` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `PRODUCT`
+-- Dumping data for table `product`
 --
 
-INSERT INTO `PRODUCT` (`PID`, `EnName`, `VnName`, `Unit`, `Note`, `Active`) VALUES
+INSERT INTO `product` (`PID`, `EnName`, `VnName`, `Unit`, `Note`, `Active`) VALUES
 (1, 'Trouser, Jean', 'Quần Tây, Jean', 'Cái', NULL, 1),
 (2, 'Shirt, Blouse', 'Áo sơ mi, Áo kiểu', 'cái', NULL, 1),
 (3, 'T-shirt', 'Áo thun, ba lỗ, croptop', 'Cái', NULL, 1),
@@ -231,33 +268,34 @@ INSERT INTO `PRODUCT` (`PID`, `EnName`, `VnName`, `Unit`, `Note`, `Active`) VALU
 (20, 'Bed cover', 'Phủ giường', 'Cái', NULL, 1),
 (21, 'Thin Blanket', 'Mền mỏng <2cm', 'Cái', NULL, 1),
 (22, 'Medium Blanket', 'Mền t.bình 2-4cm', 'Cái', NULL, 1),
-(23, 'Thick, premium Blanket', 'Mền dày >4cm, cao cấp', 'Cái', 'Mền nặng', 1);
+(23, 'Thick, premium Blanket', 'Mền dày >4cm, cao cấp', 'Cái', NULL, 1),
+(24, NULL, 'áo len thun', 'cái', NULL, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `STUFFCONFIG`
+-- Table structure for table `stuffconfig`
 --
 
-CREATE TABLE `STUFFCONFIG` (
+CREATE TABLE `stuffconfig` (
   `ID` int(11) NOT NULL,
   `ExPricePercent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `STUFFCONFIG`
+-- Dumping data for table `stuffconfig`
 --
 
-INSERT INTO `STUFFCONFIG` (`ID`, `ExPricePercent`) VALUES
+INSERT INTO `stuffconfig` (`ID`, `ExPricePercent`) VALUES
 (1, 50);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `USER`
+-- Table structure for table `user`
 --
 
-CREATE TABLE `USER` (
+CREATE TABLE `user` (
   `Id` int(11) NOT NULL,
   `UserName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -265,20 +303,20 @@ CREATE TABLE `USER` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `USER`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `USER` (`Id`, `UserName`, `Password`, `Role`) VALUES
+INSERT INTO `user` (`Id`, `UserName`, `Password`, `Role`) VALUES
 (1, 'admin', '$2a$08$ApmTcQ8WOdNcs73eBslLPeW.7SA99SurC3AZgZab.WCScIyY1ZJ9O', 'ADMIN'),
 (2, 'user', '$2a$08$bIGdppOPgIs6xwA8ftRFJeaevl.1qyaqyuPUnwRc5ID.aykWC3J6y', 'USER');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `WASHTYPEPRICE`
+-- Table structure for table `washtypeprice`
 --
 
-CREATE TABLE `WASHTYPEPRICE` (
+CREATE TABLE `washtypeprice` (
   `PID` int(11) NOT NULL,
   `Laundry` int(11) NOT NULL,
   `DryClean` int(11) NOT NULL,
@@ -286,10 +324,10 @@ CREATE TABLE `WASHTYPEPRICE` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `WASHTYPEPRICE`
+-- Dumping data for table `washtypeprice`
 --
 
-INSERT INTO `WASHTYPEPRICE` (`PID`, `Laundry`, `DryClean`, `PressOnly`) VALUES
+INSERT INTO `washtypeprice` (`PID`, `Laundry`, `DryClean`, `PressOnly`) VALUES
 (1, 32000, 42000, 22000),
 (2, 30000, 40000, 20000),
 (3, 28000, 38000, 20000),
@@ -312,7 +350,8 @@ INSERT INTO `WASHTYPEPRICE` (`PID`, `Laundry`, `DryClean`, `PressOnly`) VALUES
 (20, 60000, 80000, 0),
 (21, 60000, 80000, 0),
 (22, 90000, 110000, 0),
-(23, 120000, 150000, 0);
+(23, 120000, 150000, 0),
+(24, 28000, 38000, 0);
 
 -- --------------------------------------------------------
 
@@ -321,7 +360,7 @@ INSERT INTO `WASHTYPEPRICE` (`PID`, `Laundry`, `DryClean`, `PressOnly`) VALUES
 --
 DROP TABLE IF EXISTS `invoicecustomerview`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `motivation`.`invoicecustomerview`  AS  select `I`.`InId` AS `InId`,`I`.`Cid` AS `Cid`,`I`.`DateCreate` AS `DateCreate`,`I`.`TotalPrice` AS `TotalPrice`,`I`.`TotalPay` AS `TotalPay`,`I`.`Vat` AS `Vat`,`I`.`Discount` AS `Discount`,`I`.`IsExpress` AS `IsExpress`,`I`.`Note` AS `Note`,`I`.`LastStatus` AS `LastStatus`,`I`.`Active` AS `Active`,`C`.`Name` AS `Name`,`C`.`Phone` AS `Phone`,`C`.`Email` AS `Email`,`C`.`Address` AS `Address` from (`motivation`.`invoice` `I` join `motivation`.`customer` `C`) where ((1 = 1) and (`I`.`Cid` = `C`.`CID`)) order by `I`.`DateCreate` desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `motivation`.`invoicecustomerview`  AS  select `I`.`InId` AS `InId`,`I`.`Cid` AS `Cid`,`I`.`DateCreate` AS `DateCreate`,`I`.`TotalPrice` AS `TotalPrice`,`I`.`TotalPay` AS `TotalPay`,(`I`.`TotalPrice` - `I`.`TotalPay`) AS `DueAmount`,`I`.`Vat` AS `Vat`,`I`.`Discount` AS `Discount`,`I`.`IsExpress` AS `IsExpress`,`I`.`Note` AS `Note`,`I`.`LastStatus` AS `LastStatus`,`I`.`Active` AS `Active`,`C`.`Name` AS `Name`,`C`.`Phone` AS `Phone`,`C`.`Email` AS `Email`,`C`.`Address` AS `Address` from (`motivation`.`invoice` `I` join `motivation`.`customer` `C`) where ((1 = 1) and (`I`.`Cid` = `C`.`CID`)) order by `I`.`DateCreate` desc ;
 
 -- --------------------------------------------------------
 
@@ -330,65 +369,71 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `invoicedetailcustomerview`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `motivation`.`invoicedetailcustomerview`  AS  select `I`.`InId` AS `InId`,`I`.`DateCreate` AS `DateCreate`,`I`.`TotalPrice` AS `TotalPrice`,`I`.`TotalPay` AS `TotalPay`,`I`.`Vat` AS `Vat`,`I`.`Discount` AS `Discount`,`I`.`IsExpress` AS `IsExpress`,`I`.`Note` AS `InvoiceNote`,`I`.`LastStatus` AS `LastStatus`,`I`.`Active` AS `InvoiceActive`,`D`.`Did` AS `Did`,`D`.`Pid` AS `Pid`,`D`.`UnitPrice` AS `UnitPrice`,`D`.`TypePrice` AS `TypePrice`,`D`.`Quantity` AS `Quantity`,`C`.`CID` AS `CID`,`C`.`Name` AS `Name`,`C`.`Phone` AS `Phone`,`C`.`Email` AS `Email`,`C`.`Address` AS `Address`,`C`.`Note` AS `CustomerNote`,`C`.`Active` AS `CustomerActive`,`P`.`EnName` AS `EnName`,`P`.`VnName` AS `VnName` from (((`motivation`.`invoice` `I` join `motivation`.`invoicedetails` `D` on((`I`.`InId` = `D`.`InId`))) join `motivation`.`customer` `C` on((`I`.`Cid` = `C`.`CID`))) join `motivation`.`product` `P` on((`D`.`Pid` = `P`.`PID`))) order by `I`.`InId` desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `motivation`.`invoicedetailcustomerview`  AS  select `I`.`InId` AS `InId`,`I`.`DateCreate` AS `DateCreate`,`I`.`TotalPrice` AS `TotalPrice`,(`I`.`TotalPrice` - `I`.`TotalPay`) AS `DueAmount`,`I`.`TotalPay` AS `TotalPay`,`I`.`Vat` AS `Vat`,`I`.`Discount` AS `Discount`,`I`.`IsExpress` AS `IsExpress`,`I`.`Note` AS `InvoiceNote`,`I`.`LastStatus` AS `LastStatus`,`I`.`Active` AS `InvoiceActive`,`D`.`Did` AS `Did`,`D`.`Pid` AS `Pid`,`D`.`UnitPrice` AS `UnitPrice`,`D`.`TypePrice` AS `TypePrice`,`D`.`Quantity` AS `Quantity`,`C`.`CID` AS `CID`,`C`.`Name` AS `Name`,`C`.`Phone` AS `Phone`,`C`.`Email` AS `Email`,`C`.`Address` AS `Address`,`C`.`Note` AS `CustomerNote`,`C`.`Active` AS `CustomerActive`,`P`.`EnName` AS `EnName`,`P`.`VnName` AS `VnName` from (((`motivation`.`invoice` `I` join `motivation`.`invoicedetails` `D` on((`I`.`InId` = `D`.`InId`))) join `motivation`.`customer` `C` on((`I`.`Cid` = `C`.`CID`))) join `motivation`.`product` `P` on((`D`.`Pid` = `P`.`PID`))) order by `I`.`InId` desc ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `CUSTOMER`
+-- Indexes for table `customer`
 --
-ALTER TABLE `CUSTOMER`
+ALTER TABLE `customer`
   ADD PRIMARY KEY (`CID`);
 
 --
--- Indexes for table `INVOICE`
+-- Indexes for table `InOutMoney`
 --
-ALTER TABLE `INVOICE`
+ALTER TABLE `InOutMoney`
+  ADD PRIMARY KEY (`MId`);
+
+--
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
   ADD PRIMARY KEY (`InId`);
 
 --
--- Indexes for table `INVOICEDETAILS`
+-- Indexes for table `invoicedetails`
 --
-ALTER TABLE `INVOICEDETAILS`
+ALTER TABLE `invoicedetails`
   ADD PRIMARY KEY (`Did`);
 
 --
--- Indexes for table `INVOICEHISTORY`
+-- Indexes for table `invoicehistory`
 --
-ALTER TABLE `INVOICEHISTORY`
+ALTER TABLE `invoicehistory`
   ADD PRIMARY KEY (`HId`);
 
 --
--- Indexes for table `INVOICESTATUS`
+-- Indexes for table `invoicestatus`
 --
-ALTER TABLE `INVOICESTATUS`
+ALTER TABLE `invoicestatus`
   ADD PRIMARY KEY (`SID`);
 
 --
--- Indexes for table `PRODUCT`
+-- Indexes for table `product`
 --
-ALTER TABLE `PRODUCT`
+ALTER TABLE `product`
   ADD PRIMARY KEY (`PID`);
 
 --
--- Indexes for table `STUFFCONFIG`
+-- Indexes for table `stuffconfig`
 --
-ALTER TABLE `STUFFCONFIG`
+ALTER TABLE `stuffconfig`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `USER`
+-- Indexes for table `user`
 --
-ALTER TABLE `USER`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`Id`),
   ADD UNIQUE KEY `UserName` (`UserName`);
 
 --
--- Indexes for table `WASHTYPEPRICE`
+-- Indexes for table `washtypeprice`
 --
-ALTER TABLE `WASHTYPEPRICE`
+ALTER TABLE `washtypeprice`
   ADD PRIMARY KEY (`PID`);
 
 --
@@ -396,34 +441,39 @@ ALTER TABLE `WASHTYPEPRICE`
 --
 
 --
--- AUTO_INCREMENT for table `CUSTOMER`
+-- AUTO_INCREMENT for table `customer`
 --
-ALTER TABLE `CUSTOMER`
-  MODIFY `CID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `customer`
+  MODIFY `CID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `INVOICE`
+-- AUTO_INCREMENT for table `InOutMoney`
 --
-ALTER TABLE `INVOICE`
-  MODIFY `InId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+ALTER TABLE `InOutMoney`
+  MODIFY `MId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `INVOICEDETAILS`
+-- AUTO_INCREMENT for table `invoice`
 --
-ALTER TABLE `INVOICEDETAILS`
-  MODIFY `Did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+ALTER TABLE `invoice`
+  MODIFY `InId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `INVOICEHISTORY`
+-- AUTO_INCREMENT for table `invoicedetails`
 --
-ALTER TABLE `INVOICEHISTORY`
+ALTER TABLE `invoicedetails`
+  MODIFY `Did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `invoicehistory`
+--
+ALTER TABLE `invoicehistory`
   MODIFY `HId` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `PRODUCT`
+-- AUTO_INCREMENT for table `product`
 --
-ALTER TABLE `PRODUCT`
-  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+ALTER TABLE `product`
+  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
--- AUTO_INCREMENT for table `USER`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `USER`
+ALTER TABLE `user`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
