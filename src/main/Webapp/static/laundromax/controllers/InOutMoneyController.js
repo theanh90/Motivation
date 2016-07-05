@@ -249,46 +249,46 @@ mainApp.controller('InOutMoneyController', function($scope, $http, $route, $comp
 			rowAttributes: inOutMoneyRowStyle,
 			columns : [ {
 				field: 'type',
-				title : 'type',
+				title : lang_announ_type,
 				align : 'left',
 				valign : 'middle',
 				sortable : true,
 				formatter: typeFormatter
 			}, {
 				field : 'dateCreate',
-				title : 'dateCreate',
+				title : lang_announ_date,
 				align : 'left',
 				valign : 'middle',
 				sortable : true,
 				formatter: dateFormatter
 			}, {
 				field : 'who',
-				title : 'who',
+				title : lang_announ_who,
 				align : 'left',
 				valign : 'middle',
 				sortable : true
 			}, {
 				field : 'money',
-				title : 'money',
+				title : lang_announ_money,
 				align : 'right',
 				valign : 'middle',
 				sortable : true,
 				formatter : moneyFormatter		
 			}, {
 				field : 'reason',
-				title : 'reason',
+				title : lang_announ_reason,
 				align : 'left',
 				valign : 'middle'
 			}, {
 				field : 'dateCancel',
-				title : 'dateCancel',
+				title : lang_announ_datecancel,
 				align : 'right',
 				valign : 'middle',
 				sortable : false,
 				formatter: dateFormatter
 			}, {
 				field : 'whoCancel',
-				title : 'whoCancel',
+				title : lang_announ_whocancel,
 				align : 'right',
 				valign : 'middle',
 				sortable : false

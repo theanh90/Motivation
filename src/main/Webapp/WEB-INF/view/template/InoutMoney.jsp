@@ -110,7 +110,9 @@
 
 		var lang_announ_type = "<spring:message code='inout.type' text='Type' />";
 		var lang_announ_date = "<spring:message code='inout.date' text='Date' />";
+		var lang_announ_datecancel = "<spring:message code='inout.date.cancel' text='Date cancel' />";
 		var lang_announ_who = "<spring:message code='inout.who' text='who' />";
+		var lang_announ_whocancel = "<spring:message code='inout.who.cancel' text='who\'s cancel' />";
 		var lang_announ_money = "<spring:message code='inout.money' text='money' />";
 		var lang_announ_reason = "<spring:message code='inout.reason' text='reason' />";
 		var lang_announ_type_put = "<spring:message code='inout.type.put' text='Put' />";
@@ -124,7 +126,7 @@
 		var	common_confirm_delete_text = '<spring:message code="common.confirm.delete.text" text="Delete confirm text" />';
 		var common_confirm_delete = '<spring:message code="common.confirm.delete" text="Delete confirm" />';
 		var lang_input_whoCancel = '<spring:message code="inout.whocancel.input" text="Input who cancel" />';
-		var lang_input_whoCancel_validate = '<spring:message code="inout.whocancel.validate" text="Please input who cancel" />';
+		var lang_input_whoCancel_validate = '<spring:message code="inout.whocancel.validate" text="Who\'s cancel is required" />';
 		var lang_cancelled = '<spring:message code="inout.cancelled" text="Cancelled" />';
 	
 		$(document).ready(function() {

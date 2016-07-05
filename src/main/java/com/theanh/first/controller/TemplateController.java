@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/template/angular")
 public class TemplateController extends BaseController {
 	
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String homePage() {
+		return "template/Home";
+	}
+	
 	@RequestMapping(value = "/customer", method = RequestMethod.GET)
 	public String customerPage() {
 		return "template/Customer";

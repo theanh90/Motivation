@@ -99,7 +99,7 @@
    		   		
    		<!-- view for home -->
    		<script type = "text/ng-template" id = "home">		
-			<div ng-include src="'static/laundromax/templates/Home.html'"></div>	
+			<div ng-include src="'<c:url value='/template/angular/home' />'"></div>	
    		</script>
    		
    		<!-- view for customer -->
