@@ -55,6 +55,11 @@
 		<script src="<c:url value='/static/webui-popover/jquery.webui-popover.min.js'/>"> </script>
 		<link href="<c:url value='/static/webui-popover/jquery.webui-popover.min.css'/>" rel="stylesheet">	
 		
+		<!-- Date Range Picker -->
+		<script src="<c:url value='/static/daterangepicker/daterangepicker.js'/>"> </script>
+		<link href="<c:url value='/static/daterangepicker/daterangepicker.css'/>" rel="stylesheet">	
+		
+		
 		<title>GIẶT ỦI LAUNDROMAX</title>
 		
 		<%@include file="../template/CommonJSP.jsp"%>
@@ -173,17 +178,36 @@
 		  	</div><!-- end row div -->
 	  	</div><!-- end container-fluid div -->
 	  	
-	  	<div class="language-div" style="float:right">
-			<a href="?language=en">
-	        	<i class="glyphicon bfh-flag-US"></i>
-	        	<%-- <spring:message code='language.english' text='English' /> --%>
-	        </a>
-	        |&nbsp;
-	        <a href="?language=vn">
-	             <i class="glyphicon bfh-flag-VN"></i>
-	            <%--  <spring:message code='language.vietnam' text='Vietnamese' /> --%>
-	        </a>	  	
-	  	</div>
+	  	<footer class="footer-distributed">
+
+			<div class="footer-right">	  	
+			  	<div class="language-div" style="float:right">
+					<a href="?language=en">
+			        	<i class="glyphicon bfh-flag-US"></i>
+			        </a>
+			        |&nbsp;
+			        <a href="?language=vn">
+			             <i class="glyphicon bfh-flag-VN"></i>
+			        </a>	  	
+			  	</div>
+			</div>
+
+			<div class="footer-left">
+
+				<p class="footer-links">						        	
+					<a href="#customer"><spring:message code='menunav.customer' text='Customer' /></a>
+					·
+					<a href="#product"><spring:message code='menunav.item' text='Item' /></a>
+					·
+					<a href="#invoice"><spring:message code='menunav.invoice' text='Invoice' /></a>
+					·
+					<a href="#inout"><spring:message code='menunav.inout' text='In/Out' /></a>
+				</p>
+
+				<p>Developed by Anh Bui - theanh90@gmail.com</p>
+			</div>
+
+		</footer>
 		 
 	  	<!-- CSRF token -->
 	  	<input type="hidden" id="token" value="${_csrf.token}" />
@@ -210,7 +234,8 @@
 				$('#li-nav-home').css('background-color', '#fe8f01');
 				$('.li-nav-menu').removeClass('active');
 			});
-			
+
+			location.href = '#/home';
 			activeCurrentMenu();
 		});
 		

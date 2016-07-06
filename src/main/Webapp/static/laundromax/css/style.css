@@ -330,10 +330,225 @@ body {
 	margin-bottom: 15px;
 }
 
+/* For report */
+#daterange-btn {
+	background: #fff; 
+	cursor: pointer; 
+	padding: 5px 10px; 
+	border: 1px solid #ccc; 
+	width: 100%;
+}
 
+/* from OSS  -  report*/
+.info-box {
+    display: block;
+    min-height: 92px;
+    background: #fff;
+    width: 100%;
+    border: 1px solid #eceff4;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-bottom: 15px; 
+}
 
+.info-box.has-border {
+    border-color: #cad3df; 
+}
 
+.info-box small {
+    font-size: 14px; 
+}
 
+.info-box .progress {
+    background: rgba(0, 0, 0, 0.2);
+    margin: 5px -10px 5px -10px;
+    height: 2px; 
+}
+
+.info-box .progress,
+.info-box .progress .progress-bar {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0; 
+}
+    
+.info-box .progress .progress-bar {
+    background: #fff; 
+}
+
+.info-box.is-report {
+    position: relative;
+    height: 100%;
+    overflow: hidden; 
+}
+
+.info-box.is-report .info-box-content {
+    height: 100%;
+    position: absolute;
+    width: auto;
+    top: 0;
+    left: 0; 
+}
+
+.info-box.is-report .info-box-text {
+    white-space: normal;
+    text-transform: none; 
+}
+
+.info-box.is-report:hover, .info-box.is-report:active, .info-box.is-report:focus {
+    border-color: #0082d5; 
+}
+
+.info-box-icon {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 2px;
+    display: block;
+    float: left;
+    height: 90px;
+    width: 90px;
+    text-align: center;
+    font-size: 45px;
+    line-height: 90px;
+    background-color: #eceff4; 
+}
+
+.info-box-icon > img {
+    max-width: 100%; 
+}
+
+.info-box-content {
+    padding: 5px 10px;
+    margin-left: 90px; 
+}
+
+.info-box-number {
+    display: block;
+    font-weight: bold;
+    font-size: 18px; 
+}
+
+.progress-description,
+.info-box-text {
+    display: block;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.info-box-text {
+    text-transform: uppercase; 
+}
+
+.info-box-more {
+    display: block; 
+}
+
+.progress-description {
+    margin: 0; 
+}
+
+.c-report-header {
+    margin-left: 15px;
+    padding-bottom: 10px !important;	
+}
+/* End copy OSS - report */
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;               
+  background-color: blue;
+  height: 1px;
+}
+
+.total-money {
+	font-weight: bold;
+	border: 1px solid red;
+}
+
+/* For footer */
+.footer-distributed{
+	background-color: #292c2f;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: normal 16px sans-serif;
+	padding: 25px 50px;
+	margin-top: 20px;
+}
+
+.footer-distributed .footer-left p{
+	color:  #8f9296;
+	font-size: 14px;
+	margin: 0;
+}
+
+/* Footer links */
+
+.footer-distributed p.footer-links{
+	font-size:18px;
+	font-weight: bold;
+	color:  #ffffff;
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+.footer-distributed p.footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-right{
+	float: right;
+	margin-top: 6px;
+	max-width: 180px;
+}
+
+.footer-distributed .footer-right a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-left: 3px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 600px) {
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-right{
+		text-align: center;
+	}
+
+	.footer-distributed .footer-right{
+		float: none;
+		margin: 0 auto 20px;
+	}
+
+	.footer-distributed .footer-left p.footer-links{
+		line-height: 1.8;
+	}
+}
+
+/* End footer */
 
 
 

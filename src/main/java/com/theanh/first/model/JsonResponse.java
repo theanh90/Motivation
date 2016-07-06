@@ -39,5 +39,10 @@ public class JsonResponse implements Serializable{
 		this.message = message;
 		this.data = data;
 	}
+	
+	@Override
+	public String toString() {
+		return "JsonResponse [returnStatus=" + returnStatus + ", message=" + message + ", data=" + data + "]";
+	}
 
 }
