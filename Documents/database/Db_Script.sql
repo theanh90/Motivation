@@ -22,3 +22,40 @@ FROM INVOICE I
     INNER JOIN PRODUCT P
     	ON D.Pid = P.PID
 ORDER BY I.InId  DESC
+
+
+--####### For Report Homepage #######--
+
+SELECT SUM(M.Money) Put
+FROM InOutMoney M
+WHERE 1 = 1 AND (
+    M.Type = 1
+	AND M.Active = 1
+	AND M.DateCreate BETWEEN '2016/01/01' AND '2016/12/31'
+);
+
+SELECT SUM(M.Money) Withdraw
+FROM InOutMoney M
+WHERE 1 = 1 AND (
+    M.Type = 0
+	AND M.Active = 1
+	AND M.DateCreate BETWEEN '2016/01/01' AND '2016/12/31'
+);
+
+SELECT sum(case when M.Type = 1 then M.Money else 0 end) Put,      
+		sum(case when M.Type = 0 then M.Money else 0 end) Withdraw 
+FROM InOutMoney M
+WHERE M.Active = 1
+AND M.DateCreate BETWEEN '2016/01/01' AND '2016/12/31'
+
+
+SELECT SUM(TotalTable.Money)
+FROM (
+    SELECT SUM(I.TotalPay) Money
+    FROM Invoice I
+    WHERE I.LastStatus <> -1
+    UNION
+    SELECT SUM(case when M.Type = 1 then M.Money else -M.Money end) Money
+    FROM InOutMoney M 
+    WHERE M.Active = 1
+) TotalTable

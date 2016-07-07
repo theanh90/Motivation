@@ -37,5 +37,11 @@ public class HomeServiceImpl implements HomeService{
 	public Object getInOutReport(Date startDate, Date endDate) {
 		return homeDao.getInOutReport(startDate, endDate);
 	}
+
+	@Override
+	public Object getLeftTotalMoney() {
+		return homeDao.getLeftTotalMoney();
+	}
+	
 	
 }

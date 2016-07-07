@@ -235,7 +235,7 @@
 				$('.li-nav-menu').removeClass('active');
 			});
 
-			location.href = '#/home';
+			/* location.href = '#/home'; */
 			activeCurrentMenu();
 		});
 		

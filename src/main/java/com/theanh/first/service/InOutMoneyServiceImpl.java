@@ -38,7 +38,7 @@ public class InOutMoneyServiceImpl implements InOutMoneyService{
 			inoutMoney.setMoney(data.getMoney());
 		} else {
 			inoutMoney.setType(INOUT_TYPE_WITHDRAW);
-			inoutMoney.setMoney(-data.getMoney());
+			inoutMoney.setMoney(data.getMoney());
 		}
 		inoutMoney.setActive(1);
 		

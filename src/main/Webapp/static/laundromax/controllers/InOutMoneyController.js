@@ -370,8 +370,7 @@ mainApp.controller('InOutMoneyController', function($scope, $http, $route, $comp
   }
   
   function moneyFormatter(value, row, index) {
-	  if (value < 0) {
-		  value = -value;
+	  if (row.type == 0) {
 		  return '- ' + changeNumberFormat(value);
 	  }
 	  return changeNumberFormat(value);

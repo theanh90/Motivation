@@ -33,11 +33,11 @@ public class HomeController extends BaseController{
 			Date endDate = new Date(end);
 			Object result = homeService.getInvoiceReport(startDate, endDate);
 			
-			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get report data successfully", null);
+			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get Invoice report data successfully", null);
 			jsonResponse.setData(result);
 		}catch (Exception ex) {
 			ex.printStackTrace();
-			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get report data!", null);
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get Invoice report data!", null);
 		}
 		
 		return jsonResponse;
@@ -56,14 +56,37 @@ public class HomeController extends BaseController{
 			Date endDate = new Date(end);
 			Object result = homeService.getInOutReport(startDate, endDate);
 			
-			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get report data successfully", null);
+			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get In/out money report data successfully", null);
 			jsonResponse.setData(result);
 		}catch (Exception ex) {
 			ex.printStackTrace();
-			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get report data!", null);
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get In/out money report data!", null);
 		}
 		
 		return jsonResponse;
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/leftmoney", method = RequestMethod.GET, headers = {
+			"Accept=*/*" }, produces = "application/json;charset=UTF-8")
+	public JsonResponse getLeftTotalMoney(HttpServletRequest request) {
+		JsonResponse jsonResponse;
+		if (!this.hasLogin())
+			return null;
+		
+		try {
+			Object result = homeService.getLeftTotalMoney();
+			
+			jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Get total money left report data successfully", null);
+			jsonResponse.setData(result);
+		}catch (Exception ex) {
+			ex.printStackTrace();
+			jsonResponse = new JsonResponse(JsonResponse.ERROR, "Fail to get total money left report data!", null);
+		}
+		
+		return jsonResponse;
+	}
+	
+	
 
 }

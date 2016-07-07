@@ -115,7 +115,7 @@
 		var select_end;
 	
 		$(document).ready(function() {
-			dateRangeView(moment().startOf('week'), moment());
+			dateRangeView(moment().hour(0).minute(0).second(0), moment().hour(23).minute(59).second(59));			
 			angular.element($('#template-div')).scope().controllerReady();
 		});
 
@@ -169,10 +169,9 @@
 	            ],
 	            "firstDay": 1
 	        },
-	      	startDate: moment(),
-	      	endDate: moment(),
 	      	dateLimit: { days: 30 },
-	     	autoUpdateInput: true
+	     	autoUpdateInput: true,
+	     	autoApply: true
 	    },
 	    dateRangeView
 	);
