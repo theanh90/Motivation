@@ -47,5 +47,10 @@ public class TemplateController extends BaseController {
 	public String inoutPage() {
 		return "template/InoutMoney";
 	}
+	
+	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+	public String adminPage() {
+		return "template/Admin";
+	}
 
 }

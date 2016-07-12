@@ -197,9 +197,9 @@
 			            <div class="form-box">
 			                <form action="login" method="post">
 			                	<c:if test="${param.error != null}">
-                                <div class="alert alert-danger">
-                                    <p>Invalid username and password.</p>
-                                </div>
+	                                <div class="alert alert-danger">
+	                                    <p><spring:message code='login.fail' text='Invalid username or password.' /></p>
+	                                </div>
 	                            </c:if>
 	                            <c:if test="${param.logout != null}">
 	                                <div class="alert alert-success">

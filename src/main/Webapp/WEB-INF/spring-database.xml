@@ -27,5 +27,9 @@
 	<bean id="inOutMoneyService" class="com.theanh.first.service.InOutMoneyServiceImpl">
 		<property name="inOutMoneyDao" ref="inOutMoneyDao" />
 	</bean>
+	<bean id="adminService" class="com.theanh.first.service.AdminServiceImpl">
+		<property name="adminDao" ref="adminDao" />
+		<property name="userDao" ref="userDao" />
+	</bean>
 	
 </beans>

@@ -35,6 +35,11 @@ mainApp.config(['$routeProvider', function($routeProvider) {
    when('/inout', {
       templateUrl: 'inout', 
       controller: 'InOutMoneyController'
+   }).
+   
+   when('/admin', {
+      templateUrl: 'admin', 
+      controller: 'AdminController'
    });
    
 //   otherwise({

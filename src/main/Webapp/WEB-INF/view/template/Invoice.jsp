@@ -22,13 +22,13 @@
 						
 					<div style="display: none" id="invoice-status-search-div">
 						<select style="width: 150px" id="invoice-status-search" ng-model="search.status_type">
-	            		  <option value="1"><spring:message code='invoice.status.new' text='new' /></option>
-	            		  <option value="2"><spring:message code='invoice.status.confirmed' text='confirmed' /></option>
-						  <option value="3"><spring:message code='invoice.status.sendPartner' text='send partner' /></option>
-						  <option value="4"><spring:message code='invoice.status.receivePartner' text='receive partner' /></option>
-						  <option value="5"><spring:message code='invoice.status.delivery' text='delivery' /></option>
+	            		  <option value="1"><spring:message code='common.invoice.status.new' text='new' /></option>
+	            		  <option value="2"><spring:message code='common.invoice.status.confirmed' text='confirmed' /></option>
+						  <option value="3"><spring:message code='common.invoice.status.sent' text='sent to partner' /></option>
+						  <option value="4"><spring:message code='common.invoice.status.receive' text='receive from partner' /></option>
+						  <option value="5"><spring:message code='common.invoice.status.delivery' text='delvery' /></option>
 						  <%-- <option value="6"><spring:message code='invoice.status.requestCancel' text='request cancel' /></option> --%>
-						  <option value="-1"><spring:message code='invoice.status.requestCancel' text='request cancel' /></option>
+						  <option value="-1"><spring:message code='common.invoice.status.requestcancel' text='request cancel' /></option>
 						</select>
 					</div>
 					

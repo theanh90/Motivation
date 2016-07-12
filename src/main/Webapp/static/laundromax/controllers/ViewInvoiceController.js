@@ -117,7 +117,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 //					}
 					
 					// for print bill
-					if ($scope.invoice[0].lastStatus == 2 || $scope.invoice[0].lastStatus == 3 || $scope.invoice[0].lastStatus == 4) {
+					if ($scope.invoice[0].lastStatus >= 2) {
 						var print_element = $('#c-print-span');
 						var html = 	'<div class="col-sm-4">' +
 										'<div class="form-group c-fg-change-status">' +
@@ -187,7 +187,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 						'<tr class="c-firstrow"><td>' + lang_total + ' </td><td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice) + '</td></tr>' +
 						'<tr><td>' + lang_paid_upfront + ' </td><td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPay) + '</td></tr>' +
 						'<tr><td>' + 'Nợ cũ' + ' </td><td class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay) + '</td></tr>' +
-						'<tr><td>' + 'Thanh toán' + ' </td><td class="cus-number">' + '<input onchange="handleDoPay(this)" class="cus-number" type="number" />' + '</td></tr>' +
+						'<tr><td>' + 'Thanh toán' + ' </td><td class="cus-number">' + '<input min="0" onchange="handleDoPay(this)" class="cus-number" type="number" />' + '</td></tr>' +
 						'<tr><td>' + 'Còn lại' + ' </td><td id="pay-remain" class="cus-number">' + '' + '</td></tr>' +
 					'</table>';
 		
@@ -200,7 +200,8 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
                label: lang_common_continue,
                cssClass: 'btn-success',
                action: function(dialog) {
-                   return $scope.doPaySubmmit(dialog);
+            	   confirmPay(dialog);
+//                   return $scope.doPaySubmmit(dialog);
                }
                
            }, {
@@ -212,6 +213,36 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
            }]
        }); 	
 	}
+	
+   confirmPay = function(dialog) {
+		if (!$scope.pay.newpay || $scope.pay.newpay <= 0) {
+			alert('Xin nhập số tiền khách trả');
+			return;
+		}
+			
+	   dialog.close();
+	   BootstrapDialog.show({
+		   size: BootstrapDialog.SIZE_SMALL,
+           type: BootstrapDialog.TYPE_WARNING,
+           title: lang_common_confirm,
+           message: 'Bạn có chắc chắn với số tiền: ' + changeNumberFormat($scope.pay.newpay) + ' VND',
+           buttons: [{
+               label: lang_common_continue,
+               cssClass: 'btn-success',
+               action: function(dialog) {
+            	   $scope.doPaySubmmit(dialog);
+               }
+           }, {
+               label: lang_common_cancel,
+               cssClass: 'btn-danger',
+               action: function(dialog) {
+            	   $scope.pay.newpay = 0;
+                   dialog.close();
+               }
+           }]
+       }); 	   
+
+   }
 	
 	handleDoPay = function(element) {
 		var value = $(element).val();
@@ -227,7 +258,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 		new_pay_remain.html(changeNumberFormat(pay_remain));
 	}
 	
-	$scope.doPaySubmmit = function(dialog) {
+	$scope.doPaySubmmit = function(dialog) {			
 		$http({
 			   method: 'PUT',
 			   url: 'api/invoice/pay',
@@ -336,8 +367,8 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 		}
 							
 		table_content += '<tr> <td colspan="2">' + '<b>Tổng cộng</b> - Total' + '</td> <td colspan="2" class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice) + '</td> </tr>';
-		table_content += '<tr> <td colspan="2">' + '<b>Đã trả</b> - Upfront' + '</td> <td colspan="2" class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPay) + '</td> </tr>';
-		table_content += '<tr> <td colspan="2">' + '<b>Còn lại</b> - Amount' + '</td> <td colspan="2" class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay) + '</td> </tr>';
+		table_content += '<tr> <td colspan="2">' + '<b>Đã trả</b> - Pay Upfront' + '</td> <td colspan="2" class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPay) + '</td> </tr>';
+		table_content += '<tr> <td colspan="2">' + '<b>Còn nợ</b> - Due Amount' + '</td> <td colspan="2" class="cus-number">' + changeNumberFormat($scope.invoice[0].totalPrice - $scope.invoice[0].totalPay) + '</td> </tr>';
 		
 		invoice_detail.html(table_content);
 		
@@ -358,6 +389,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 		$('.p-invoice-cname').html('<b>' + first_row.name.toUpperCase() + '</b>');
 		$('.p-invoice-cadd').html(first_row.address);
 		$('.p-invoice-date').html(date.format("DD/MM/YYYY - HH:mm"));
+		$('.p-mark-partner').children('p').html($scope.invoice[0].invoiceNote);
 
 		// render invoice detail
 		for (x in $scope.invoice) {

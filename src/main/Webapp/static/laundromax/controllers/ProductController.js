@@ -7,6 +7,7 @@ mainApp.controller('ProductController', function($scope, $http) {
 	   };
 	   $scope.data = null;
 	   var csrf = $('#token').val();
+	   var is_admin = $('#is-admin').val();
 	   
 	   $scope.save = function(method) {	   
 		   if (!$scope.validateAddProduct(method))
@@ -388,6 +389,9 @@ mainApp.controller('ProductController', function($scope, $http) {
 	   }
 	   
 	   function featureFormatter(value, row, index) {
+		   if (is_admin != 1) {
+			   return;
+		   }
 		   var temp = '<span>' +
 		   				'<button onclick="editProduct(' + row.pid + ')" style="margin: 1px 10px" class="btn btn-default">' + 
 		   					'<i class="fa fa-lg fa-pencil"></i>' + 

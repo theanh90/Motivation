@@ -21,7 +21,7 @@
         			 default-target-url="/"
                      username-parameter="username"
                      password-parameter="password"
-                     authentication-failure-url="/access_denied" />
+                     authentication-failure-url="/login?error" />
         <csrf/>
     </http>
 

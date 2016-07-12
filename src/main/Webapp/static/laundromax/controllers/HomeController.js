@@ -66,7 +66,7 @@ mainApp.controller('HomeController', function($scope, $http, $route, $compile) {
 	   			$scope.money_left = response.data.data ? response.data.data : 0;
 	   			
 	   			var money_left_render;
-	   			if ($scope.money_left > 0) {
+	   			if ($scope.money_left >= 0) {
 	   				money_left_render = changeNumberFormat($scope.money_left);
 	   			} else {
 	   				money_left_render = '-' + changeNumberFormat(-$scope.money_left);

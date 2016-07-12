@@ -1,3 +1,17 @@
+// Notify object
+function showElementValidate(element, message, opt) {
+	if (!opt) {
+		option = {className: 'error'}; 
+	} else {
+		option = opt;
+	}
+
+	element.notify(
+		message, 
+		option
+	);
+}
+
 function changeNumberFormat(number) {
     number = number + ""; // change it to string
     var output = "";

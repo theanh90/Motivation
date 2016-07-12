@@ -215,7 +215,11 @@
 							<p>Cảm ơn và hẹn gặp lại ! <i class="fa fa-smile-o" aria-hidden="true"></i></p>
 							<p class="p-last">Thank you and see you again ! <i class="fa fa-smile-o" aria-hidden="true"></i></p>
 						</div>
-						<h2 class="p-mark-partner">Bill nhà giặt</h2>
+						<div class="p-mark-partner">
+							<h2>Bill nhà giặt</h2>
+							<p></p>
+						</div>
+						
 						
 					</div>
 				</body>

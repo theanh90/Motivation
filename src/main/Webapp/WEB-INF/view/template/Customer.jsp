@@ -5,7 +5,7 @@
 	<button data-backdrop="static" type="button" class="btn btn-success" data-toggle="modal" data-target="#add-cus-modal">
 		<i class="fa fa-plus"></i>
 	</button>
-	
+		
 	<div class="row">
 		<div class="col-sm-6 content">
 			<div>				

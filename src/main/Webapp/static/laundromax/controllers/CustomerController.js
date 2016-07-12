@@ -7,6 +7,7 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
    };
    $scope.data = null;
    var csrf = $('#token').val();
+   var is_admin = $('#is-admin').val();
    
    $scope.save = function(method) {	   
 	   if (!$scope.validateAddCus(method))
@@ -334,12 +335,14 @@ mainApp.controller('CustomerController', function($scope, $http, $document) {
 	   				'<button onclick="editCustomer(' + row.cid + ')" style="margin: 1px 10px" class="btn btn-default">' + 
 	   					'<i class="fa fa-lg fa-pencil"></i>' + 
 	   				'</button>' +
-	   		  '</span>' +  
-	   		  '<span>' +
-	   		  		'<button onclick="confirmRemove(' + row.cid + ')" class="btn btn-default">' + 
-	   		  			'<i class="fa fa-lg fa-trash"></i>' + 
-	   		  		'</button>' +
-   		  	 '</span>';
+	   			  '</span>';
+	   if (is_admin == 1) {
+		   temp +=  '<span>' +
+		   		  		'<button onclick="confirmRemove(' + row.cid + ')" class="btn btn-default">' + 
+		   		  			'<i class="fa fa-lg fa-trash"></i>' + 
+		   		  		'</button>' +
+	   		  	 '</span>';
+	   }
 	   
 	   return temp;
    }

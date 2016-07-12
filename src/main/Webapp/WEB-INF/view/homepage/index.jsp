@@ -59,6 +59,8 @@
 		<script src="<c:url value='/static/daterangepicker/daterangepicker.js'/>"> </script>
 		<link href="<c:url value='/static/daterangepicker/daterangepicker.css'/>" rel="stylesheet">	
 		
+		<!-- NotifyJs -->
+		<script src="<c:url value='/static/notifyjs/notify.min.js'/>"> </script>
 		
 		<title>GIẶT ỦI LAUNDROMAX</title>
 		
@@ -88,9 +90,15 @@
 		        	<a href="#invoice"><spring:message code='menunav.invoice' text='Invoice' /></a>
 	        	</li>
  		        <li onclick="setActive(this)" class="li-nav-menu inout-menu-li">
-		        	<a href="#inout"><spring:message code='menunav.inout' text='In/Out' /></a>
+		        	<a href="#inout"><spring:message code='menunav.money' text='Money' /></a>
 	        	</li>
+	        	<c:if test="${admin == 1}">
+	 		        <li onclick="setActive(this)" class="li-nav-menu inout-menu-li">
+			        	<a href="<c:url value='#admin' />"><spring:message code='menunav.admin' text='Admin' /></a>
+		        	</li>
+	        	</c:if>
 		      </ul>
+		      
 		      <ul class="nav navbar-nav navbar-right">
 		        <li>
 		        	<a href="logout"><span class="glyphicon glyphicon-log-in"></span>
@@ -132,7 +140,11 @@
    		<script type = "text/ng-template" id = "inout">		
 			<div ng-include src="'<c:url value='/template/angular/inout' />'"></div>	
    		</script>
-		
+   		
+   		<!-- view for admin -->
+   		<script type = "text/ng-template" id = "admin">		
+			<div ng-include src="'<c:url value='/template/angular/admin' />'"></div>	
+   		</script>
 		
 		<div class="container-fluid">
 			<div class="row">
@@ -201,7 +213,12 @@
 					·
 					<a href="#invoice"><spring:message code='menunav.invoice' text='Invoice' /></a>
 					·
-					<a href="#inout"><spring:message code='menunav.inout' text='In/Out' /></a>
+					<a href="#inout"><spring:message code='menunav.money' text='Money' /></a>
+					
+					<c:if test="${admin == 1}">
+						·
+						<a href="#admin"><spring:message code='menunav.admin' text='Admin' /></a>
+					</c:if>
 				</p>
 
 				<p>Developed by Anh Bui - theanh90@gmail.com</p>
@@ -211,6 +228,7 @@
 		 
 	  	<!-- CSRF token -->
 	  	<input type="hidden" id="token" value="${_csrf.token}" />
+	  	<input type="hidden" id="is-admin" value="${admin}" />
 	  	
 		<!-- load AngularJs controller file -->
 		<script src="<c:url value='/static/laundromax/app.js' />"></script>
@@ -221,6 +239,7 @@
 		<script src="<c:url value='/static/laundromax/controllers/ViewInvoiceController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/controllers/ProductController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/controllers/InOutMoneyController.js' />"></script>
+		<script src="<c:url value='/static/laundromax/controllers/AdminController.js' />"></script>
 		<script src="<c:url value='/static/laundromax/common.js' />"></script>
 		
 	</body>
