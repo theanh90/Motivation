@@ -71,8 +71,8 @@ public class CustomerDaoImpl extends AbstractDao<Integer, CustomerModel> impleme
 	@Override
 	public List<Object> getListCustomerSelect2(String textSearch) {
 		List<Object> lsResult = new ArrayList<>();
-		String sql = "FROM CustomerModel WHERE 1=1 ";
-		String condition = "AND name LIKE :textSearch AND active = :active ";
+		String sql = "FROM CustomerModel WHERE 1=1 AND ";
+		String condition = "(name LIKE :textSearch OR address LIKE :textSearch) AND active = :active ";
 		condition += "ORDER BY name ASC ";
 		
 		sql += condition;

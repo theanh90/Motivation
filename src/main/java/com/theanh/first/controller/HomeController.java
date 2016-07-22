@@ -86,7 +86,10 @@ public class HomeController extends BaseController{
 		
 		return jsonResponse;
 	}
-	
-	
+
+	@RequestMapping(value = "/guide", method = RequestMethod.GET)
+	public String guidePage() {
+		return "homepage/guide";
+	}
 
 }

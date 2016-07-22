@@ -1,5 +1,7 @@
 mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $compile) {
 	var csrf = $('#token').val();
+	var is_admin = $('#is-admin').val();
+	
 	$scope.pay = {};
 	$scope.invoice_id = $route.current.params.id;
 	
@@ -84,7 +86,7 @@ mainApp.controller('ViewInvoiceController', function($scope, $http, $route, $com
 					}
 					
 					// for delete New_Invoice
-					if ($scope.invoice[0].lastStatus == 1) {
+					if ($scope.invoice[0].lastStatus == 1 || is_admin) {
 						var delete_element = $('#c-delete-span');
 						var html = 	'<div class="col-sm-4">' +
 										'<div class="form-group c-fg-change-status">' +

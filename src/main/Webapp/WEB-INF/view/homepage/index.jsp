@@ -181,9 +181,9 @@
 		<div class="container-fluid container-my-view">
 			<div class="row">
 			  <div class="col-sm-12 content">
-				
+			  
 				<div class="laundromax-view" ng-view>
-				
+					<h2>ahihi</h2>
 				</div>
 			  	
 			  </div><!-- end content div -->
@@ -219,6 +219,8 @@
 						·
 						<a href="#admin"><spring:message code='menunav.admin' text='Admin' /></a>
 					</c:if>
+					·
+					<a href="<c:url value='/api/home/guide' />"><spring:message code='menunav.guide' text='Guide' /></a>
 				</p>
 
 				<p>Developed by Anh Bui - theanh90@gmail.com</p>

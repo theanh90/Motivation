@@ -548,7 +548,37 @@ hr {
 	}
 }
 
+.footer-links a:hover {
+	color: rgb(254, 143, 1) !important;
+}
+
 /* End footer */
+
+/* Guide page */
+
+.laundromax-view-guide div.tab-content h3 {
+	margin-bottom: 20px !important;
+}
+
+#guide-tab-invoice-status {
+	font-size: 120%;	
+}
+
+#guide-tab-invoice-status i {
+	margin: 0 10px;
+}
+/* End guide page */
+
+
+
+
+
+
+
+
+
+
+
 
 
 
