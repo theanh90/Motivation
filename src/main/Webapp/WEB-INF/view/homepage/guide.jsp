@@ -143,7 +143,7 @@
 							</div>
 							<div id="return-invoice" class="tab-pane fade">
 							    <h3>Khi Nhà Giặt trả lại 1 hoặc 1 số hoặc tất cả món đồ trong hóa đơn</h3>
-							    <p>
+							    <p> 
 							    	Khi bên Nhà Giặt trả lại đồ mà không giặt (vì lý do đồ đó không giặt được) thì Nhân Viên sẽ báo cho Admin, 
 							    	Admin sẽ đăng nhập vào hệ thống bằng tài khoản Admin. Admin sẽ có quyền xóa Hóa đơn đó.
 							    	</br>
