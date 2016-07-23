@@ -118,11 +118,11 @@ public class InvoiceServiceImpl implements InvoiceService {
 	}
 
 	@Override
-	public Boolean deleteInvoice(Integer invoiceId) {
+	public Boolean deleteInvoice(Integer invoiceId, String role) {
 		InvoiceModel invoice = new InvoiceModel();
 		invoice = invoiceDao.getByKey(invoiceId);
 		
-		if (invoice.getLastStatus() != 1)
+		if (invoice.getLastStatus() != 1 && !role.equals("ROLE_ADMIN"))
 			return false;
 		
 		invoiceDao.delete(invoice);

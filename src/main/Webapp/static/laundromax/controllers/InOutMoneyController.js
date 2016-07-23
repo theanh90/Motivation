@@ -1,7 +1,10 @@
 mainApp.controller('InOutMoneyController', function($scope, $http, $route, $compile) {
 	var csrf = $('#token').val();
 	$scope.inout = {};
-	$scope.search = {};
+    $scope.search = {
+	   type: 'all',
+	   input: ''
+    };
 	
 	$scope.saveInOut = function() {
 		

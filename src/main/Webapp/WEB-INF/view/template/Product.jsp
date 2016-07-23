@@ -81,7 +81,7 @@
 	        			</td>
 		        	</tr>
 		        	<tr>
-		        		<td class="text-field"><spring:message code='product.pressOnlyPrice' text='PressOnly' />: </td>
+		        		<td class="text-field"><spring:message code='product.pressonlyPrice' text='PressOnly' />: </td>
 		        		<td><input id="product-pressonly" data-toggle="tooltip" 
 		        			title="<spring:message code='product.valid.pressonly' text='Pressonly price is required' />" 
 		        			ng-model="product.pressonly" type="text">
@@ -153,7 +153,7 @@
 	        			</td>
 		        	</tr>
 		        	<tr>
-		        		<td class="text-field"><spring:message code='product.pressOnlyPrice' text='PressOnly' />:</td>
+		        		<td class="text-field"><spring:message code='product.pressonlyPrice' text='PressOnly' />:</td>
 		        		<td><input id="product-pressonly-edit" data-toggle="tooltip" 
 		        			title="<spring:message code='product.valid.pressonly' text='Pressonly price is required' />" 
 		        			ng-model="edit_product.pressonly" type="text">

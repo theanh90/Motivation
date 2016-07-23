@@ -14,7 +14,7 @@ public interface InvoiceService {
 			String typeSearch, String textSearch, Integer statusType, Long from, Long to) throws ParseException;
 	List<InvoiceDetailCustomerViewModel> getViewById(Integer id);
 	Integer changeInvoiceStatus(Integer invoiceId);
-	Boolean deleteInvoice(Integer invoiceId);
+	Boolean deleteInvoice(Integer invoiceId, String role);
 	Boolean setInvoiceStatusToRquest(Integer invoiceId);
 	Boolean doPay(Map<String, Integer> data);
 

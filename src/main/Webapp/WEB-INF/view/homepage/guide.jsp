@@ -147,7 +147,8 @@
 							    	Khi bên Nhà Giặt trả lại đồ mà không giặt (vì lý do đồ đó không giặt được) thì Nhân Viên sẽ báo cho Admin, 
 							    	Admin sẽ đăng nhập vào hệ thống bằng tài khoản Admin. Admin sẽ có quyền xóa Hóa đơn đó.
 							    	</br>
-							    	Trường hợp nhà Giặt chỉ trả lại một số món đồ trong hóa đơn, và đã giặt một số món khác. Thì sẽ tạo 1 Hóa đơn mới, 
+							    	Trường hợp nhà Giặt chỉ trả lại một số món đồ trong hóa đơn, và đã giặt một số món khác. Thì sẽ tạo 1 Hóa đơn mới,
+							    	trong hóa đơn mới, nhập tất cả các món đồ mà nhà giặt đã giặt (không nhập các món nhà giặt trả lại), 
 							    	ghi chú đầy đủ lý do tạo Hóa đơn đó (nhà giặt trả lại....). Phần còn lại thì báo cho Admin xóa Hóa đơn cũ đi. 
 							    </p>
 							</div>

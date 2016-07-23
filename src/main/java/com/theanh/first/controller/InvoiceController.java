@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -134,7 +135,9 @@ public class InvoiceController extends BaseController {
 		
 		try {
 			Boolean result;
-			result = invoiceService.deleteInvoice(invoiceId);
+			List<GrantedAuthority> roles = this.getUserRoles();
+			
+			result = invoiceService.deleteInvoice(invoiceId, roles.get(0).getAuthority());
 			
 			if (result == true) {
 				jsonResponse = new JsonResponse(JsonResponse.SUCCESS, "Delete Invoice successfully!", null);
