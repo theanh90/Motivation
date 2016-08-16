@@ -57,7 +57,11 @@
 		
 		<!-- Date Range Picker -->
 		<script src="<c:url value='/static/daterangepicker/daterangepicker.js'/>"> </script>
-		<link href="<c:url value='/static/daterangepicker/daterangepicker.css'/>" rel="stylesheet">	
+		<link href="<c:url value='/static/daterangepicker/daterangepicker.css'/>" rel="stylesheet">		
+		
+		<!-- Animation when loading -->
+		<script src="<c:url value='/static/animsition/animsition.js'/>"> </script>
+		<link href="<c:url value='/static/animsition/animsition.css'/>" rel="stylesheet">	
 		
 		<!-- NotifyJs -->
 		<script src="<c:url value='/static/notifyjs/notify.min.js'/>"> </script>
@@ -81,20 +85,20 @@
 		    <div class="collapse navbar-collapse" id="myNavbar">
 		      <ul class="nav navbar-nav">
 		        <li onclick="setActive(this)" class="li-nav-menu customer-menu-li">
-		        	<a href="#customer"><spring:message code='menunav.customer' text='Customer' /></a>
+		        	<a class="animsition-link" href="#customer"><spring:message code='menunav.customer' text='Customer' /></a>
 	        	</li>
 		        <li onclick="setActive(this)" class="li-nav-menu product-menu-li">
-		        	<a href="#product"><spring:message code='menunav.item' text='Item' /></a>
+		        	<a class="animsition-link"  href="#product"><spring:message code='menunav.item' text='Item' /></a>
 	        	</li>
 		        <li onclick="setActive(this)" class="li-nav-menu invoice-menu-li">
-		        	<a href="#invoice"><spring:message code='menunav.invoice' text='Invoice' /></a>
+		        	<a class="animsition-link" href="#invoice"><spring:message code='menunav.invoice' text='Invoice' /></a>
 	        	</li>
  		        <li onclick="setActive(this)" class="li-nav-menu inout-menu-li">
-		        	<a href="#inout"><spring:message code='menunav.money' text='Money' /></a>
+		        	<a class="animsition-link" href="#inout"><spring:message code='menunav.money' text='Money' /></a>
 	        	</li>
 	        	<c:if test="${admin == 1}">
 	 		        <li onclick="setActive(this)" class="li-nav-menu inout-menu-li">
-			        	<a href="<c:url value='#admin' />"><spring:message code='menunav.admin' text='Admin' /></a>
+			        	<a class="animsition-link" href="<c:url value='#admin' />"><spring:message code='menunav.admin' text='Admin' /></a>
 		        	</li>
 	        	</c:if>
 		      </ul>
@@ -178,7 +182,7 @@
 		
 		
 		<!-- For each view -->
-		<div class="container-fluid container-my-view">
+		<div class="container-fluid container-my-view animsition">
 			<div class="row">
 			  <div class="col-sm-12 content">
 			  
@@ -258,6 +262,8 @@
 
 			/* location.href = '#/home'; */
 			activeCurrentMenu();
+			
+			animationTransition();
 		});
 		
 		function activeCurrentMenu() {

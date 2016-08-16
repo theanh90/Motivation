@@ -166,6 +166,7 @@
 
 			angular.element($('#template-div')).scope().getListCustomer();
 			
+			animationTransition();
 		});
 	
 	</script>

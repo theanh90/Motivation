@@ -21,6 +21,7 @@ var lang_common_cancel = '<spring:message code="common.cancel" text="Cancel" />'
 // common url
 var url_common = '<c:url value="/" />';
 var url_logo = "<c:url value='/static/laundromax/images/logo-laundromax.png' />";
+var url_loading_image = "<c:url value='/static/laundromax/images/loading.gif' />";
 
 	
 $(document).ready(function() {

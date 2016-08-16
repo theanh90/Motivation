@@ -209,6 +209,7 @@
 
 			angular.element($('#template-div')).scope().getListProduct();
 			
+			animationTransition();
 		});
 	
 	</script>

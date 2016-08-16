@@ -12,6 +12,19 @@ function showElementValidate(element, message, opt) {
 	);
 }
 
+function animationTransition() {
+	$('.animsition').animsition({
+	    inClass: 'fade-in-left-sm',
+	    outClass: 'fade-out-left-sm',
+	    inDuration: 500,
+	    outDuration: 500,
+	    linkElement: '.animsition-link',
+	    loadingClass: 'animsition-loading',
+	    loadingInner: '', // e.g '<img src="loading.svg" />',
+	    browser: [ 'animation-duration', '-webkit-animation-duration']
+	  }).animsition('in');
+}
+
 function changeNumberFormat(number) {
     number = number + ""; // change it to string
     var output = "";

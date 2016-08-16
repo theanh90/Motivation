@@ -155,6 +155,8 @@
 				showTodayButton: true,
 				locale: moment.locale('vi')
 			});
+			
+			animationTransition();
 		}
 	
 	</script>

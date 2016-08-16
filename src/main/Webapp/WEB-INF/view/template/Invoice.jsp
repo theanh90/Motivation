@@ -88,6 +88,8 @@
 			format: 'DD/MM/YYYY',
 			showClear: true
 		});
+		
+		animationTransition();
 	});
 
 	

@@ -170,6 +170,7 @@
 	
 	<script type="text/javascript">
 		// global variable
-	
+		
+		animationTransition();
 	</script>
 </html>
