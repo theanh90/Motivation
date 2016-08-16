@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.theanh.first.dao.UserDao;
 import com.theanh.first.model.User;
 
-@Service("userService")
 @Transactional
+@Service("userService")
 public class UserServiceImpl implements UserService{
 	
 	@Autowired

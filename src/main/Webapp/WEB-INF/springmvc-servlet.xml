@@ -16,12 +16,51 @@
 	<mvc:annotation-driven />
 	
 	<mvc:resources mapping="/static/**" location="/static/" />
+	<!-- <mvc:resources mapping="/" location="/" /> -->
 	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	
+	<!-- Multiple languages -->    
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="vn" />
+	</bean>
+
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
+	</bean>
+	
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	          <property name="paramName" value="language"></property>
+	    </bean>
+	</mvc:interceptors>
+	
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >
+		<property name="interceptors">
+		   <list>
+			<ref bean="localeChangeInterceptor" />
+		   </list>
+		</property>
+	</bean>
+	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="welcome" />
+	</bean>
+	
+	<bean id="handlerMapping"
+	    class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	    <property name="interceptors">
+        	<ref bean="localeChangeInterceptor" />
+    	</property>    
+	</bean>	
+	<!-- End multiple languages -->
 	
 	
 </beans>

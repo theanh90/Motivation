@@ -1,10 +1,13 @@
 package com.theanh.first.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class SpringSecurityController {
+public class SpringSecurityController extends BaseController {
 	final static Logger logger = Logger.getLogger(SpringSecurityController.class);
 	
 	public SpringSecurityController() {
@@ -22,8 +25,17 @@ public class SpringSecurityController {
 	}
 
 	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
-	public String homePage(ModelMap model) {
-		model.addAttribute("greeting", "Hi, Welcome to mysite");
+	public String homePage(ModelMap model, HttpServletRequest request) {		
+		//get list role
+		List<GrantedAuthority> roles = this.getUserRoles();
+		if (roles.get(0).getAuthority().equals("ROLE_ADMIN")) {
+			request.getSession().setAttribute("admin", "1");
+		} else {
+			request.getSession().setAttribute("admin", "0");
+		}
+		
+		model.addAttribute("user", getPrincipal());
+		
 		return "homepage/index";
 	}
 
@@ -47,11 +59,11 @@ public class SpringSecurityController {
 		return "redirect:login?logout";
 	}
 	
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String adminPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
-		return "admin";
-	}
+//	@RequestMapping(value = "/admin", method = RequestMethod.GET)
+//	public String adminPage(ModelMap model) {
+//		model.addAttribute("user", getPrincipal());
+//		return "admin";
+//	}
 	
 	@RequestMapping(value = "/staff", method = RequestMethod.GET)
 	public String staffPage(ModelMap model) {

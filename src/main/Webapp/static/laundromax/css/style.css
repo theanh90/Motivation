@@ -1,0 +1,584 @@
+
+
+body { 
+	background:url(../images/body.jpg) repeat 50% 0%; 
+}
+
+.cus-number {
+	text-align: right;
+}
+
+.navbar-inverse {
+	background-color: #3d3d3d;
+    border-radius: 0px;
+    /* fe8f01 */
+}
+
+.container-fluid .navbar-brand {
+	margin-left: 20px !important;
+  	height: 65px !important;
+}
+
+.navbar-nav li a {
+	font-size: 130%;
+	height: 65px;    
+	padding-top: 22px;
+}
+
+.navbar-inverse .navbar-nav>.active>a:focus, 
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.active>a{
+    background-color: #fe8f01 !important;
+}
+
+.laundromax-header {
+	background-color: white;
+	/* height: 80px; */
+}
+
+.laundromax-header img {
+	height: 80px;
+}
+
+.laundromax-header i {
+	color: #4fa954;
+}
+
+.laundromax-header .info-header {	
+    padding-top: 10px;
+    padding-right: 40px;
+    text-align: right;
+}
+
+/* ------------------- for common page ------------------- */
+.c-hidden {
+	display: none !important;
+}
+
+.c-bold {
+	font-weight: bold !important;
+}
+
+.table thead {
+	background-color: #03A9C0;
+}
+
+/* ------ for customer page ------ */
+.laundromax-view .modal-header {
+	background-color: #23c6c8;
+    /* border-radius: 5px; */
+    border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+
+.laundromax-view .modal-content .table>tbody>tr>td {
+	border: none;
+}
+
+.laundromax-view .modal-footer {
+/* 	background-color: #f3f3f3; */
+}
+
+.laundromax-view .text-field {
+	text-align: right;
+	max-width: 40px;
+}
+
+.laundromax-view .modal-content input{
+	width: 100%;
+}
+
+.container-my-view {
+	padding-right: 0px;
+    padding-left: 0px;
+    background-color: white;
+    margin-top: 15px;
+    padding: 15px;
+}
+
+#add-cus-modal .tooltip-inner {
+	background-color: red;
+}
+
+#add-cus-modal .tooltip-arrow {
+	border-top: 5px solid red;
+}
+
+/* for confirm model when add/delete/modify... */
+#confirm-cus-modal .modal-header {
+	text-align: left;
+}
+
+#confirm-cus-modal .modal-footer {
+	text-align: right;
+}
+
+/* for Customer search input */
+
+.input-group-btn #s2id_search-customer-select {
+	min-width: 130px;
+}
+
+#template-div div.row {
+	margin-top: 20px;
+}
+
+/* ----------- END for common page ------------ */
+
+/* for product page */
+.laundromax-view .product-view .text-field {
+	max-width: 48px !important;
+}
+
+
+
+/* For Invoice */
+#list-product-tbl thead {
+	font-weight: bold;
+}
+
+#list-product-tbl tbody td input {
+	width: 40px;	
+}
+
+#list-product-tbl thead {
+	text-align: center;
+	v-align: center;
+}
+
+#list-product-tbl tbody .price {
+	text-align: right;
+}
+
+#list-product-tbl tbody .qtt {
+	text-align: center;
+}
+
+#list-product-tbl .selected-pro-row {
+	background-color: #e7f5fe;
+}
+
+#list-product-tbl .selected-pro {
+	color: blue;
+	font-weight: bold; 
+}
+
+.amount-total-tbl-footer #amount-total {
+	font-weight: bold;
+	font-size: 110%;
+}
+
+.amount-total-tbl-footer #invoice_remain {
+	font-weight: bold;
+	font-size: 110%;
+}
+
+.amount-total-tbl-footer span.right {
+	float: right;
+}
+
+.blue-background {
+	background-color: #e7f5fe;
+}
+
+.panel-customer span.c-title {
+	font-weight: bold;
+}
+
+#invoice-cfr-modal .invoide-cfr-title {
+    margin-bottom: 10px;
+    font-size: 130%;
+    font-weight: bold;
+}
+
+#invoice_note_title {
+	
+}
+
+.customer-invoice-div {
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.amount-total-tbl-footer .col-note {
+    margin-top: 15px;
+}
+
+.amount-total-tbl-footer .col-note textarea {
+    height: 195px;
+}
+
+.amount-total-tbl-footer textarea {
+    margin-top: 15px;
+}
+
+.col-total .totalpay-span {
+	text-align: right;
+}
+
+.col-total .totalpay-span span{
+	text-align: right;
+	
+}
+
+.col-total .totalpay-span input {
+	width: 80%;
+	text-align: right;
+}
+
+#invoice-note {
+	padding: 10px !important;
+}
+
+/* Invoice Status color */
+.c-status-new {
+	color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.c-status-confirm {
+	color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+.c-status-sent {	
+    color: #fff;
+    background-color: #337A65;
+    border-color: #2e6da4;
+}
+
+.c-status-receive {
+	color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+.c-status-delivery {
+	color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+
+.c-status-request {
+	color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+}
+
+.c-status-cancel {
+	color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.invoice-view-status {
+	margin-top: 50px;
+}
+
+
+.w3-btn, .w3-btn:link, .w3-btn:visited {
+    color: #FFFFFF;
+    background-color: #73AD21;
+    background-color: #4CAF50;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.w3-btn {
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 6px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none!important;
+    color: #fff;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.w3-margin-bottom {
+    margin-bottom: 16px!important;
+}
+
+.w3-btn:hover, .w3-btn:active {
+    background-color: #ffffff !important;
+    color: #73AD21;
+    color: #4CAF50;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.w3-print {
+	border-radius: 15px;
+    background-color: #2332B2 !important;
+}
+
+#c-print-popover p {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+.c-dopay .c-firstrow td {
+	border-top: 0;
+}
+
+#add-invoice-date {
+	margin-bottom: 15px;
+}
+
+/* For report */
+#daterange-btn {
+	background: #fff; 
+	cursor: pointer; 
+	padding: 5px 10px; 
+	border: 1px solid #ccc; 
+	width: 100%;
+}
+
+/* from OSS  -  report*/
+.info-box {
+    display: block;
+    min-height: 92px;
+    background: #fff;
+    width: 100%;
+    border: 1px solid #eceff4;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-bottom: 15px; 
+}
+
+.info-box.has-border {
+    border-color: #cad3df; 
+}
+
+.info-box small {
+    font-size: 14px; 
+}
+
+.info-box .progress {
+    background: rgba(0, 0, 0, 0.2);
+    margin: 5px -10px 5px -10px;
+    height: 2px; 
+}
+
+.info-box .progress,
+.info-box .progress .progress-bar {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0; 
+}
+    
+.info-box .progress .progress-bar {
+    background: #fff; 
+}
+
+.info-box.is-report {
+    position: relative;
+    height: 100%;
+    overflow: hidden; 
+}
+
+.info-box.is-report .info-box-content {
+    height: 100%;
+    position: absolute;
+    width: auto;
+    top: 0;
+    left: 0; 
+}
+
+.info-box.is-report .info-box-text {
+    white-space: normal;
+    text-transform: none; 
+}
+
+.info-box.is-report:hover, .info-box.is-report:active, .info-box.is-report:focus {
+    border-color: #0082d5; 
+}
+
+.info-box-icon {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 2px;
+    display: block;
+    float: left;
+    height: 90px;
+    width: 90px;
+    text-align: center;
+    font-size: 45px;
+    line-height: 90px;
+    background-color: #eceff4; 
+}
+
+.info-box-icon > img {
+    max-width: 100%; 
+}
+
+.info-box-content {
+    padding: 5px 10px;
+    margin-left: 90px; 
+}
+
+.info-box-number {
+    display: block;
+    font-weight: bold;
+    font-size: 18px; 
+}
+
+.progress-description,
+.info-box-text {
+    display: block;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+.info-box-text {
+    text-transform: uppercase; 
+}
+
+.info-box-more {
+    display: block; 
+}
+
+.progress-description {
+    margin: 0; 
+}
+
+.c-report-header {
+    margin-left: 15px;
+    padding-bottom: 10px !important;	
+}
+/* End copy OSS - report */
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;               
+  background-color: blue;
+  height: 1px;
+}
+
+.total-money {
+	font-weight: bold;
+	border: 1px solid red;
+}
+
+/* For footer */
+.footer-distributed{
+	background-color: #292c2f;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: normal 16px sans-serif;
+	padding: 25px 50px;
+	margin-top: 20px;
+}
+
+.footer-distributed .footer-left p{
+	color:  #8f9296;
+	font-size: 14px;
+	margin: 0;
+}
+
+/* Footer links */
+
+.footer-distributed p.footer-links{
+	font-size:18px;
+	font-weight: bold;
+	color:  #ffffff;
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+.footer-distributed p.footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-right{
+	float: right;
+	margin-top: 6px;
+	max-width: 180px;
+}
+
+.footer-distributed .footer-right a{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	background-color:  #33383b;
+	border-radius: 2px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-left: 3px;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 600px) {
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-right{
+		text-align: center;
+	}
+
+	.footer-distributed .footer-right{
+		float: none;
+		margin: 0 auto 20px;
+	}
+
+	.footer-distributed .footer-left p.footer-links{
+		line-height: 1.8;
+	}
+}
+
+.footer-links a:hover {
+	color: rgb(254, 143, 1) !important;
+}
+
+/* End footer */
+
+/* Guide page */
+
+.laundromax-view-guide div.tab-content h3 {
+	margin-bottom: 20px !important;
+}
+
+#guide-tab-invoice-status {
+	font-size: 120%;	
+}
+
+#guide-tab-invoice-status i {
+	margin: 0 10px;
+}
+/* End guide page */
+
+
+
+
+
+
+
+
+
+
+
+
+
+

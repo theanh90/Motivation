@@ -4,15 +4,32 @@
 		xsi:schemaLocation="http://www.springframework.org/schema/beans
    							http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-
-
-	<!-- 
-	<bean id="departmentDAO" class="org.o7planning.dao.impl.DepartmentDAOImpl">
-		<property name="sessionFactory" ref="mySessionFactory" />
-	</bean> 
-	-->
-	<!-- <bean id="userService" class="com.theanh.first.service.UserServiceImpl">
-		<property name="sessionFactory" ref="mySessionFactory" />
-	</bean>  -->
-
+	<!-- Create Service Bean here  -->	
+	<bean id="homeService" class="com.theanh.first.service.HomeServiceImpl">
+		<property name="homeDao" ref="homeDao" />
+		<property name="invoiceDao" ref="invoiceDao" />
+	</bean>
+	
+	<bean id="customerService" class="com.theanh.first.service.CustomerServiceImpl">
+		<property name="customerDao" ref="customerDao" />
+	</bean>
+	
+	<bean id="productService" class="com.theanh.first.service.ProductServiceImpl">
+		<property name="productDao" ref="productDao" />
+		<property name="washTypePriceDao" ref="washTypePriceDao" />
+	</bean>
+	
+	<bean id="invoiceService" class="com.theanh.first.service.InvoiceServiceImpl">
+		<property name="invoiceDao" ref="invoiceDao" />
+		<property name="invoiceDetailsDao" ref="invoiceDetailsDao" />
+	</bean>
+	
+	<bean id="inOutMoneyService" class="com.theanh.first.service.InOutMoneyServiceImpl">
+		<property name="inOutMoneyDao" ref="inOutMoneyDao" />
+	</bean>
+	<bean id="adminService" class="com.theanh.first.service.AdminServiceImpl">
+		<property name="adminDao" ref="adminDao" />
+		<property name="userDao" ref="userDao" />
+	</bean>
+	
 </beans>

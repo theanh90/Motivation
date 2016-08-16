@@ -3,31 +3,85 @@
 	Name
 	Address
 	Phone
+	Email
 	Note
-	
-2. INVOICE
-	InId
-	DateCreate
-	DateDelivery
-	TotalPrice
-	Note
-	
-3. INVOICEDETAILS
-	PId -- productId
-	InId -- invoiceId
-	Quantity
+	Active
 
-4. PRODUCT
+2. PRODUCT
 	PId
 	EnName
 	VnName
+	Unit -- đơn vị tính
 	Note
+	Active
 	
-5. WASHTYPEPRICE
-	PId -- productId
+3. WASHTYPEPRICE
+	PId -- Product Id
 	Laundry -- Giặt nước
 	DryClean -- Giặt hấp
 	PressOnly -- Chỉ ủi
+	
+4. INVOICE
+	InId
+	CId -- customerID
+	DateCreate
+	TotalPrice
+	TotalPay
+	isExpress
+	Note
+	LastStatus
+	Active
+	
+5. INVOICEDETAILS
+	DId -- primary key
+	InId -- invoiceId
+	PId -- productId
+	UnitPrice
+	TypePrice
+	Quantity
+	
+6. INVOICEHISTORY
+	HId -- primary key
+	InId -- invoiceId
+	Status
+	DateCreate
+	ChangeText
+	Note
+	
+7. INVOICESTATUS
+	SId
+	Name
+	
+8. STUFFCONFIG
+	ID
+	ExPricePercent
+	
+9. INOUTMONEY
+	MId
+	Type
+	DateCreate
+	Who
+	Money
+	Reason
+	DateCancel
+	WhoCancel
+	
+//-- data for InvoiceStatus --
+-1: Request cancel ---> user only can send Cancel request to Admin, only Admin can Cancel invoice
+
+0: Cancel
+
+1: New ---> after create an invoice
+
+2: Confirmed ---> after confirm, invoice can be printed
+
+3: Sent to Partner
+
+4: Receive from Partner
+
+5: Delivery
+// -- END data for InvoiceStatus --
+	
 	
 	
 	

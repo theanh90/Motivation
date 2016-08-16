@@ -13,21 +13,29 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/motivation" />
+		<property name="url" value="jdbc:mysql://localhost:3306/motivation?characterEncoding=UTF-8" />
 		<property name="username" value="root" />
 		<property name="password" value="" />
 	</bean>
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		
+		<property name="dataSource" ref="dataSource" />		
 
 		<property name="annotatedClasses">
 			<list>
 				<value>com.theanh.first.model.User</value>
+				<value>com.theanh.first.model.CustomerModel</value>
+				<value>com.theanh.first.model.ProductModel</value>
+				<value>com.theanh.first.model.WashTypePriceModel</value>
+				<value>com.theanh.first.model.InvoiceStatusModel</value>
+				<value>com.theanh.first.model.StuffConfigModel</value>
+				<value>com.theanh.first.model.InvoiceModel</value>
+				<value>com.theanh.first.model.InvoiceDetailsModel</value>
+				<value>com.theanh.first.model.InvoiceHistoryModel</value>
+				<value>com.theanh.first.model.InvoiceCustomerViewModel</value>
+				<value>com.theanh.first.model.InvoiceDetailCustomerViewModel</value>
+				<value>com.theanh.first.model.InOutMoneyModel</value>
 			</list>
 		</property>
 
@@ -39,8 +47,9 @@
 				<!-- <prop key="hibernate.current_session_context_class">thread</prop> -->
 			</props>
 		</property>
-	</bean>
+	</bean>	
 	
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
